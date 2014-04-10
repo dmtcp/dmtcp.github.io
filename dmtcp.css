@@ -1,0 +1,70 @@
+<style type="text/css">
+  body {
+    font-size: 90%;
+    font-family: "bitstream vera sans", arial, sans-serif;
+    background-color: #ffffff;
+    padding-left: 1px;
+  }
+  div.entirepage {
+    margin-bottom: 100px;
+    margin-left: 1px;
+    background-color: #ffffff;
+    color: #000000;
+  }
+  h1 { font-size: 180%; }
+  h2 { font-size: 140%; }
+  h2 {
+    padding: 0;
+    margin: 0;
+  }
+  a.sidebar {font-size: 103%; }
+  div.title {
+    padding: 10px;
+  }
+  div.section {
+    padding: 15px;
+    padding-bottom: 30px;
+  }
+  div.cell {
+    padding-left: 10px;
+  }
+  div.faqHeader {
+    font-weight:bold;
+    font-size:120%;
+    padding: 0;
+    margin-top: 10px;
+    margin-bottom: -15;
+  }
+  div.faq {
+    font-weight:bold;
+    padding-top: 15px;
+  }
+  div.news {
+    font-weight:bold;
+    margin-top: -15px;
+  }
+
+  td.works {
+    background-color: #00FF7F;
+  }
+
+  td.partial {
+    background-color: #FFFF00;
+  }
+  
+  td.workInProgress {
+    background-color: #ccaa77;
+  }
+  
+  td.notTested {
+    background-color: #aaaaff;
+  }
+  
+  td.notSupported {
+    background-color: #FF0000;
+  }
+  td.padded {
+    padding: 5px;
+  }
+</style>
+
