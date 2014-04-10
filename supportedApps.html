@@ -1,0 +1,323 @@
+<html> 
+<head> 
+  <title>DMTCP (Supported Apps): Distributed MultiThreaded Checkpointing</title> 
+  <link rel="stylesheet" type="text/css" href="dmtcp.css" /> 
+</head> 
+
+<body> 
+  <div class="title" align="center" valign="center">
+    <h1>DMTCP: Distributed MultiThreaded CheckPointing</h1>
+  </div>
+
+  <table width="100%"> 
+    <tr> 
+      <td bgcolor="#b9b9fe" valign="top" align="left" width="15%"> 
+        <div class="cell">
+          <table width="100%" cellspacing="8" border="0"> 
+
+            <tr><td><b><a class="sidebar" href="index.html">Home</a></b></td></tr> 
+
+            <tr><td><a class="sidebar" href="downloads.html"><b>Downloads</b></a></td></tr> 
+
+            <!--
+            <tr><td><a class="sidebar" href="publications.html">Publications</a></td></tr> 
+            <tr><td><a class="sidebar" href="reportingBugs.html">Reporting bugs</a></td></tr> 
+            <tr><td><a class="sidebar" href="contributing.html">Contributing</a></td></tr> 
+            <tr><td><a class="sidebar" href="team.html">Dev team</a></td></tr> 
+            -->
+            <tr><td><a class="sidebar" href="http://sourceforge.net/projects/dmtcp">SF project page</a></td></tr> 
+            <tr><td><a class="sidebar" href="https://sourceforge.net/p/dmtcp/code">Browse Source</a></td></tr>
+            <tr><td><a class="sidebar" href="demo.html">Demo</a></td></tr> 
+
+            <tr><td><a class="sidebar" href="supportedApps.html">Supported Apps</a></td></tr> 
+            <tr><td><a class="sidebar" href="condor.html">Condor Integration</a></td></tr> 
+
+            <tr><td><a class="sidebar" href="docs/index.html">Manual/Documentation</a></td></tr> 
+            <tr><td><a class="sidebar" href="dmtcpaware.html">API</a></td></tr> 
+            <tr><td><a class="sidebar" href="FAQ.html">FAQ</a></td></tr> 
+            <tr><td><a class="sidebar" href="publications.html">Publications</a></td></tr> 
+            <tr><td><a class="sidebar" href="contactUs.html">Contact Us</a></td></tr> 
+
+
+          </table> 
+        </div>
+      </td> 
+
+      <td align="left" valign="top"> 
+        <div class="cell">
+          <h2>DMTCP Supported Apps:</h2>
+          <p>
+	    In general, we try to support all mainstream applications and
+	    most others.  The list below provides a sample of commonly
+	    used applications for which we have directly verified support
+	    from DMTCP.  If your application does not work with DMTCP,
+	    <b>this is a bug in DMTCP!</b>  We would appreciate it if
+	    you can notify us of such applications, so that we can work
+	    with you on fixing this bug in DMTCP.
+	  <p>
+	    <b>The Closed World Assumption:</b>
+	    The largest source of incompatibility with DMTCP is applications
+	    that violate the "closed world assumption".  This means
+	    applications that connect with external services.  In these
+	    cases, we must add heuristics that know about the external
+	    world.  A classic example is X&nbsp;Window apps
+	    (<a href="#xwindow">see the list below</a>).  Other examples
+	    for which DMTCP has added heuristic support are:
+	    NSCD (Name Service Caching Daemon),
+	    LDAP (Lightweight Directory Access Protocol), re-connecting
+	    stdin/stdout/stderr to the current terminal device, and so on.
+	  <p>
+	    <b>The Closed World Assumption and End-User Customizations:</b>
+	    Finally, DMTCP provides
+	    <a href="http://dmtcp.sourceforge.net/dmtcpaware.html">an
+	    end-user API</a> that allows users
+	    to customize DTMCP to come closer to the closed world assumption.
+	    For example, a database client can disconnect from the server
+	    before checkpoint, and reconnect after resume/restart.
+	    A database server can delay checkpointing until all current
+	    transactions have completed.
+          <p>
+	    <b>Time (rdtsc) and Sleep:</b>
+            Time and sleep present special cases during restart.
+            Any counter or timer active since the beginning of a process
+            will consider the restarted process to be a new process.
+            This can affect the x86/x86_64 assembly instruction <tt>rdtsc</tt>,
+            which counts the number of clock cycles since the beginning of
+            the process.  Currently, if a checkpointed process was inside
+            the <tt>sleep</tt> system call, then DMTCP restart will cause
+            <tt>sleep</tt> to resume based on the number of seconds
+            remaining to sleep.  (This last policy may change in the
+            future.)
+          <p>
+	    <b>Three newer non-POSIX Linux system calls:</b>
+	    DMTCP supports three newer Linux system calls (epoll, eventfd,
+	    and signalfd) as of DMTCP release&nbsp;1.2.6.  
+          <p>
+	    <b>Work in Progress:</b>
+	    Support for inotify will be provided in a future release.
+	    Please contact us for the latest status, or if you have an
+	    additional application for which you need support.
+          <p>
+	    <b>Some of the commonly used applications supported by DMTCP:</b>
+          <p>
+
+          <ul>
+            <li>  Programming Languages: C/C++, Java, GNU Lisp, ...
+            <li>  Parallel Computing: Open MPI, MPICH2, OpenMP, Cilk,
+		 InfiniBand (working internally, as of Aug.,&nbsp;2013), ...
+            <li>  Scripting and Shell Languages: Python, Perl,
+		 dash/bash/tcsh/zsh, screen, ...
+            <li>  Web/Internet: MySQL, PHP, Firefox (see X Window Apps),
+		 Apache, ...
+            <li>  Text-based Editors: vi/vim/cscope (vim mouse support
+		 not available), emacs, ...
+            <li>  <a name="xwindow">X Window Apps</a>: Supported with VNC
+		 -- disconnect VNC viewer,
+		 and then checkpoint VNC server. Reconnect viewer after
+		 resume/restart.  <em>(This method will not currently work
+		 for checkpointing 3-D graphics (e.g. OpenGL).  If you have
+		 an important OpenGL application, we would be interested
+		 in collaborating with you on adding DMTCP support.)</em>
+            <li> Not Supported: Statically Compiled Applications (using
+		 libc.a instead of libc.so).  Could be supported through
+		 use of trampolines.  Please contact us if you have an
+		 important application.
+          </ul>
+<!--
+          <table border=0> 
+            <tr> 
+              <td><b>Legend: </b></td> 
+              <td class="works"          style="width: 18px;"> </td><td>Works</td> 
+              <td class="partial"        style="width: 18px;"> </td><td>Partial</td> 
+              <td class="workInProgress" style="width: 18px;"> </td><td>Work-in-progress</td> 
+              <td class="notTested"      style="width: 18px;"> </td><td>Not yet tested</td> 
+              <td class="notSupported"   style="width: 18px;"> </td><td>Not Supported</td> 
+            </tr> 
+          </table> 
+
+          <table width="100%" border="1"> 
+            <tr>
+              <th width = "20%"> Application </th>
+              <th width = "12%"> Tested Version </th>
+              <th> Status with latest DMTCP release </th>
+            </tr>
+
+            <tr> <td class="padded" colspan="3"> <a name="scripting"> <b> Scripting and Shell Languages </b> </td> </tr>
+            <tr>
+              <td>Python </td>
+              <td></td>
+              <td class="works">Works.</td>
+            </tr> 
+            <tr>
+              <td>Perl </td>
+              <td></td>
+              <td class="works">Works.</td>
+            </tr> 
+            <tr>
+              <td>dash/bash/tcsh/zsh </td>
+              <td></td>
+              <td class="works">Works.</td>
+            </tr> 
+            <tr>
+              <td>GNU screen</td>
+              <td></td>
+              <td class="works">Works.</td>
+            </tr> 
+
+            <tr> <td class="padded" colspan="3"> <a name="parallel"> <b> Parallel Computing: </b>
+              (Note that several MPI dialects provide their own checkpoint-restart
+              service.  In these tests, DMTCP does not see or use those services.
+              All tests are over TCP/IP.  DMTCP support for InfiniBand is working
+              internally as of Aug.&nbsp;2013, and will soon be distributed.)
+              </td> </tr>
+            <tr>
+              <td>Open MPI </td>
+              <td></td>
+              <td class="works">Works. (In addition, the Open MPI checkpoint-restart service
+                 can call BLCR or MTCP component of DMTCP.)</td>
+            </tr> 
+            <tr>
+              <td>MPICH2</td>
+              <td></td>
+              <td class="works">Works.</td>
+            </tr> 
+            <tr>
+              <td>GNU OpenMP </td>
+              <td></td>
+              <td class="works">Works.</td>
+            </tr> 
+            <tr>
+              <td>InfiniBand-based computations </td>
+              <td></td>
+              <td class="workInProgress">(work in progress)</td>
+            </tr> 
+
+            <tr> <td class="padded" colspan="3"> <a name="programming"> <b> Programming Languages: </b> </td> </tr>
+            <tr>
+              <td>C/C++/Java</td>
+              <td></td>
+              <td class="works">Works.</td>
+            </tr> 
+            <tr>
+              <td>GNU Lisp</td>
+              <td></td>
+              <td class="works">Works.</td>
+            </tr> 
+
+            <tr> <td class="padded" colspan="3"> <a name="web"> <b> Web/Internet: </b> </td> </tr> 
+            <tr>
+              <td>MySQL</td>
+              <td></td>
+              <td class="works">Works.</td>
+            </tr> 
+            <tr>
+              <td>PHP</td>
+              <td></td>
+              <td class="notTested">Not yet tested.</td>
+            </tr> 
+            <tr>
+              <td>Firefox</td>
+              <td></td>
+              <td class="partial">
+                Works only as a part of VNC session. Does not work when using inotify.
+              </td>
+            </tr> 
+            <tr>
+              <td>Apache </td>
+              <td></td>
+              <td class="works">Works.</td>
+            </tr> 
+
+            <tr> <td class="padded" colspan="3"> <a name="editors"> <b>Text-based Editors/Full screen apps: (no X11 support except potentially with VNC):</b> </td> </tr> 
+            <tr>
+              <td>vi/vim/cscope</td>
+              <td></td>
+              <td class="works">Works.</td>
+            </tr> 
+            <tr>
+              <td>emacs</td>
+              <td></td>
+              <td class="works">Works.</td>
+            </tr> 
+
+            <tr> <td class="padded" colspan="3"> <a name="xwindows"> <b> X Windows </b> </td> </tr>
+            <tr>
+              <td>TightVNC </td>
+              <td></td>
+              <td class="works">Works.</td>
+            </tr> 
+            <tr>
+              <td>Single X11 apps without VNC</td>
+              <td></td>
+              <td class="workInProgress">Work in Progress</td>
+            </tr> 
+
+            <tr> <td class="padded" colspan="3"> <a name="mailClients"> <b> Mail Clients: </b> </td> </tr>
+            <tr>
+              <td>Mutt</td>
+              <td></td>
+              <td class="notTested">Not yet tested.</td>
+            </tr> 
+            <tr>
+              <td>UCB Mail</td>
+              <td></td>
+              <td class="notTested">Not yet tested.</td>
+            </tr> 
+
+            <tr> <td class="padded" colspan="3"> <a name="others"> <b> Other Misc. Applications: </b> </td> </tr>
+            <tr>
+              <td>Statically Compiled Applications (using libc.a instead of libc.so)</td>
+              <td></td>
+              <td class="notSupported">will only fix if demand exists</td>
+            </tr> 
+
+            <tr>
+              <td>Computations using multiple xterm windows:</td>
+              <td></td>
+              <td class="workInProgress">Work in Progress</td>
+            </tr> 
+
+            <tr>
+              <td>Interactive SSH Sessions</td>
+              <td></td>
+              <td class="workInProgress">Work in progress.</td>
+            </tr> 
+
+            <tr>
+              <td>Mouse support for vim</td>
+              <td></td>
+              <td class="workInProgress">Work in progress.</td>
+            </tr> 
+
+          </table> 
+-->
+
+          <p>
+          <hr>
+
+          <script language="JavaScript"> 
+            <!---//hide script from old browsers
+            document.write( "<br>Last updated " + document.lastModified + "." );
+            //end hiding contents --->
+          </script>
+
+	  <p> Click <a class="sidebar" href="contactUs.html">here for comments.</a>
+          <p>
+
+          <A href="http://sourceforge.net"><IMG src="http://sourceforge.net/sflogo.php?group_id=96405&amp;type=5" width="210" height="62" border="0" alt="SourceForge.net Logo" /></A> 
+
+          <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-7505564-1");
+              pageTracker._trackPageview();
+            } catch(err) {}</script>
+        </div>
+      </td> 
+    </tr> 
+  </table> 
+</body> 
+</html>

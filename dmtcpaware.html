@@ -1,0 +1,127 @@
+<html> 
+<head> 
+  <title>DMTCP : Distributed MultiThreaded Checkpointing</title> 
+  <link rel="stylesheet" type="text/css" href="dmtcp.css" /> 
+</head> 
+
+<body> 
+  <div class="title" align="center" valign="center">
+    <h1>DMTCP: Distributed MultiThreaded CheckPointing</h1>
+  </div>
+
+  <table width="100%"> 
+    <tr> 
+      <td bgcolor="#b9b9fe" valign="top" align="left" width="15%"> 
+        <div class="cell">
+          <table width="100%" cellspacing="8" border="0"> 
+
+            <tr><td><b><a class="sidebar" href="index.html">Home</a></b></td></tr> 
+
+            <tr><td><a class="sidebar" href="downloads.html"><b>Downloads</b></a></td></tr> 
+
+            <!--
+            <tr><td><a class="sidebar" href="publications.html">Publications</a></td></tr> 
+            <tr><td><a class="sidebar" href="reportingBugs.html">Reporting bugs</a></td></tr> 
+            <tr><td><a class="sidebar" href="contributing.html">Contributing</a></td></tr> 
+            <tr><td><a class="sidebar" href="team.html">Dev team</a></td></tr> 
+            -->
+            <tr><td><a class="sidebar" href="http://sourceforge.net/projects/dmtcp">SF project page</a></td></tr> 
+            <tr><td><a class="sidebar" href="https://sourceforge.net/p/dmtcp/code">Browse Source</a></td></tr>
+
+            <tr><td><a class="sidebar" href="demo.html">Demo</a></td></tr> 
+
+            <tr><td><a class="sidebar" href="supportedApps.html">Supported Apps</a></td></tr> 
+            <tr><td><a class="sidebar" href="condor.html">Condor Integration</a></td></tr> 
+
+            <tr><td><a class="sidebar" href="docs/index.html">Manual/Documentation</a></td></tr> 
+            <tr><td><a class="sidebar" href="dmtcpaware.html">API</a></td></tr> 
+            <tr><td><a class="sidebar" href="FAQ.html">FAQ</a></td></tr> 
+            <tr><td><a class="sidebar" href="publications.html">Publications</a></td></tr> 
+            <tr><td><a class="sidebar" href="contactUs.html">Contact Us</a></td></tr> 
+
+          </table> 
+        </div>
+      </td> 
+
+      <td align="left" valign="top"> 
+        <div class="cell">
+          <h2>DMTCP Plugin Interface:</h2>
+          <p>
+
+	    DMTCP modules provide a flexible way to write an add-on library
+	    that can DMTCP event hooks, add custom wrappers around system
+	    calls, and add a custom distributed nameservice facility using the
+            DMTCP Coordinator. DMTCP module examples can be found in
+<a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/test/plugin/">
+              <i>test/plugin</i></a> directory of the source distribution.
+
+	    <p>
+          <h2>DMTCP Aware Programming Interface:</h2>
+	    <p>
+
+            If you wish to call DMTCP from within your
+            checkpointed program, we provide an optional programming interface
+            called <i>DMTCP Aware</i>.  If you are using binary distribution packages, you need to install libdmtcpaware1 (for dynamic linking) or libdmtcpaware-dev (for static linking) along with the dmtcp package.  There are several ways to use DMTCP Aware:
+            </p>
+            <ul>
+              <li> Static linkage: Add <i>dmtcpaware.h</i> and <i>libdmtcpaware.a</i> to
+              your project. If you are using <i>libdmtcpaware-dev</i> binary distribution, <i>dmtcpaware.h</i> can be found in the
+<i>/usr/include/</i>, 
+and <i>libdmtcpaware.a</i> can be found in the <i>/usr/lib/</i> directory. 
+Look at the <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/dmtcpaware">
+              <i>dmtcpaware</i></a> directory of the source distribution for more details.
+
+              <li> Dynamic linkage: Add <i>dmtcpaware.h</i> to your source code
+              and link with <i>-ldmtcpaware</i>. The packages <i>libdmtcpaware1</i> and
+              <i>libdmtcpaware-dev</i> should be installed on your system.
+              The <i>libdmtcpaware.so.*</i> files can also be found in the <i>.../dmtcp/src/</i>
+              directory of the source distribution.
+
+              <li> Include <i>dmtcpaware.h</i> from your code.  You should now have
+              access to the DMTCP Aware API.
+
+              <li> <a href="http://dmtcp.sourceforge.net/dmtcpawaredoxygen/dmtcpaware_8h.html">Documentation of the DMTCP Aware API functions</a> is available.
+              To test if your program is running under <i>dmtcp_checkpoint</i> use 
+              <i>dmtcpIsEnabled()</i>. Note that if your program is <b>not</b> running
+              under DMTCP, <i>dmtcpIsEnabled()</i> will return false, and all other API functions
+              will return -128 or NULL and have no effect.
+            </ul>
+
+          <h2>Python Interface:</h2>
+	    <p>
+              DMTCP also provides a simple Python module for accessing
+	      DMTCP functions within a Python session.  You can import
+	      the Python module found as
+              <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/contrib/python/dmtcp.py">
+              <i>contrib/python/dmtcp.py</i></a>.  Other Python utilities
+	      are also in <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/contrib/python/">
+              <i>contrib/python/</i></a>.
+          </div>
+          <hr>
+
+          <script language="JavaScript"> 
+            <!---//hide script from old browsers
+            document.write( "<br>Last updated " + document.lastModified + "." );
+            //end hiding contents --->
+          </script>
+
+	  <p> Click <a class="sidebar" href="contactUs.html">here for comments.</a>
+          <p>
+
+          <A href="http://sourceforge.net"><IMG src="http://sourceforge.net/sflogo.php?group_id=96405&amp;type=5" width="210" height="62" border="0" alt="SourceForge.net Logo" /></A> 
+
+          <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-7505564-1");
+              pageTracker._trackPageview();
+            } catch(err) {}</script>
+        </div>
+      </td> 
+    </tr> 
+  </table> 
+</body> 
+</html>

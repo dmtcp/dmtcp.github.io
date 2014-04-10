@@ -1,0 +1,762 @@
+<html> 
+<head> 
+  <title>DMTCP (FAQ): Distributed MultiThreaded Checkpointing</title> 
+  <link rel="stylesheet" type="text/css" href="dmtcp.css" /> 
+</head> 
+
+<body> 
+  <div class="title" align="center" valign="center">
+    <h1>DMTCP: Distributed MultiThreaded CheckPointing</h1>
+  </div>
+
+  <table width="100%"> 
+    <tr> 
+      <td bgcolor="#b9b9fe" valign="top" align="left" width="15%"> 
+        <div class="cell">
+          <table width="100%" cellspacing="8" border="0"> 
+
+            <tr><td><b><a class="sidebar" href="index.html">Home</a></b></td></tr> 
+
+            <tr><td><a class="sidebar" href="downloads.html"><b>Downloads</b></a></td></tr> 
+            <tr><td><a class="sidebar" href="http://sourceforge.net/projects/dmtcp">SF project page</a></td></tr> 
+            <tr><td><a class="sidebar" href="https://sourceforge.net/p/dmtcp/code">Browse Source</a></td></tr>
+            <tr><td><a class="sidebar" href="demo.html">Demo</a></td></tr> 
+
+            <tr><td><a class="sidebar" href="supportedApps.html">Supported Apps</a></td></tr> 
+            <tr><td><a class="sidebar" href="condor.html">Condor Integration</a></td></tr> 
+            <tr><td><a class="sidebar" href="docs/index.html">Manual/Documentation</a></td></tr> 
+            <tr><td><a class="sidebar" href="dmtcpaware.html">API</a></td></tr> 
+            <tr><td><a class="sidebar" href="FAQ.html">FAQ</a></td></tr> 
+            <tr><td><a class="sidebar" href="publications.html">Publications</a></td></tr> 
+            <tr><td><a class="sidebar" href="contactUs.html">Contact Us</a></td></tr> 
+
+          </table> 
+        </div>
+      </td> 
+
+      <td align="left" valign="top"> 
+        <div class="cell">
+          <h2>Frequently Asked Questions:</h2>
+
+          <ul> 
+            <li> <a href="#general">General Questions</a>
+            <ul>
+            <li> <a href="#basics">Basics</a>
+             <ol>
+              <li> <a href="#runningDMTCP"> How does one run DMTCP? </a>
+              <li> <a href="#progType"> What types of programs can DMTCP checkpoint? </a>
+              <li> <a href="#license"> What is the license for DMTCP? </a>
+              <li> <a href="#compile"> Do I need to re-compile or re-link my applications to use DMTCP? </a>
+              <li> <a href="#kernelMod"> Do I need to add kernel modules or patch my kernel? </a>
+             </ol>
+            <li> <a href="#uses">Use Cases</a>
+             <ol>
+              <li> <a href="#cluster"> How does one use DMTCP for a distributed computation (for example, on a cluster)?
+              <li> <a href="#migrate"> Can I migrate my applications (re-start them on other hosts)? </a>
+              <li> <a href="#dmtcpaware"> How can my software invoke a checkpoint or restart directly under control of my program? </a>
+              <li> <a href="#exitcode"> What is the exit code (return status) for a target application running under DMTP? </a>
+              <li> <a href="#plugins"> Does DMTCP support third-party plugins (add-ons) to change the behavior of DMTCP at run-time?</a>
+              <li> <a href="#debugging"> How do I debug my application under GDB when I am using DMTCP?
+             </ol>
+            <li> <a href="#architectures">Architectures Supported by DMTCP</a>
+             <ol>
+              <li> <a href="#cpuPorts"> What CPUs has DMTCP been ported to? </a>
+              <li> <a href="#osPorts"> What Operating Systems has DMTCP been ported to? </a>
+              <li> <a href="#networkPorts"> What types of networks does DMTCP support? </a>
+              <li> <a href="#batchQueuePorts"> What types of batch queues does DMTCP support? </a>
+              <li> <a href="#distros"> What Linux distributions do you test on? </a>
+             </ol>
+            <li> <a href="#performance">Performance</a>
+             <ol>
+	      <li> <a href="#speed"> My application takes several seconds
+		 (or longer) to checkpoint and restart.  What can I do
+	         to speed it up?
+	      <li> <a href="#size"> Can I tell DMTCP that some of my memory
+                 does not need to be checkpointed (specifying <em>cutouts</em>,
+                 for a smaller checkpoint image)?
+             </ol>
+            <li> <a href="#dmtcpProject">About the DMTCP Project</a>
+             <ol>
+              <li> <a href="#supportContact"> Who should I write to for support? </a>
+              <li> <a href="#history"> When was work on DMTCP begun, and who works on it now? </a>
+              <li> <a href="#citeDMTCP"> How should I cite DMTCP in a publication? </a>
+             </ol>
+            </ul>
+            <li> <a href="#supportedApps">What Applications does
+		 DMTCP Support?</a>
+            <ol>
+	      <li> <a href="#generalSupport"> Is there a simple, general
+		description of what applications are supported?</a>
+              <li> <a href="#distributed"> Does DMTCP support multi-threaded and distributed programs? </a>
+              <li> <a href="#javaSupport"> Does DMTCP support Java? </a>
+              <li> <a href="#matlabSupport"> Does DMTCP support
+	    	checkpointing of Matlab? </a>
+
+            <li> <a href="#RCkpt"> Does DMTCP support
+	    checkpointing of R programs (for statistical computing)? </a>
+              <li> <a href="#mpiSupport"> Does DMTCP support MPI? </a>
+              <li> <a href="#openmpSupport"> Does DMTCP support
+	    	multi-threaded languages such as OpenMP and Cilk? </a>
+              <li> <a href="#screenSupport"> Does DMTCP support GNU screen? </a>
+              <li> <a href="#gdb"> Can DMTCP checkpoint a GDB session? </a>
+              <li> <a href="#xwindowsSupport"> Does DMTCP support X-Windows graphics (GUI) programs? </a>
+              <li> <a href="#osFeatures"> What other O/S features are supported by DMTCP? </a>
+            </ol>
+            <li> <a href="#matlab">Checkpointing Matlab</a>
+            <ol>
+              <li> <a href="#matlabCkpt"> Does DMTCP support checkpointing of Matlab programs? </a>
+            </ol>
+
+            <li> <a href="#mpi">Checkpointing MPI</a>
+            <ol>
+              <li> <a href="#mpiCkpt"> Does DMTCP support checkpointing of MPI programs? </a>
+              <li> <a href="#mpiInfiniBand"> Does DMTCP support MPI for InfiniBand, Myrinet, or iWARP?</a>
+            </ol>
+
+<!--
+            <li> <a href="#errorMsgs">DMTCP Error Messages</a>
+            <ol>
+              <li> <a href="#coordSocket"> How does DMTCP work? </a>
+            </ol>
+-->
+            <li> <a href="#internals">DMTCP Internals</a>
+            <ol>
+              <li> <a href="#internalWorking"> How does DMTCP work? </a>
+              <li> <a href="#documentation"> Is there documentation on the internals of DMTCP? </a>
+              <li> <a href="#jassert"> Can I enable tracing of DMTCP internals? </a>
+              <li> <a href="#internalOverhead"> What is the run-time overhead of DMTCP? </a>
+            </ol>
+          </ul> 
+
+          <br>
+          <hr>
+
+          <div class="faqHeader"> <a name="general"> General Questions </a> </div>
+          <ul>
+          <div class="faqHeader"> <a name="basics"> Basics </a> </div>
+           <ol>
+            <li> <div class="faq"> <a name="runningDMTCP"> How does one run DMTCP? </a> </div>
+	    <code>
+              % dmtcp_launch ./a.out arg1 arg2 ...<br>
+              % dmtcp_command --checkpoint&nbsp;&nbsp;&nbsp;&nbsp; [from another terminal window on same computer]<br>
+              % dmtcp_restart ckpt_a.out_*.dmtcp<br>
+	    </code>
+            If using the above recipe, make sure to first
+            remove old ckpt images.  DMTCP also writes out
+            <tt>./dmtcp_restart_script.sh</tt>, which handles various
+            bookkeeping and is safer to use.<br>
+            <em>NOTE:</em> Older versions of DMTCP use
+            <tt>dmtcp_checkpoint</tt> instead
+            of <tt>dmtcp_launch</tt>.<br>
+            <em>NOTE:</em> Numerous configure and run-time options are
+            also available.
+
+            <li> <div class="faq"> <a name="progType"> What types of programs can DMTCP checkpoint? </a> </div>
+            It checkpoints most binary programs on most Linux
+            distributions.  Some examples on which users have
+            verified that DMTCP works are: Matlab, R, Java, Python,
+            Perl, Ruby, PHP, Ocaml, GCL (GNU Common Lisp), emacs,
+            vi/cscope, Open&nbsp;MPI, MPICH-2, OpenMP, and Cilk.
+            See <a href="http://dmtcp.sourceforge.net/supportedApps.html">
+            Supported Applications</a> for further details.  Our goal
+            is to support DMTCP for all vanilla programs.  If DMTCP does not
+            work correctly on your program,
+            <strong>then this is a bug in DMTCP</strong>.
+	    We would be appreciative if you can then
+            <a href="http://dmtcp.sourceforge.net/contactUs.html">file a bug
+            report with DMTCP</a>.
+
+            <li> <div class="faq"> <a name="license"> What is the license for DMTCP? </a> </div>
+            It is a free software distributed under the terms of the 
+            <a href="http://www.gnu.org/licenses/lgpl.html">Lesser GNU Public License (LGPL)</a>.
+            This license was chosen to be <em>non-contagious</em>.
+            If you distribute a modified version of DMTCP, you must
+            make available to your users your modifications to DMTCP.
+            But proprietary or other
+            software may freely use the DMTCP libraries and utilities with no
+            restrictions on the proprietary or other software.
+
+            <li> <div class="faq"> <a name="compile"> Do I need to re-compile or re-link my applications to use DMTCP? </a> </div>
+            No.  DMTCP is completely transparent in this sense.
+
+            <li> <div class="faq"> <a name="kernelMod"> Do I need to add kernel modules or patch my kernel? </a> </div>
+            No.  DMTCP requires no root permissions.  Hence, other
+            software packages can easily include DMTCP as part of their
+            distribution (subject to
+            <a href="#license">DMTCP's LGPL license</a>).
+
+           </ol>
+          <div class="faqHeader"> <a name="uses"> Use Cases </a> </div>
+           <ol>
+            <li> <div class="faq"> <a name="cluster"> How does one use DMTCP for a distributed computation (for example, on a cluster)? </a> </div>
+            A DMTCP computation consists of all processes
+            connected to a given coordinator.  To have two simultaneous
+	    DMTCP computations on the same host, you will need two DMTCP
+	    coordinators listening to different port numbers.  The command
+            <tt>dmtcp_coordinator</tt> generates a new coordinator.
+            By default, <tt>dmtcp_launch</tt> (<tt>dmtcp_checkpoint</tt>)
+            will first look for
+            an existing coordinator on the localhost on port 7779
+            and join that existing DMTCP computation.  If no such
+            coordinator is found,
+            <tt>dmtcp_launch</tt> (<tt>dmtcp_checkpoint</tt>) will create
+            a new coordinator and then join it as the first process
+            of that computation.  A checkpoint is initiated when the
+            coordinator tells all its connected processes to create
+            a checkpoint.  Each client of the coordinator writes a
+            file, <tt>ckpt_*.dmtcp</tt>, on its local machine, and the
+            coordinator writes <tt>dmtcp_restart_script.sh</tt> in its
+            own local directory.  The script can be used to restart all
+            processes using the <tt>ckpt_*.dmtcp</tt> files on the various
+            hosts.  Since the coordinator initiates all checkpoints, it is the
+            coordinator that remembers the checkpoint interval.  Both
+            <tt>dmtcp_command --interval</tt> and <tt>dmtcp_launch
+            --interval</tt> can be used to set the checkpoint interval
+            on the coordinator.
+
+            <li> <div class="faq"> <a name="migrate"> Can I migrate my applications (re-start them on other hosts)? </a> </div>
+            Yes.  Look at dmtcp_restart_script.sh for some options
+            on migrating both single-process and distributed process
+            computations.  This should usually work if the source and
+            destination Linux kernel are both recent.  However, test
+            the migration first to be sure.
+
+            <li> <div class="faq"> <a name="dmtcpaware"> How can my software invoke a checkpoint or restart directly under control of my program? </a> </div>
+	    Yes.  The most full-featured mechanism is through
+	    <a href="#plugins">DMTCP plugins</a>.
+            See especially
+	    <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/test/plugin/applic-initiated-ckpt">application-initiated checkpointing</a>
+            (using <tt>dmtcpCheckpoint()</tt>), and
+	    <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/test/plugin/applic-delayed-ckpt">application-delayed checkpointing</a>
+            (using <tt>dmtcpDelayCheckpointsLock()</tt>).
+	    <!---
+	    For an older mechanism,
+	    see <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/dmtcpaware/">dmtcpaware subdirectory</a>, which also includes
+            example code.
+            You will need to modify your software to use the dmtcpaware API,
+            and re-compile and re-link your software to the DMTCP libraries.
+	    -->
+
+            <li> <div class="faq"> <a name="exitcode"> What is the exit code (return status) for a target application running under DMTP? </a> </div>
+            Normally, commands like <tt>dmtcp_launch&nbsp;a.out</tt>
+            (<tt>dmtcp_checkpoint&nbsp;a.out</tt>) and
+            <tt>dmtcp_restart&nbsp;ckpt_a.out_*.dmtcp</tt> pass on the
+            the exit code that is returned by a.out itself.  If
+            dmtcp_launch or dmtcp_restart is passed an invalid
+            command line (e.g., no  such ckpt file), then they will exit
+            with exit code&nbsp;99 (by default),
+            or the integer value of DMTCP_FAIL_RC if that environment
+            variable has been set.
+
+            <li> <div class="faq"> <a name="plugins"> Does DMTCP support third-party plugins (add-ons) to change the behavior of DMTCP at run-time?</a> </div>
+	    Yes.  Please look at the <a
+	    href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/test/plugin/">
+	    directory of DMTCP plugin examples</a> for a flexible mechanism for
+	    third-party plugins (add-ons).  This includes support for:
+	    (i)&nbsp;wrappers around system calls; (ii)&nbsp;hooks for
+	    particular events (e.g.: startup, ckpt, resume, restart);
+	    and (iii)&nbsp;for populating and querying a nameservice
+	    database across distributed processes.  Application-initiated
+            checkpointing is also provided.  No re-compilation
+	    or relinking of the application software is necessary.
+            The DMTCP source also provides a tutorial,
+            <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/doc/plugin-tutorial.pdf">
+            doc/plugin-tutorial.pdf</a>.
+
+            <li> <div class="faq"> <a name="debugging"> How do I debug my application under GDB when I am using DMTCP? </a> </div>
+	    Detailed advice is available in the file
+	    <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/doc/debugging-dmtcp.txt">doc/debugging-dmtcp.txt</a>.  General advice follows.
+            &nbsp;&nbsp;&nbsp;&nbsp;Run it as:
+		  <tt>gdb --args dmtcp_launch ./a.out</tt><br>
+            (Older versions of DMTCP use <tt>dmtcp_checkpoint</tt> instead
+            of <tt>dmtcp_launch</tt>.)<br>
+            Then <tt>dmtcp_launch</tt> will call execvp
+            on <tt>./a.out</tt>.  So, try the following:<br>
+	    <code>
+              (gdb) break execvp<br>
+              (gdb) run<br>
+              (gdb) [stops at execvp]<br>
+              (gdb) break main<br>
+              (gdb) next<br>
+              (gdb) next<br>
+              (gdb) ...<br>
+	    </code>
+            &nbsp;&nbsp;&nbsp;&nbsp;Note that <tt>dmtcp_launch</tt>
+            calls execvp to execute the main routine of the application
+            (<tt>a.out</tt> in the above example).
+            If you want to see the actions of the dmtcphijack.so library
+            starting after the call to execvp and before the application's main
+            routine, then at the beginning of your GDB session, do:<br>
+	    <code>
+              (gdb) break 'dmtcp::DmtcpWorker::DmtcpWorker(bool)'<br>
+              (gdb) run<br>
+	    </code>
+            We have found the GDB command <tt>info proc mappings</tt> useful
+            for deciding if an address belongs to libc.so, dmtcphijack.so,
+            your target application, or other.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;To capture your process under GDB during
+            <tt>dmtcp_restart</tt>, you need a more roundabout strategy.
+            This is because
+            <tt>dmtcp_restart</tt> calls <tt>mmap</tt> to reload the
+            memory of your process.  So, the best way is to use
+            <tt>gdb&nbsp;attach</tt> or
+            <tt>gdb&nbsp;./a.out&nbsp;`pgrep&nbsp;-n&nbsp;a.out`</tt>
+            after your process has restarted.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Your restarted process can be forced
+            to pause deep within MTCP just as it restarts,
+            by setting the environment variable <tt>MTCP_RESTART_PAUSE</tt>
+            (available beginning with DMTCP-1.2.5, or in the DMTCP svn).
+            (Set <tt>DMTCP_RESTART_PAUSE</tt> before the original
+            <tt>dmtcp_launch</tt>, since
+            the restarted process will remember only the original environment
+            variables prior to checkpoint.)<br>
+            <em>NOTE:</em> If you want to trace the internals of DMTCP
+            (in addition to using GDB as above), see
+            <a href="#jassert"><em>tracing DMTCP internals</em></a>.
+
+           </ol>
+          <div class="faqHeader"> <a name="architectures"> Architectures Supported by DMTCP </a> </div>
+           <ol>
+            <li> <div class="faq"> <a name="cpuPorts"> What CPUs has
+	    DMTCP been ported to? </a> </div>
+	    DMTCP supported x86 and x86_64 since the beginning.  It has
+	    recently been ported to the ARM CPU.  It uses the newer
+	    EABI API for Linux on ARM.  As of this writing, the port
+	    is valid only for 32-bit ARM, and has been tested for more
+	    recent ARM multi-core CPUs.  It will be extended to 64-bit
+	    ARM when that CPU is readily available.
+	    For porting to
+	    other CPUs, please see <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/src/mtcp/PORTING?view=markup">src/mtcp/PORTING</a>
+	    (notes on how to port DMTCP).
+	    <P>  DMTCP has also
+	    been verified to work on the Intel Xeon Phi (back end, only,
+	    at this time) when built with the Intel icc compiler.  We used
+	    <br>
+	    <code>./configure --host=mic CC=icc CXX=icpc CFLAGS=-mmic CXXFLAGS=-mmic LDFLAGS=-mmic</code>
+	    <br> to build on the Intel MIC.
+	    Optionally, one can also add "<tt>-static-intel</tt>" to
+	    CFLAGS, CXXFLAGS and LDFLAGS.
+
+            <li> <div class="faq"> <a name="osPorts"> What Operating
+	    Systems has DMTCP been ported to? </a> </div>
+	    DMTCP operates only under Linux as of this writing.  Because its
+	    design stays close the POSIX API, it can be ported to other
+	    operating systems, given sufficient demand.  If someone is
+	    interested in doing the work, please write to us, and we will
+	    share our ideas on how to do that port.
+	    <P>
+	    See also <a href="http://www.slideshare.net/jserv/implement-checkpointing-for-android-elce2012">"Implementing Chackpointing for Android"</a>
+	    for work porting DMTCP to Android.
+
+            <li> <div class="faq"> <a name="networkPorts"> What types
+	    of networks does DMTCP support? </a> </div>
+	    DMTCP works directly with TCP.  It would also be relatively
+	    easy to port it to IP, but we haven't seen a demand for this.
+	    <P>
+	    As of September, 2013, support for transparent
+	    checkpoint-restart over InfiniBand has been added to the svn..
+
+            <li> <div class="faq"> <a name="batchQueuePorts"> What types
+	    of batch queues does DMTCP support? </a> </div>
+	    As of DMTCP version&nbsp;2.0, DMTCP supports Torque,
+	    and some initial support for SLURM.  Support for both is
+	    implemented as a plugin, and can be found in the directory
+	    <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/plugin/batch-queue/">
+	    plugin/batch-queue</a> directory.  This is provided by Artem
+	    Polyakov, who can be reached as artpol84 through gmail.
+	    This is new code, and we welcome feedback on any issues
+	    encountered.  Ports to other batch queues will be added
+	    relatively easily using this model.
+
+            <li> <div class="faq"> <a name="distros"> What Linux distributions do you test on? </a> </div>
+	    <!--
+            We test at least weekly on Linux distributions provided by
+	    the NMI Build and Test Lab at the University of Wisconsin.
+	    -->
+	    There are also "dmtcp" packages in
+	     Debian (since version&nbsp;7.0, "wheezy"),
+	    Ubuntu (since version&nbsp;11.10),
+	    Fedora (since version&nbsp;17),
+	    and
+	    openSUSE (since version&nbsp;12.1).
+            In-house, we commonly use DMTCP under
+            Ubuntu (64-bit), openSUSE (64-bit), and Linux Mint (32-bit,
+	    based on Ubuntu).
+	    On an irregular basis, we also test on other distributions.
+
+           </ol>
+          <div class="faqHeader"> <a name="performance"> Performance </a> </div>
+           <ol>
+            <li> <div class="faq"> <a name="speed">
+	      My application takes several seconds (or longer) to checkpoint
+	      and restart.  What can I do to speed it up?
+	   </a> </div>
+		Small applications should checkpoint and restart in
+		  a second.  There are several ways to speed up
+		  checkpoint/restart for larger applications:
+		<ol style="list-style-type:lower-alpha"> 
+		<li> The disk is usually the slowest part of
+		 checkpoint/restart.  Consider using a RamDisk.
+		 For example:<br>
+	<code>
+          sudo mount -t ramfs -o size=200m ramfs <em>/path/to/dmtcp_ckpt_dir</em><br>
+  	  export DMTCP_CHECKPOINT_DIR=<em>/path/to/dmtcp_ckpt_dir</em><br>
+          rm -f <em>/path/to/dmtcp_ckpt_dir/ckpt_*.dmtcp</em><br>
+          dmtcp_launch <em>YOUR_APP</em><br>
+          dmtcp_restart <em>/path/to/dmtcp_ckpt_dir/ckpt_*.dmtcp</em><br>
+	</code>
+		 <em>(Warning:  ramfs can continue to grow with the total
+		  size of files in the dmtcp_ckpt_dir, eventually freezing
+		  your system if you write too much.  The related
+		  tmpfs does not suffer from this, but it uses the swapfile
+		  on disk, which can slow it down for large writes.)</em>
+		<li> Restart will be faster with the environment
+			variable DMTCP_TMPDIR (on ckpt and restart) pointing
+			into the RamDisk created above.<br>
+                        <em>  (Set DMTCP_TMPDIR before the initial launch
+                        of your application, since the environment
+                        variable is saved with your checkpoint image.
+                        This policy may be changed in the future.) </em>
+		<li> By default, DMTCP uses gzip for dynamic compression of
+			checkpoint images.  Consider using
+			 <tt>dmtcp_launch&nbsp;--no-gzip</tt>&nbsp;.
+		     Alternatively, set an environment variable:
+		       <tt>export&nbsp;DMTCP_GZIP="0"</tt>&nbsp;.
+		     On restart, DMTCP will auto-detect whether gzip was used.
+		<li>  Gzip was chosen because it is available almost
+		     universally.  Some examples of newer, faster compression
+		     packages are:
+	<a href="http://code.google.com/p/snappy/">Snappy</a>,
+	<a href="http://www.oberhumer.com/opensource/lzo/">LZO</a>,
+	<a href="http://fastlz.org/">FastLZ</a>, and
+	<a href="http://www.quicklz.com/">QuickLZ</a>.
+		     Currently, you will have to modify the DMTCP source code
+		     to use these.  With enough demand, we will make it
+		     easy for the end user to select a different
+		     compression package.
+                <li> Two configure options for improving checkpoint and
+                     restart speeds are offered.  Please test that these
+                     optimizations are compatible with your application.<br>
+                     <ul>
+                     <li> <tt>./configure --enable-forked-checkpointing</tt> :
+			Use fork-based copy-on-write to have a child checkpoint
+                        while the parent continues to execute
+                     <li> <tt>./configure --enable-fast-restart</tt> :
+                        mmap-based on-demand paging from the checkpoint image
+                     </ul>
+		</ol>
+
+
+            <li> <div class="faq"> <a name="size"> Can I tell DMTCP that some
+                 of my memory does not need to be checkpointed
+                 (specifying <em>cutouts</em>, for a smaller checkpoint image)?
+                 </a> </div>
+            If you write all zeroes to the memory region that does not need
+            to be checkpointed, then DMTCP will convert those pages into
+            zero-fill-on-demand pages in the checkpoint image.  This creates
+            a smaller checkpoint image, and results in a faster restart.
+
+           </ol>
+          <div class="faqHeader"> <a name="dmtcpProject"> About the DMTCP Project </a> </div>
+           <ol>
+            <li> <div class="faq"> <a name="supportContact"> Who should I write to for support? </a> </div>
+            Please see the
+	     <a href="http://dmtcp.sourceforge.net/contactUs.html">
+	     "Contact Us" links</a> for writing to us.  That link includes
+	     pointers to the public DMTCP forum, and a private e-mail for
+	     private comments.  Other possibilities are to add a bug report to
+            <a href="http://sourceforge.net/tracker/?group_id=194616&atid=950143">the bug tracker</a>, or to write to an individual
+            <a href="http://sourceforge.net/project/memberlist.php?group_id=194616">administrator</a>.
+	     We are also always interested in finding others interested
+	     in helping develop DMTCP as an open source project.
+
+            <li> <div class="faq"> <a name="history"> When was work on DMTCP begun, and who works on it now? </a> </div>
+            The origins of DMTCP lie in
+            a project begun in Fall, 2004, and reported on at the CCGrid-06
+            conference (<em>Transparent Adaptive Library-Based Checkpointing for
+              Master-Worker Style Parallelism</em>).  Since then, The work has added
+            more ambitious goals.  The list of active developers continues to
+            change over time.  As of this writing, the sourceforge site
+            lists ten developers/administrators.  We are always happy
+            to include new developers.
+
+            <li> <div class="faq"> <a name="citeDMTCP"> How should I cite DMTCP in a publication? </a> </div>
+	    Please see the <a href="publications.html">Publications page</a>
+            for the standard citation at the top of that page.
+
+	   </ol>
+	  </ul>
+
+	  <br>
+          <hr>
+
+          <div class="faqHeader"> <a name="supportedApps">
+	  What Applications does DMTCP Support? </a> </div>
+	  <ol>
+
+            <li> <div class="faq"> <a name="generalSupport">
+	    Is there a simple, general description of what applications
+	    are supported? </a> </div>
+	    Yes.  See <a href="supportedApps.html">this page for a
+	    general discussion</a>.  In addition, note the availability
+	    of <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/test/plugin/">DMTCP plugins (add-ons)</a>
+	    that allow end users to easily extend the features of DMTCP.
+
+            <li> <div class="faq"> <a name="distributed"> Does DMTCP support multi-threaded and distributed programs? </a> </div>
+	    Yes.  For programs that spawn processes on remote
+	    hosts, DMTCP currently assumes that this is done
+	    internally using ssh to a "known host", and so no
+	    password will be required.	This is the case, for
+	    example, for most TCP/IP-based MPI programs.  To restart on
+            different hosts, edit the 'ssh' lines
+	    in <tt>dmtcp_restart_script.sh</tt>&nbsp;.
+	    See below
+	    for <a href="#mpi">further discussion on MPI</a>.  See the <a
+	    href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/QUICK-START">QUICK-START</a>
+	    file for additional details.
+
+            <li> <div class="faq"> <a name="javaSupport"> Does DMTCP support Java? </a> </div>
+            Yes.  Starting with release 1.2.4, DMTCP supports Java.
+            If you are using Oracle Java (formerly Sun Java), you may
+            wish to use the flag <tt>java -Xmx512M</tt> to limit memory size
+            for a faster checkpoint.  This is not needed for OpenJDK Java.
+
+            <li> <div class="faq"> <a name="matlabSupport"> Does DMTCP support
+	    checkpointing of Matlab? </a></div>
+	    Yes.  Please <a href="#matlab">see below</a>.
+
+            <li> <div class="faq"> <a name="RCkpt"> Does DMTCP support
+	    checkpointing of <a href="http://www.r-project.org/">R programs<a/>
+	    (for statistical computing)? </a></div>
+	    Yes.  It passes our internal tests, but we would appreciate
+	    having a more intensive user of&nbsp;R provide feedback to us.
+
+            <li> <div class="faq"> <a name="mpiSupport"> Does DMTCP support MPI? </a> </div>
+            Yes.  See the <a href="#mpi">section below on MPI</a>.
+
+            <li> <div class="faq"> <a name="openmpSupport"> Does DMTCP support
+	    multi-threaded languages such as OpenMP and Cilk? </a> </div>
+            Yes.  DMTCP had partial support for OpenMP in the past.
+	    Starting with release 1.2.4, DMTCP fully supports OpenMP and Cilk.
+
+            <li> <div class="faq"> <a name="screenSupport"> Does DMTCP support 
+	    <a href="http://www.gnu.org/software/screen/">GNU screen</a> 
+	    sessions? </a> </div>
+            Yes.  Starting with release 1.2.0, DMTCP supports GNU screen.
+
+            <li> <div class="faq"> <a name="gdb"> Can DMTCP checkpoint a GDB session? </a> </div>
+	    This is still considered experimental, but it should be reasonably
+	    stable in DMTCP version&nbsp;1.2.4 and the upcoming
+	    DMTCP version&nbsp;1.3.0.
+	    Try:  <tt>configure --enable-ptrace-support</tt> to use
+	    this feature.
+
+            <li> <div class="faq"> <a name="xwindowsSupport"> Does DMTCP support X-Windows graphics (GUI) programs? </a> </div>
+            Partially.  DMTCP supports X-Windows programs
+            with the help of VNC.  Recally that <em>vncserver</em> will create
+	    a virtual desktop in which you can run your graphics application,
+	    and <em>vncviewer</em> invokes an Xserver to display the graphics.
+	    So, the recipe is:
+            <code>
+            <br>
+            dmtcp_launch vncserver :1<br>
+	    vncviewer localhost:1<br>
+            my-X-windows-app<br>
+            </code>
+	    To checkpoint, kill the vncviewer and then do:<br>
+            <code>
+	    dmtcp_command --checkpoint<br>
+	    vncviewer localhost:1   # to re-connect the graphics<br>
+            </code>
+	    Later, to restart from a checkpoint, do:<br>
+            <code>
+	    ./dmtcp_restart_script.sh<br>
+	    vncviewer localhost:1   # to re-connect the graphics<br>
+            </code>
+            Note that VNC does not support such X-Windows extensions
+            as 3D graphics (3D visualization such as in many scientific
+            graphics simulations) nor video nor sound.  We are continuing
+            to look at improving graphics support.
+
+	    <li> <div class="faq"> <a name="osFeatures"> What other O/S features are supported by DMTCP? </a> </div>
+	    Among the Linux features supported by DMTCP are open file
+	    descriptors, pipes, sockets, signal handlers, process id and
+	    thread id virtualization (ensure old pids and tids continue
+	    to work upon restart), fifos, process group ids, session ids,
+	    ptys, terminal attributes, System V shared memory (shmget,
+	    etc.), timers, and
+            mmap/mprotect (including mmap-based shared memory).
+	    Such common O/S daemons as NSCD and LDAP are also
+	    transparently supported.
+
+	  </ol>
+
+          <br>
+          <hr>
+
+          <div class="faqHeader"> <a name="matlab"> Matlab: </a> </div>
+          <ol>
+            <li> <div class="faq"> <a name="matlabCkpt"> Does DMTCP support checkpointing of Matlab programs? </a> </div>
+            Yes.  But Matlab has been a moving target for DMTCP.  It is best
+	    to use a recent DMTCP.  (For example, DMTCP-1.2.5 has added
+	    a bug fix in case Matlab is in the middle of talking to its
+	    license server at checkpoint time.)  The next comments are
+	    primarily of historical interest, for those with an old
+	    version of Matlab:<br>
+	    Older Matlabs invoked two processes, matlab and matlab_helper,
+	    which DMTCP handles transparently.
+	    Older Matlabs might also generate
+            a message about GLIBCXX-3.4.  This indicates that Matlab
+            is using an older, incompatible libstc++ library.  You can either
+            cause Matlab to use the newer libstdc++ library, or re-compile
+            DMTCP with the older libstdc++ library.  Matlab should also
+            be invoked without graphics (-nodisplay).
+	    <!-- See the 
+              <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/QUICK-START">QUICK-START</a>
+              file for further details.  
+	    -->
+          </ol>
+
+          <br>
+          <hr>
+
+          <div class="faqHeader"> <a name="mpi"> MPI: </a> </div>
+          <ol>
+            <li> <div class="faq"> <a name="mpiCkpt"> Does DMTCP support checkpointing of MPI programs? </a> </div>
+            Yes.  And to restart on different hosts, edit the 'ssh' lines
+	    in <tt>dmtcp_restart_script.sh</tt>&nbsp;.
+	    DMTCP operates by checkpointing the sockets (or InfiniBand
+	    connections, if using the new plugin)  created by the
+            MPI library.  Hence, it is transparent to MPI and doesn't require
+            any particular MPI configuration or hooks.  In principle, DMTCP
+	    should run on any MPI over TCP/IP.  We usually test on
+	    <a href="http://www.open-mpi.org/">Open&nbsp;MPI</a> and
+	    <a href="http://www.mcs.anl.gov/research/projects/mpich2/">
+	    MPICH-2</a>.  If you
+	    find an MPI that we don't support, <em>this is a bug in DMTCP</em>.
+	    We would be appreciative if you can file a bug report.
+	    For further details on using MPI, see the 
+            <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/QUICK-START">QUICK-START</a>.
+	    <ol style="list-style-type:lower-alpha">
+	    <li> We are currently in the middle of porting DMTCP to InfiniBand
+		(see below).  Please tell us If you are interested in being
+		an alpha tester.
+	    <li> DMTCP is being integrated into the checkpoint-restart
+		service of Open MPI.  In this mode, DMTCP (actually, MTCP)
+		will be responsible <em>only</em> for checkpointing each
+		individual process.  Open MPI will quiesce the network, and
+		then call on DMTCP.  The use of DMTCP must be configured
+		by Open MPI users.
+	    </ol>
+	
+
+            <li> <div class="faq"> <a name="mpiInfiniBand"> Does DMTCP support MPI for InfiniBand, Myrinet, or iWARP?</a> </div>
+            DMTCP is adding support for the librdmacm and
+            libibverbs API supported by the OFED implementation of InfiniBand.
+	    These libraries support
+            InfiniBand and iWARP.  At this time, we are not adding support
+            for other APIs like uDAPL, Mellanox verbs, or Myrinet API.
+	    If there is enough
+            interest, or if someone is willing to help work on such a port,
+            we will support those APIs.
+          </ol> 
+
+          <br>
+          <hr>
+
+          <div class="faqHeader"> <a name="internals"> Internals: </a> </div>
+          <ol>
+            <li> <div class="faq"> <a name="internalWorking"> How does DMTCP work? </a> </div>
+            A DMTCP coordinator process is created on a host (default:
+            localhost).  As new processes are created (via fork or ssh),
+            the LD_PRELOAD environment variable (supported by the Linux
+            loader) is used to preload the DMTCP library (dmtcphijack.so).
+            That library runs before the routine main().  It creates a
+            second thread (DMTCP checkpoint thread).  The checkpoint
+            thread then creates a socket to the DMTCP coordinator
+            and registers itself.  The checkpoint thread also creates
+            a signal handler (SIGUSR2 by default).  Control is then
+            returned to the original user thread, which executes its
+            standard startup routines.  The DMTCP coordinator can request
+            a checkpoint by sending a message through the socket to the
+            checkpoint thread.  The checkpoint thread then sends the
+            checkpoint signal (SIGUSR2) to each of the user threads.
+            (Note that the checkpoint signal is for internal DMTCP
+            use only.  It should not be used by non-DMTCP programs.)
+
+            <li> <div class="faq"> <a name="documentation"> Is there documentation on the internals of DMTCP? </a> </div>
+	    Some sources of information follow.  If you wish to cite DMTCP,
+	    please cite the paper by Ansel&nbsp;et&nsbp;al.
+	    <ol style="list-style-type:lower-roman">
+	    <li> The best high-level overview of the design of DMTCP
+	    is still in the paper
+	    <a href="http://dmtcp.sourceforge.net/publications.html">
+	    DMTCP: Transparent Checkpointing for Cluster Computations
+	    and the Desktop</a>, by Ansel et&nbsp;al. (2009).
+	    <li> For the design
+	    of just the single-process checkpointing layer (MTCP), see
+	    <a href="http://dmtcp.sourceforge.net/publications.html">
+	    Transparent User-Level Checkpointing for the
+	    Native POSIX Thread Library for Linux</a>, by Rieker
+	    et&nbsp;al. (2006). 
+	    <li> For a recent overview of the DMTCP architecture,
+	    see <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/doc/architecture-of-dmtcp.pdf">doc/architecture-of-dmtcp.pdf</a>
+	    (available with the source distribution).
+            <li> For low-level documentation of the implementation of DMTCP,
+		 see the
+	    <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/doc/">doc</a> subdirectory of the source distribution.
+	    </ol>
+
+            <li> <div class="faq"> <a name="jassert"> Can I enable tracing of DMTCP internals? </a> </div>
+            Yes.  You will have to re-configure and re-make:<br>
+            <tt>./configure --enable-debug &amp;&amp; make -j5 clean &amp;&amp; make -j5</tt><br>
+            After this, you will see lots of output sent to stderr on screen.
+            In addition, there will be files in
+            <tt>$DMTCP_TMPDIR/dmtcp-$USER@$HOST</tt>
+            (where <tt>$DMTCP_TMPDIR</tt> is <tt>$TMPDIR</tt> or <tt>/tmp</tt>).
+            Look at the files <tt>jassert_*.log</tt> in the given directory.
+            To add low-level debugging (MTCP for single processes), change
+            <tt>mtcp/Makefile</tt> to uncomment:<br>
+            <tt>CFLAGS += -O0 -g -DDEBUG -DTIMING -Wall</tt><br>
+            <em>NOTE:</em> If you also want to debug under GDB, see
+            <a href="#debugging"><em>debugging under GDB</em></a>.
+
+            <li> <div class="faq"> <a name="internalOverhead"> What is the run-time overhead of DMTCP? </a> </div>
+            The run-time overhead of DMTCP is essentially zero.  When there is
+            no checkpoint or restart in process, DMTCP code will run only within
+            DMTCP wrappers around certain less frequently used system calls.
+            Examples of such wrappers are wrappers for open(), getpid(), socketpair(),
+            etc.  We explicitly do <em>not</em> place a wrapper around read()
+            or write(), since those are frequently called system calls that could
+            produce measurable run-time overhead.
+          </ol>
+
+          <br>
+          <hr>
+
+          <script language="JavaScript"> 
+            <!---//hide script from old browsers
+            document.write( "<br>Last updated " + document.lastModified + "." );
+            //end hiding contents --->
+          </script>
+
+	  <p> Click <a class="sidebar" href="contactUs.html">here for comments.</a>
+          <p>
+
+          <A href="http://sourceforge.net"><IMG src="http://sourceforge.net/sflogo.php?group_id=96405&amp;type=5" width="210" height="62" border="0" alt="SourceForge.net Logo" /></A> 
+
+          <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-7505564-1");
+              pageTracker._trackPageview();
+            } catch(err) {}</script>
+        </div>
+      </td> 
+    </tr> 
+  </table> 
+</body> 
+</html>
