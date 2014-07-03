@@ -18,15 +18,16 @@
             <tr><td><b><a class="sidebar" href="index.html">Home</a></b></td></tr> 
 
             <tr><td><a class="sidebar" href="downloads.html"><b>Downloads</b></a></td></tr> 
+            <tr><td><a class="sidebar" href="FAQ.html">FAQ</a></td></tr> 
             <tr><td><a class="sidebar" href="http://sourceforge.net/projects/dmtcp">SF project page</a></td></tr> 
             <tr><td><a class="sidebar" href="https://sourceforge.net/p/dmtcp/code">Browse Source</a></td></tr>
             <tr><td><a class="sidebar" href="demo.html">Demo</a></td></tr> 
 
             <tr><td><a class="sidebar" href="supportedApps.html">Supported Apps</a></td></tr> 
+            <tr><td><a class="sidebar" href="parallel.html">Parallel Computing</a></td></tr> 
             <tr><td><a class="sidebar" href="condor.html">Condor Integration</a></td></tr> 
             <tr><td><a class="sidebar" href="docs/index.html">Manual/Documentation</a></td></tr> 
-            <tr><td><a class="sidebar" href="api.html">API</a></td></tr> 
-            <tr><td><a class="sidebar" href="FAQ.html">FAQ</a></td></tr> 
+            <tr><td><a class="sidebar" href="plugins.html">Plugins and other APIs</a></td></tr> 
             <tr><td><a class="sidebar" href="publications.html">Publications</a></td></tr> 
             <tr><td><a class="sidebar" href="contactUs.html">Contact Us</a></td></tr> 
 
@@ -56,6 +57,7 @@
               <li> <a href="#dmtcpaware"> How can my software invoke a checkpoint or restart directly under control of my program? </a>
               <li> <a href="#exitcode"> What is the exit code (return status) for a target application running under DMTP? </a>
               <li> <a href="#plugins"> Does DMTCP support third-party plugins (add-ons) to change the behavior of DMTCP at run-time?</a>
+              <li> <a href="#root"> What if my target application uses the setuid bit, capabilities, or other special privileges?
               <li> <a href="#debugging"> How do I debug my application under GDB when I am using DMTCP?
              </ol>
             <li> <a href="#architectures">Architectures Supported by DMTCP</a>
@@ -128,6 +130,13 @@
             </ol>
           </ul> 
 
+          <P>
+		If you don't see your question here, consider
+ <a href="http://sourceforge.net/p/dmtcp/mailman/search/?mail_list=dmtcp-forum">
+                searching within the archive of past dmtcp-forum messages</a>,
+		or else asking your question directly (see "Contact&nbsp;Us"
+		on the left).
+
           <br>
           <hr>
 
@@ -184,6 +193,8 @@
             software packages can easily include DMTCP as part of their
             distribution (subject to
             <a href="#license">DMTCP's LGPL license</a>).
+	    (See also <a href="#root"><em>setuid and other
+	    special privileges</em></a>.)
 
            </ol>
           <div class="faqHeader"> <a name="uses"> Use Cases </a> </div>
@@ -263,6 +274,21 @@
             <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/doc/plugin-tutorial.pdf">
             doc/plugin-tutorial.pdf</a>.
 
+            <li> <div class="faq"> <a name="root"> What if my target application uses the setuid bit, capabilities, or other special privileges? </a> </div>
+	     DMTCP works internally by preloading its own library into
+	    the target application (see <a href="#internalWorking">
+	     How does DMTCP Work?</a>).  Linux will not honor the setuid
+	    bit if a foreign library is being preloaded (for obvious reasons).
+	    So, either the application must be run in a mode not requiring
+	    special privileges, or DMTCP must be run in a privileged manner.
+	    This <a href="http://stackoverflow.com/questions/18058426/does-using-linux-capabilities-disables-ld-preload">"Stack Overflow" web page</a>
+	    describes two strategies for allowing DMTCP to initially
+	    run with privileges.  The constructor to use in the case of DMTCP
+	    is <code>dmtcp::DmtcpWorker::DmtcpWorker(bool)</code>
+	    in <code>DMTCP_ROOT/src/dmtcpworker.cpp</code>.
+	    Group permissions, and security authorizations such as
+	    polkit, ACL and PAM may offer other options.
+
             <li> <div class="faq"> <a name="debugging"> How do I debug my application under GDB when I am using DMTCP? </a> </div>
 	    Detailed advice is available in the file
 	    <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/doc/debugging-dmtcp.txt">doc/debugging-dmtcp.txt</a>.  General advice follows.
@@ -287,6 +313,10 @@
             If you want to see the actions of the dmtcphijack.so library
             starting after the call to execvp and before the application's main
             routine, then at the beginning of your GDB session, do:<br>
+	    <p>
+            <em>NOTE:</em> If you want to trace the internals of DMTCP
+            (in addition to using GDB as above), see
+            <a href="#jassert"><em>tracing DMTCP internals</em></a>.
 	    <code>
               (gdb) break 'dmtcp::DmtcpWorker::DmtcpWorker(bool)'<br>
               (gdb) run<br>
@@ -302,6 +332,11 @@
             <tt>gdb&nbsp;attach</tt> or
             <tt>gdb&nbsp;./a.out&nbsp;`pgrep&nbsp;-n&nbsp;a.out`</tt>
             after your process has restarted.<br>
+	    <p>
+            <em>NOTE:</em> If you want to trace the internals of DMTCP
+            (in addition to using GDB as above), see
+            <a href="#jassert"><em>tracing DMTCP internals</em></a>.
+	    <P>
             &nbsp;&nbsp;&nbsp;&nbsp;Your restarted process can be forced
             to pause deep within MTCP just as it restarts,
             by setting the environment variable <tt>MTCP_RESTART_PAUSE</tt>
@@ -310,9 +345,13 @@
             <tt>dmtcp_launch</tt>, since
             the restarted process will remember only the original environment
             variables prior to checkpoint.)<br>
-            <em>NOTE:</em> If you want to trace the internals of DMTCP
-            (in addition to using GDB as above), see
-            <a href="#jassert"><em>tracing DMTCP internals</em></a>.
+	    &nbsp;&nbsp;&nbsp;&nbsp;Note that after DMTCP&nbsp;2.0, the MTCP directory was
+	    merged into DMTCP itself, and it is no longer possible to run
+	    MTCP as a standalone application.  If you need that functionality,
+	    please consider using <tt>dmtcp_launch&nbsp;--no-coordinator</tt>
+	    with the latest DMTCP release.  Having said that, if you are
+	    using an older version of DMTCP, The information above
+	    is valid.
 
            </ol>
           <div class="faqHeader"> <a name="architectures"> Architectures Supported by DMTCP </a> </div>
@@ -360,7 +399,7 @@
 	    of batch queues does DMTCP support? </a> </div>
 	    As of DMTCP version&nbsp;2.0, DMTCP supports Torque,
 	    and some initial support for SLURM.  Support for both is
-	    implemented as a plugin, and can be found in the directory
+	    implemented as a plugin, and can be found in the
 	    <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/plugin/batch-queue/">
 	    plugin/batch-queue</a> directory.  This is provided by Artem
 	    Polyakov, who can be reached as artpol84 through gmail.
@@ -686,7 +725,7 @@
 
             <li> <div class="faq"> <a name="documentation"> Is there documentation on the internals of DMTCP? </a> </div>
 	    Some sources of information follow.  If you wish to cite DMTCP,
-	    please cite the paper by Ansel&nbsp;et&nsbp;al.
+	    please cite the paper by Ansel&nbsp;et&nbsp;al.
 	    <ol style="list-style-type:lower-roman">
 	    <li> The best high-level overview of the design of DMTCP
 	    is still in the paper
