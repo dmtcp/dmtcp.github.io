@@ -1,0 +1,330 @@
+<html>
+<head>
+  <title>Condor Integration</title>
+  <link rel="stylesheet" type="text/css" href="dmtcp.css" /> 
+
+  <script language="javascript">
+    /* Jesse Ruderman
+    * July 18, 2004
+    *
+    * Remaining problems:
+    *   IE sometimes crashes on exit after using the this script.
+    *   In IE, it is a little ugly because IE doesn't support border-radius.
+    *   In IE, it does not work at standalone Flash URLs.
+    */
+
+    function setupSeekBar() {
+
+      setTimeout(initFlashControls, 100);
+
+      function initFlashControls()
+      {
+        var count = 0;
+
+        function tt(elem)
+        {
+          if (typeof elem.TotalFrames != "undefined") /* do not coerce elem.StopPlay to bool, because that breaks IE */
+          {
+            addFlashControls(elem);
+            ++count;
+          }
+        }
+
+        var i, x;
+
+        for (i = 0; x = document.getElementsByTagName("object")[i]; ++i)
+        tt(x);
+
+        for (i = 0; x = document.getElementsByTagName("embed")[i]; ++i)
+        tt(x);
+
+      }
+
+
+      function addFlashControls(flash)
+      {
+        var controlsDiv = document.createElement("div");
+
+        /* Put the controls under the Flash. 
+        *
+        * If the Flash is an <embed> in an <object>, we do not want to touch the <object>, because that would make
+            * Mozilla re-test whether the <object> is broken and reset the <embed>.  So in that case, we put the controls
+              * under the <object>.
+                */
+                var where = flash;
+                while (where.parentNode.tagName.toLowerCase() == "object")
+                where = where.parentNode;
+                where.parentNode.insertBefore(controlsDiv, where.nextSibling);
+
+                /* Construct controls using DOM2 instead of innerHTML.
+                * In Mozilla, innerHTML= is like innerText= at standalone flash URLs.
+                */
+                var table = document.createElement("table");
+                controlsDiv.appendChild(table);
+
+                var row = table.insertRow(-1);
+
+                var pauseButton = document.createElement("button");
+                pauseButton.appendChild(document.createTextNode("Pause"));
+                var buttonCell = row.insertCell(-1);
+                buttonCell.appendChild(pauseButton);
+
+                var slider = row.insertCell(-1);
+                slider.width = "100%";
+
+                var visibleSlider = document.createElement("div");
+                visibleSlider.style.position = "relative";
+                visibleSlider.style.height = "10px";
+                visibleSlider.style.width = "100%";
+                visibleSlider.style.MozBorderRadius = "4px";
+                visibleSlider.style.background = "#aaa";
+                slider.appendChild(visibleSlider);
+
+                var thumb = document.createElement("div");
+                thumb.style.position = "absolute";
+                thumb.style.height = "20px";
+                thumb.style.width = "10px";
+                thumb.style.top = "-5px";
+                thumb.style.MozBorderRadius = "4px";
+                thumb.style.background = "#666";
+                visibleSlider.appendChild(thumb);
+
+
+                var sliderWidth;
+                var paused = false;
+                var dragging = false;
+
+                table.width = Math.max(parseInt(flash.width) || 0, 400);
+
+                addEvent(pauseButton, "click", pauseUnpause);
+                addEvent(slider, "mousedown", drag);
+                addEvent(slider, "drag", function() { return false; }); /* For IE */
+                window.setInterval(update, 30);
+
+                function pauseUnpause()
+                {
+                  paused = !paused;
+
+                  pauseButton.style.borderStyle = paused ? "inset" : "";
+
+                  if (paused)
+                  flash.StopPlay();
+                  else
+                  flash.Play();
+                }
+
+                function update()
+                {
+                  sliderWidth = parseInt(getWidth(slider) - getWidth(thumb));
+
+                  if (!paused && !dragging)
+                  thumb.style.left = parseInt(flash.CurrentFrame() / totalFrames() * sliderWidth) + "px";
+                }
+
+                function dragMousemove(e)
+                {
+                  var pageX = e.clientX + document.body.scrollLeft; /* cross-browser, unlike e.pageX, which IE does not support */
+                  var pos = bounds(0, pageX - getX(slider) - 5, sliderWidth);
+                  var frame = bounds(1, Math.ceil(totalFrames() * pos / sliderWidth), totalFrames() - 2);
+
+                  thumb.style.left = pos + "px";
+
+                  flash.GotoFrame(frame);
+                }
+
+                function release(e)
+                {
+                  removeEvent(document, "mousemove", dragMousemove);
+                  removeEvent(document, "mouseup", release);
+                  if (!paused)
+                  flash.Play();
+                  dragging = false;
+                }
+
+                function drag(e)
+                {
+                  addEvent(document, "mousemove", dragMousemove);
+                  addEvent(document, "mouseup", release);
+                  dragging = true;
+                  dragMousemove(e);
+                }
+
+
+
+                /* Boring functions, some of which only exist to hide differences between IE and Mozilla. */
+
+                function bounds(min, val, max)
+                {
+                  return Math.min(Math.max(min, val), max);
+                }
+
+                function totalFrames()
+                {
+                  /* This is weird.  TotalFrames differs between IE and Mozilla.  CurrentFrame does not. */
+
+                  if (typeof flash.TotalFrames == "number")
+                  return flash.TotalFrames; /* IE */
+                  else if (typeof flash.TotalFrames == "function")
+                  return flash.TotalFrames(); /* Mozilla */
+                  else
+                  return 1; /* Partially loaded Flash in IE? */
+                }
+
+                function getWidth(elem)
+                {
+                  if (document.defaultView && document.defaultView.getComputedStyle)
+                  return parseFloat(document.defaultView.getComputedStyle(elem,null).getPropertyValue("width")); /* Mozilla */
+                  else
+                  return parseFloat(elem.offsetWidth); /* IE (currentStyle.width can be "auto" or "100%") */
+                }
+
+                function getX(elem)
+                {
+                  if (!elem) return 0;
+                  return (elem.offsetLeft) + getX(elem.offsetParent);
+                }
+
+                function addEvent(elem, eventName, fun)
+                {
+                  if (elem.addEventListener) /* Mozilla */
+                  elem.addEventListener(eventName, fun, false);
+                  else /* IE */
+                  elem.attachEvent("on" + eventName, fun);
+                }
+
+                function removeEvent(elem, eventName, fun)
+                {
+                  if (elem.addEventListener)
+                  elem.removeEventListener(eventName, fun, false);
+                  else
+                  elem.detachEvent("on" + eventName, fun);
+                }
+
+              }
+
+            }
+</script>
+</head>
+
+<body onload="setupSeekBar();">
+  <div class="title" align="center" valign="center">
+    <h1>DMTCP: Distributed MultiThreaded CheckPointing</h1>
+  </div>
+
+  <table width="100%"> 
+    <tr> 
+      <td bgcolor="#b9b9fe" valign="top" align="left" width="15%"> 
+        <div class="cell">
+          <table width="100%" cellspacing="8" border="0"> 
+
+            <tr><td><b><a class="sidebar" href="index.html">Home</a></b></td></tr> 
+            <tr><td><a class="sidebar" href="FAQ.html">FAQ</a></td></tr> 
+            <tr><td><a class="sidebar" href="http://sourceforge.net/projects/dmtcp">SF project page</a></td></tr> 
+            <tr><td><a class="sidebar" href="downloads.html"><b>Downloads</b></a></td></tr> 
+            <tr><td><a class="sidebar" href="https://sourceforge.net/p/dmtcp/code">Browse Source</a></td></tr>
+
+            <tr><td><a class="sidebar" href="demo.html">Demo</a></td></tr> 
+
+            <tr><td><a class="sidebar" href="supportedApps.html">Supported Apps</a></td></tr> 
+            <tr><td><a class="sidebar" href="parallel.html">Parallel Computing</a></td></tr> 
+            <tr><td><a class="sidebar" href="condor.html">Condor Integration</a></td></tr> 
+
+            <tr><td><a class="sidebar" href="docs/index.html">Manual/Documentation</a></td></tr> 
+            <tr><td><a class="sidebar" href="plugins.html">Plugins and other APIs</a></td></tr> 
+            <tr><td><a class="sidebar" href="publications.html">Publications</a></td></tr> 
+            <tr><td><a class="sidebar" href="contactUs.html">Contact Us</a></td></tr> 
+
+
+            <!--
+            <tr><td><a class="sidebar" href="publications.html">Publications</a></td></tr> 
+            <tr><td><a class="sidebar" href="reportingBugs.html">Reporting bugs</a></td></tr> 
+            <tr><td><a class="sidebar" href="contributing.html">Contributing</a></td></tr> 
+            <tr><td><a class="sidebar" href="team.html">Dev team</a></td></tr> 
+            -->
+
+          </table> 
+        </div>
+      </td> 
+
+      <td align="left" valign="top"> 
+        <div class="cell">
+          <h2>Condor Integration:</h2>
+<P style="color:red;font-size:150%">
+<B>IMPORTANT:  We have a report that the script below is not compatible
+with Condor version&nbsp;8 and the latest DMTCP.  We will be updating
+our pointer to a canonical script that supports Condor-8/DMTCP.  If you
+use Condor-8, please check back here later.
+</B>
+          <p>
+
+	  <a href="http://research.cs.wisc.edu/condor/">Condor</a> is
+	  a system to support high throughput computing.  It is free
+	  and open source.  The Condor standard universe supports
+	  a Condor-specific checkpoint-restart feature for long-running
+	  jobs.  But the standard universe is too restrictive for some
+	  users.  (For example, it does not support multi-threaded processes.)
+	  <P>
+	  The Condor Vanilla Universe supports most types of programs,
+	  including multi-threaded, multi-process, etc.  But it does
+	  not natively support checkpoint-restart.
+	  <P>
+	  In joint work with the Condor team, we support checkpoint-restart
+	  for the Condor Vanilla Universe, thus providing the best
+	  of both worlds (vanilla universe + checkpoint-restart).
+	  The Condor distribution includes a <em>shim script (shim_dmtcp)</em>
+	  to interface between Condor and DMTCP.  This
+	  <a href="https://htcondor-wiki.cs.wisc.edu/index.cgi/wiki?p=DmtcpCondor">web page</a> will guide you on how to register with Condor and then
+	  download the shim script.  For the user's convenience,
+	  we also provide<P>
+	  <ul>
+	  <li>  a <a href="docs/shim_dmtcp">copy of the shim script
+		 (shim_dmtcp) here</a>.
+	  </ul>
+	  <P>
+	  Finally, we provide a pdf document,<P>
+	  <ul>
+	  <li> <a href="docs/condor-dmtcp-overview.pdf">condor-dmtcp-overview.pdf</a>,
+	  </ul>
+	  to help introduce you to how to use Condor with shim_dmtcp,
+	  in order to use DMTCP-based checkpoint-restart with the
+	  Condor Vanilla Universe.  If you are already familiar with
+	  Condor, you can probably read the first page, and then skip
+	  to the appendix for the sample submit description file.
+          <P>
+          <b>Debian 6.0:</b>  Please note that a bug report has been filed
+	  for Debian&nbsp;6.0.  This bug prevents the integration
+	  of Condor/DMTCP/Debian.  A full description, and a <em>workaround</em>
+          is described on this Condor wiki page:
+	  <ul>
+	  <li> <a href="https://htcondor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3094">
+	       HTCondorWiki: Ticket #3094</a>
+	  </ul>
+
+          <hr>
+
+          <script language="JavaScript"> 
+            <!---//hide script from old browsers
+            document.write( "<br>Last updated " + document.lastModified + "." );
+            //end hiding contents --->
+          </script>
+
+	  <p> Click <a class="sidebar" href="contactUs.html">here for comments.</a>
+          <p>
+
+          <A href="http://sourceforge.net"><IMG src="http://sourceforge.net/sflogo.php?group_id=96405&amp;type=5" width="210" height="62" border="0" alt="SourceForge.net Logo" /></A> 
+
+          <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-7505564-1");
+              pageTracker._trackPageview();
+            } catch(err) {}</script>
+        </div>
+      </td> 
+    </tr> 
+  </table> 
+</body>
+</html>
