@@ -54,19 +54,20 @@
              <ol>
               <li> <a href="#cluster"> How does one use DMTCP for a distributed computation (for example, on a cluster)?
               <li> <a href="#migrate"> Can I migrate my applications (re-start them on other hosts)? </a>
-              <li> <a href="#dmtcpaware"> How can my software invoke a checkpoint or restart directly under control of my program? </a>
-              <li> <a href="#exitcode"> What is the exit code (return status) for a target application running under DMTP? </a>
+              <li> <a href="#dmtcpaware"> How can my software invoke a checkpoint or restart directly under control of my program?</a>
+              <li> <a href="#exitcode"> What is the exit code (return status) for a target application running under DMTP?</a>
               <li> <a href="#plugins"> Does DMTCP support third-party plugins (add-ons) to change the behavior of DMTCP at run-time?</a>
               <li> <a href="#root"> What if my target application uses the setuid bit, capabilities, or other special privileges?
               <li> <a href="#debugging"> How do I debug my application under GDB when I am using DMTCP?
              </ol>
             <li> <a href="#architectures">Architectures Supported by DMTCP</a>
              <ol>
-              <li> <a href="#cpuPorts"> What CPUs has DMTCP been ported to? </a>
+              <li> <a href="#cpuPorts"> What CPUs has DMTCP been ported to?</a>
+              <li> <a href="#intel32-64"> How can I compile DMTCP for mixed x86/x86_64 architectures (mixed 32-/64-bit)?</a>
               <li> <a href="#osPorts"> What Operating Systems has DMTCP been ported to? </a>
               <li> <a href="#networkPorts"> What types of networks does DMTCP support? </a>
               <li> <a href="#batchQueuePorts"> What types of batch queues does DMTCP support? </a>
-              <li> <a href="#distros"> What Linux distributions do you test on? </a>
+              <li> <a href="#distros"> What Linux distributions do you test on?</a>
              </ol>
             <li> <a href="#performance">Performance</a>
              <ol>
@@ -90,23 +91,23 @@
 	      <li> <a href="#generalSupport"> Is there a simple, general
 		description of what applications are supported?</a>
               <li> <a href="#distributed"> Does DMTCP support multi-threaded and distributed programs? </a>
-              <li> <a href="#javaSupport"> Does DMTCP support Java? </a>
+              <li> <a href="#javaSupport"> Does DMTCP support Java?</a>
               <li> <a href="#matlabSupport"> Does DMTCP support
-	    	checkpointing of Matlab? </a>
+	    	checkpointing of Matlab?</a>
 
             <li> <a href="#RCkpt"> Does DMTCP support
-	    checkpointing of R programs (for statistical computing)? </a>
-              <li> <a href="#mpiSupport"> Does DMTCP support MPI? </a>
+	    checkpointing of R programs (for statistical computing)?</a>
+              <li> <a href="#mpiSupport"> Does DMTCP support MPI?</a>
               <li> <a href="#openmpSupport"> Does DMTCP support
-	    	multi-threaded languages such as OpenMP and Cilk? </a>
-              <li> <a href="#screenSupport"> Does DMTCP support GNU screen? </a>
-              <li> <a href="#gdb"> Can DMTCP checkpoint a GDB session? </a>
+	    	multi-threaded languages such as OpenMP and Cilk?</a>
+              <li> <a href="#screenSupport"> Does DMTCP support GNU screen?</a>
+              <li> <a href="#gdb"> Can DMTCP checkpoint a GDB session?</a>
               <li> <a href="#xwindowsSupport"> Does DMTCP support X-Windows graphics (GUI) programs? </a>
               <li> <a href="#osFeatures"> What other O/S features are supported by DMTCP? </a>
             </ol>
             <li> <a href="#matlab">Checkpointing Matlab</a>
             <ol>
-              <li> <a href="#matlabCkpt"> Does DMTCP support checkpointing of Matlab programs? </a>
+              <li> <a href="#matlabCkpt"> Does DMTCP support checkpointing of Matlab programs?</a>
             </ol>
 
             <li> <a href="#mpi">Checkpointing MPI</a>
@@ -118,15 +119,15 @@
 <!--
             <li> <a href="#errorMsgs">DMTCP Error Messages</a>
             <ol>
-              <li> <a href="#coordSocket"> How does DMTCP work? </a>
+              <li> <a href="#coordSocket"> How does DMTCP work?</a>
             </ol>
 -->
             <li> <a href="#internals">DMTCP Internals</a>
             <ol>
-              <li> <a href="#internalWorking"> How does DMTCP work? </a>
-              <li> <a href="#documentation"> Is there documentation on the internals of DMTCP? </a>
-              <li> <a href="#jassert"> Can I enable tracing of DMTCP internals? </a>
-              <li> <a href="#internalOverhead"> What is the run-time overhead of DMTCP? </a>
+              <li> <a href="#internalWorking"> How does DMTCP work?</a>
+              <li> <a href="#documentation"> Is there documentation on the internals of DMTCP?</a>
+              <li> <a href="#jassert"> Can I enable tracing of DMTCP internals?</a>
+              <li> <a href="#internalOverhead"> What is the run-time overhead of DMTCP?</a>
             </ol>
           </ul> 
 
@@ -338,14 +339,24 @@
             <a href="#jassert"><em>tracing DMTCP internals</em></a>.
 	    <P>
             &nbsp;&nbsp;&nbsp;&nbsp;Your restarted process can be forced
-            to pause deep within MTCP just as it restarts,
-            by setting the environment variable <tt>MTCP_RESTART_PAUSE</tt>
-            (available beginning with DMTCP-1.2.5, or in the DMTCP svn).
-            (Set <tt>DMTCP_RESTART_PAUSE</tt> before the original
+            to pause deep within DMTCP just as it restarts,
+            by setting the environment variable <tt>MTCP_RESTART_PAUSE2</tt>
+            (available beginning with DMTCP-1.2.5, missing from DMTCP-2.2
+            and&nbsp;2.3, avaialble again in later versions).
+            (Set <tt>DMTCP_RESTART_PAUSE2</tt> <em>before</em> the original
             <tt>dmtcp_launch</tt>, since
             the restarted process will remember only the original environment
-            variables prior to checkpoint.)<br>
-	    &nbsp;&nbsp;&nbsp;&nbsp;Note that after DMTCP&nbsp;2.0, the MTCP directory was
+            variables prior to checkpoint.  The environment variable
+            <tt>DMTCP_RESTART_PAUSE</tt> is available to capture the
+            restart even earlier --- primarily of interest for DMTCP
+            developers.))
+            On restart, dmtcp_restart will pause with a message to attach using
+            a gdb command.  If the gdb attach command fails with
+            <tt>Operation not permitted</tt>, then you may need to execute:
+            <tt>echo&nbsp;0&nbsp;&gt;&nbsp;/proc/sys/kernel/yama/ptrace_scope</tt>
+            (requires root privilege).<br>
+	    &nbsp;&nbsp;&nbsp;&nbsp;Note that after DMTCP&nbsp;2.0,
+            the MTCP directory was
 	    merged into DMTCP itself, and it is no longer possible to run
 	    MTCP as a standalone application.  If you need that functionality,
 	    please consider using <tt>dmtcp_launch&nbsp;--no-coordinator</tt>
@@ -359,22 +370,38 @@
             <li> <div class="faq"> <a name="cpuPorts"> What CPUs has
 	    DMTCP been ported to? </a> </div>
 	    DMTCP supported x86 and x86_64 since the beginning.  It has
-	    recently been ported to the ARM CPU.  It uses the newer
-	    EABI API for Linux on ARM.  As of this writing, the port
-	    is valid only for 32-bit ARM, and has been tested for more
-	    recent ARM multi-core CPUs.  It will be extended to 64-bit
-	    ARM when that CPU is readily available.
-	    For porting to
+	    been ported to the 32-bit ARM CPU (armv7).  It uses the newer
+	    EABI API for Linux on ARM.  An experimental version has recently
+	    been extended to 64-bit ARM (armv8).  This exists currently
+	    in the svn, and is expected to be part of a future DMTCP-2.4
+	    release.  For porting to
 	    other CPUs, please see <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/src/mtcp/PORTING?view=markup">src/mtcp/PORTING</a>
 	    (notes on how to port DMTCP).
-	    <P>  DMTCP has also
-	    been verified to work on the Intel Xeon Phi (back end, only,
-	    at this time) when built with the Intel icc compiler.  We used
+	    <P>
+	    DMTCP has also been verified to work on the Intel Xeon&nbsp;Phi
+	    (back end, only, at this time) when built with the Intel
+	    icc compiler.  We used
 	    <br>
 	    <code>./configure --host=mic CC=icc CXX=icpc CFLAGS=-mmic CXXFLAGS=-mmic LDFLAGS=-mmic</code>
 	    <br> to build on the Intel MIC.
 	    Optionally, one can also add "<tt>-static-intel</tt>" to
 	    CFLAGS, CXXFLAGS and LDFLAGS.
+
+            <li> <div class="faq"> <a name="intel32-64"> How can I compile
+	    DMTCP for mixed x86/x86_64 architectures
+	    (mixed 32-/64-bit)? </a> </div>
+	    See <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/doc/multi-arch.txt">doc/multi-arch.txt</a> for details.  In short,<br>
+	    <code>./configure --enable-m32 &amp;&amp; make clean &amp;&amp;
+	            make -j &amp;&amp; make install</code><br>
+	    <code>./configure &amp;&amp; make clean &amp;&amp;
+	            make -j &amp;&amp; make install</code><br>
+	    Use <code>./configure --prefix=$PWD/build</code> if you wish to
+	    build a local copy, instead of installing globally.
+	    <P>
+	    Note that <code>--enable-m32</code> will not create the
+	    necessary DMTCP commands on a 64-bit Linux.  So, <em>on
+	    a 64-bit Linux</em>, you will still need the 64-bit install,
+	    even if you intend only to run with 32-bit targets.
 
             <li> <div class="faq"> <a name="osPorts"> What Operating
 	    Systems has DMTCP been ported to? </a> </div>
@@ -385,15 +412,15 @@
 	    share our ideas on how to do that port.
 	    <P>
 	    See also <a href="http://www.slideshare.net/jserv/implement-checkpointing-for-android-elce2012">"Implementing Chackpointing for Android"</a>
-	    for work porting DMTCP to Android.
+	    for work toward porting DMTCP to Android.
 
             <li> <div class="faq"> <a name="networkPorts"> What types
 	    of networks does DMTCP support? </a> </div>
 	    DMTCP works directly with TCP.  It would also be relatively
 	    easy to port it to IP, but we haven't seen a demand for this.
 	    <P>
-	    As of September, 2013, support for transparent
-	    checkpoint-restart over InfiniBand has been added to the svn..
+	    Support for transparent checkpoint-restart over InfiniBand is
+	    available as a plugin since DMTCP-2.3 on an experimental basis.
 
             <li> <div class="faq"> <a name="batchQueuePorts"> What types
 	    of batch queues does DMTCP support? </a> </div>
@@ -416,6 +443,7 @@
 	     Debian (since version&nbsp;7.0, "wheezy"),
 	    Ubuntu (since version&nbsp;11.10),
 	    Fedora (since version&nbsp;17),
+	    Red&nbsp;Hat (via <a href="https://fedoraproject.org/wiki/EPEL">Fedora EPEL</a>),
 	    and
 	    openSUSE (since version&nbsp;12.1).
             In-house, we commonly use DMTCP under
