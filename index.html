@@ -58,20 +58,17 @@
           <P>
           Among the applications supported by DMTCP are Open MPI, MATLAB,
           Python, Perl, and many programming languages and shell scripting
-          languages.  Starting with release 1.2.0, DMTCP also supports
+          languages.  DMTCP also supports
           <a href="http://www.gnu.org/software/screen/">GNU screen</a> sessions,
           including vim/cscope and emacs.
           With the use of TightVNC, it can also checkpoint and restart X Window
           applications, as long as they do not use extensions (e.g.: no OpenGL, 
           no video). See the
-          <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/QUICK-START">QUICK-START</a>
+          <a href="https://github.com/dmtcp/dmtcp/blob/master/QUICK-START">QUICK-START</a>
           file for further details.
           <P>
           DMTCP supports the OFED API for InfiniBand on an experimental basis.
-          For older versions of OFED, the DMTCP&nbsp;2.1 release should be
-          adequate.  For newer versions of OFED, please use the
-          contrib/infiniband plugin from the svn, or from DMTCP&nbsp;2.2
-          when it is released.
+          See <a href="https://github.com/dmtcp/dmtcp/blob/master/contrib/infiniband/README">contrib/infiniband/README</a> for more details.
 
         </div>
           <a href="#news">News</a> |
@@ -236,10 +233,11 @@
 
           <div class="subtitle"><h2><a name="authors">Authors</a></h2></div>
           <div class="section">
-            DMTCP and its standalone single-process component MTCP (MultiThreaded CheckPointing) are currently maintained by    
+            DMTCP is currently maintained by
             <a href="http://www.ccs.neu.edu/home/kapil/">Kapil Arya</a>,
             <a href="http://www.ccs.neu.edu/home/gene/">Gene Cooperman</a>,
             <a href="http://www.ccs.neu.edu/home/rohgarg/">Rohan Garg</a>,
+            Jiajun Cao,
             and
             Artem Polyakov.
             The list of active developers continues to evolve.
