@@ -167,14 +167,13 @@
             verified that DMTCP works are: Matlab, R, Java, Python,
             Perl, Ruby, PHP, Ocaml, GCL (GNU Common Lisp), emacs,
             vi/cscope, Open&nbsp;MPI, MPICH-2, OpenMP, and Cilk.
-            See <a href="http://dmtcp.sourceforge.net/supportedApps.html">
-            Supported Applications</a> for further details.  Our goal
+            See <a href="supportedApps.html"> Supported Applications</a>
+            for further details.  Our goal
             is to support DMTCP for all vanilla programs.  If DMTCP does not
             work correctly on your program,
             <strong>then this is a bug in DMTCP</strong>.
 	    We would be appreciative if you can then
-            <a href="http://dmtcp.sourceforge.net/contactUs.html">file a bug
-            report with DMTCP</a>.
+            <a href="contactUs.html">file a bug report with DMTCP</a>.
 
             <li> <div class="faq"> <a name="license"> What is the license for DMTCP? </a> </div>
             It is a free software distributed under the terms of the 
@@ -237,17 +236,12 @@
 	    Yes.  The most full-featured mechanism is through
 	    <a href="#plugins">DMTCP plugins</a>.
             See especially
-	    <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/test/plugin/applic-initiated-ckpt">application-initiated checkpointing</a>
+            <a href="http://github.com/dmtcp/dmtcp/tree/master/test/plugin/applic-initiated-ckpt">
+              application-initiated checkpointing</a>
             (using <tt>dmtcpCheckpoint()</tt>), and
-	    <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/test/plugin/applic-delayed-ckpt">application-delayed checkpointing</a>
+            <a href="http://github.com/dmtcp/dmtcp/tree/master/test/plugin/applic-delayed-ckpt">
+	    application-delayed checkpointing</a>
             (using <tt>dmtcpDelayCheckpointsLock()</tt>).
-	    <!---
-	    For an older mechanism,
-	    see <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/dmtcpaware/">dmtcpaware subdirectory</a>, which also includes
-            example code.
-            You will need to modify your software to use the dmtcpaware API,
-            and re-compile and re-link your software to the DMTCP libraries.
-	    -->
 
             <li> <div class="faq"> <a name="exitcode"> What is the exit code (return status) for a target application running under DMTP? </a> </div>
             Normally, commands like <tt>dmtcp_launch&nbsp;a.out</tt>
@@ -261,8 +255,8 @@
             variable has been set.
 
             <li> <div class="faq"> <a name="plugins"> Does DMTCP support third-party plugins (add-ons) to change the behavior of DMTCP at run-time?</a> </div>
-	    Yes.  Please look at the <a
-	    href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/test/plugin/">
+	    Yes.  Please look at the
+            <a href="http://github.com/dmtcp/dmtcp/tree/master/test/plugin">
 	    directory of DMTCP plugin examples</a> for a flexible mechanism for
 	    third-party plugins (add-ons).  This includes support for:
 	    (i)&nbsp;wrappers around system calls; (ii)&nbsp;hooks for
@@ -272,7 +266,7 @@
             checkpointing is also provided.  No re-compilation
 	    or relinking of the application software is necessary.
             The DMTCP source also provides a tutorial,
-            <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/doc/plugin-tutorial.pdf">
+            <a href="http://github.com/dmtcp/dmtcp/blob/master/doc/plugin-tutorial.pdf">
             doc/plugin-tutorial.pdf</a>.
 
             <li> <div class="faq"> <a name="root"> What if my target application uses the setuid bit, capabilities, or other special privileges? </a> </div>
@@ -292,7 +286,7 @@
 
             <li> <div class="faq"> <a name="debugging"> How do I debug my application under GDB when I am using DMTCP? </a> </div>
 	    Detailed advice is available in the file
-	    <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/doc/debugging-dmtcp.txt">doc/debugging-dmtcp.txt</a>.  General advice follows.
+	    <a href="http://github.com/dmtcp/dmtcp/blob/master/doc/debugging-dmtcp.txt">doc/debugging-dmtcp.txt</a>.  General advice follows.
             &nbsp;&nbsp;&nbsp;&nbsp;Run it as:
 		  <tt>gdb --args dmtcp_launch ./a.out</tt><br>
             (Older versions of DMTCP use <tt>dmtcp_checkpoint</tt> instead
@@ -374,9 +368,13 @@
 	    EABI API for Linux on ARM.  An experimental version has recently
 	    been extended to 64-bit ARM (armv8).  This exists currently
 	    in the svn, and is expected to be part of a future DMTCP-2.4
-	    release.  For porting to
-	    other CPUs, please see <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/src/mtcp/PORTING?view=markup">src/mtcp/PORTING</a>
+	    release.
+
+            For porting to other CPUs, please see
+	    <a href="http://github.com/dmtcp/dmtcp/blob/master/src/mtcp/PORTING">
+            src/mtcp/PORTING</a>
 	    (notes on how to port DMTCP).
+
 	    <P>
 	    DMTCP has also been verified to work on the Intel Xeon&nbsp;Phi
 	    (back end, only, at this time) when built with the Intel
@@ -390,7 +388,8 @@
             <li> <div class="faq"> <a name="intel32-64"> How can I compile
 	    DMTCP for mixed x86/x86_64 architectures
 	    (mixed 32-/64-bit)? </a> </div>
-	    See <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/doc/multi-arch.txt">doc/multi-arch.txt</a> for details.  In short,<br>
+	    See <a href="http://github.com/dmtcp/dmtcp/blob/master/doc/multi-arch.txt">
+              doc/multi-arch.txt</a> for details.  In short,<br>
 	    <code>./configure --enable-m32 &amp;&amp; make clean &amp;&amp;
 	            make -j &amp;&amp; make install</code><br>
 	    <code>./configure &amp;&amp; make clean &amp;&amp;
@@ -427,7 +426,7 @@
 	    As of DMTCP version&nbsp;2.0, DMTCP supports Torque,
 	    and some initial support for SLURM.  Support for both is
 	    implemented as a plugin, and can be found in the
-	    <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/plugin/batch-queue/">
+	    <a href="http://github.com/dmtcp/dmtcp/tree/master/plugin/batch-queue/">
 	    plugin/batch-queue</a> directory.  This is provided by Artem
 	    Polyakov, who can be reached as artpol84 through gmail.
 	    This is new code, and we welcome feedback on any issues
@@ -528,7 +527,7 @@
            <ol>
             <li> <div class="faq"> <a name="supportContact"> Who should I write to for support? </a> </div>
             Please see the
-	     <a href="http://dmtcp.sourceforge.net/contactUs.html">
+	     <a href="contactUs.html">
 	     "Contact Us" links</a> for writing to us.  That link includes
 	     pointers to the public DMTCP forum, and a private e-mail for
 	     private comments.  Other possibilities are to add a bug report to
@@ -566,7 +565,7 @@
 	    are supported? </a> </div>
 	    Yes.  See <a href="supportedApps.html">this page for a
 	    general discussion</a>.  In addition, note the availability
-	    of <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/test/plugin/">DMTCP plugins (add-ons)</a>
+	    of <a href="http://github.com/dmtcp/dmtcp/tree/master/test/plugin/">DMTCP plugins (add-ons)</a>
 	    that allow end users to easily extend the features of DMTCP.
 
             <li> <div class="faq"> <a name="distributed"> Does DMTCP support multi-threaded and distributed programs? </a> </div>
@@ -579,7 +578,7 @@
 	    in <tt>dmtcp_restart_script.sh</tt>&nbsp;.
 	    See below
 	    for <a href="#mpi">further discussion on MPI</a>.  See the <a
-	    href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/QUICK-START">QUICK-START</a>
+	    href="http://github.com/dmtcp/dmtcp/tree/master/QUICK-START">QUICK-START</a>
 	    file for additional details.
 
             <li> <div class="faq"> <a name="javaSupport"> Does DMTCP support Java? </a> </div>
@@ -679,7 +678,7 @@
             DMTCP with the older libstdc++ library.  Matlab should also
             be invoked without graphics (-nodisplay).
 	    <!-- See the 
-              <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/QUICK-START">QUICK-START</a>
+              <a href="http://github.com/dmtcp/dmtcp/tree/master/QUICK-START">QUICK-START</a>
               file for further details.  
 	    -->
           </ol>
@@ -703,7 +702,7 @@
 	    find an MPI that we don't support, <em>this is a bug in DMTCP</em>.
 	    We would be appreciative if you can file a bug report.
 	    For further details on using MPI, see the 
-            <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/QUICK-START">QUICK-START</a>.
+            <a href="http://github.com/dmtcp/dmtcp/tree/master/QUICK-START">QUICK-START</a>.
 	    <ol style="list-style-type:lower-alpha">
 	    <li> We are currently in the middle of porting DMTCP to InfiniBand
 		(see below).  Please tell us If you are interested in being
@@ -757,21 +756,21 @@
 	    <ol style="list-style-type:lower-roman">
 	    <li> The best high-level overview of the design of DMTCP
 	    is still in the paper
-	    <a href="http://dmtcp.sourceforge.net/publications.html">
+	    <a href="publications.html">
 	    DMTCP: Transparent Checkpointing for Cluster Computations
 	    and the Desktop</a>, by Ansel et&nbsp;al. (2009).
 	    <li> For the design
 	    of just the single-process checkpointing layer (MTCP), see
-	    <a href="http://dmtcp.sourceforge.net/publications.html">
+	    <a href="publications.html">
 	    Transparent User-Level Checkpointing for the
 	    Native POSIX Thread Library for Linux</a>, by Rieker
 	    et&nbsp;al. (2006). 
 	    <li> For a recent overview of the DMTCP architecture,
-	    see <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/doc/architecture-of-dmtcp.pdf">doc/architecture-of-dmtcp.pdf</a>
+	    see <a href="http://github.com/dmtcp/dmtcp/tree/master/doc/architecture-of-dmtcp.pdf">doc/architecture-of-dmtcp.pdf</a>
 	    (available with the source distribution).
             <li> For low-level documentation of the implementation of DMTCP,
 		 see the
-	    <a href="http://sourceforge.net/p/dmtcp/code/HEAD/tree/trunk/doc/">doc</a> subdirectory of the source distribution.
+	    <a href="http://github.com/dmtcp/dmtcp/tree/master/doc/">doc</a> subdirectory of the source distribution.
 	    </ol>
 
             <li> <div class="faq"> <a name="jassert"> Can I enable tracing of DMTCP internals? </a> </div>
