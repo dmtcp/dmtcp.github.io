@@ -2,6 +2,18 @@
 <head> 
   <title>DMTCP : Distributed MultiThreaded Checkpointing</title> 
   <link rel="stylesheet" type="text/css" href="dmtcp.css" /> 
+
+  <script language="JavaScript" type="text/javascript">
+if (document.getElementById) {
+  document.writeln('<style type="text/css"><!--')
+document.writeln('.texter {display:none} @media print {.texter {display:block;}}')
+document.writeln('//--></style>') }
+
+  function openClose(theID) {
+  if (document.getElementById(theID).style.display == "block") { document.getElementById(theID).style.display = "none" }
+  else { document.getElementById(theID).style.display = "block" } }
+  </script>
+
 </head> 
  
 <body> 
@@ -149,6 +161,11 @@
               for more details.
             </dl>
 
+            <div onClick="openClose('oldnews')">
+            <a href="#" onclick="return false;">Older News</a>
+          </div>
+
+          <div id="oldnews" style="display:none">
             <dl>
               <dt> <div class="news"> [2013-08-03]: DMTCP 1.2.8 released! </div>
 	      <dd> This is primarily a bug fix release. It is particularly
@@ -229,6 +246,7 @@
               Matlab under certain environments. Also includes numerous bug fixes were
               implemented as a part of review of DMTCP sub-systems.
             </dl>
+          </div>
           </div>
 
           <div class="subtitle"><h2><a name="authors">Authors</a></h2></div>
