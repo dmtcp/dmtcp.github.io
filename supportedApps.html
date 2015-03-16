@@ -25,7 +25,7 @@
             <tr><td><a class="sidebar" href="contributing.html">Contributing</a></td></tr> 
             <tr><td><a class="sidebar" href="team.html">Dev team</a></td></tr> 
             -->
-            <tr><td><a class="sidebar" href="FAQ.html">FAQ</a></td></tr> 
+            <tr><td><a class="sidebar" href="FAQ.html"><b>FAQ</b></a></td></tr> 
             <tr><td><a class="sidebar" href="http://sourceforge.net/projects/dmtcp">SF project page</a></td></tr> 
             <tr><td><a class="sidebar" href="http://github.com/dmtcp/dmtcp">Browse Source</a></td></tr>
             <tr><td><a class="sidebar" href="demo.html">Demo</a></td></tr> 
@@ -57,37 +57,53 @@
 	    with you on fixing this bug in DMTCP.
 	  <p>
 	    <b>The Closed World Assumption:</b>
-	    The largest source of incompatibility with DMTCP is applications
-	    that violate the "closed world assumption".  This means
+	    The single biggest issue for most checkpointing packages
+	    is the "closed world assumption".  This concerns
 	    applications that connect with external services.  In these
 	    cases, we must add heuristics that know about the external
-	    world.  A classic example is X&nbsp;Window apps
-	    (<a href="#xwindow">see the list below</a>).  Other examples
-	    for which DMTCP has added heuristic support are:
+	    world.  Some classic examples are X&nbsp;Window apps,
+            InfiniBand connections,
 	    NSCD (Name Service Caching Daemon),
 	    LDAP (Lightweight Directory Access Protocol), re-connecting
 	    stdin/stdout/stderr to the current terminal device, and so on.
+	    (<a href="#xwindow">see the list below</a>.)  DMTCP gets
+            around this through heuristics, and DMTCP plugins.
 	  <p>
-	    <b>The Closed World Assumption and End-User Customizations:</b>
-	    Finally, DMTCP provides
-	    <a href="plugins.html">a plugin API</a> that allows users
-	    to customize DTMCP to come closer to the closed world assumption.
-	    For example, a database client can disconnect from the server
-	    before checkpoint, and reconnect after resume/restart.
-	    A database server can delay checkpointing until all current
-	    transactions have completed.
+            <b>The Three Generations of DMTCP:</b><br>
+            DMTCP is now in its third generation, and gains much of its
+            power from the ability to interact with external resources.
+            Here is a short history of DMTCP:
+            <ol>
+            <li> First generation:
+                 <em>a single process on a single computer:</em><br>
+                 This was assumed to be a closed world.  Heuristics were
+                 added as needed when the external world intruded.
+            <li> Second generation:
+                 <em>distributed processes on a single computer
+                 cluster:</em><br>
+                 This was assumed to be a closed world.  Heuristics were
+                 added as needed when the external world intruded.
+            <li> Third generation:
+                 <em>distributed applications interacting with the external
+                 world:</em><br>
+                 Applications were allowed to interact with the
+                 external world through the implementation of many <a href="plugins.html">a plugins</a>---
+                 each one having expertise on how to save and restore an
+                 equivalent semantic state for a particular external
+                 resource.  For example, a database client can
+                 disconnect from the server before checkpoint, and
+                 reconnect after resume/restart.  A database server
+                 can delay checkpointing until all current transactions
+                 have completed.
+            </ol>
           <p>
-	    <b>Time (rdtsc) and Sleep:</b>
-            Time and sleep present special cases during restart.
+	    <b>Time (rdtsc):</b>
+            Time presents a special case during restart.
             Any counter or timer active since the beginning of a process
             will consider the restarted process to be a new process.
             This can affect the x86/x86_64 assembly instruction <tt>rdtsc</tt>,
             which counts the number of clock cycles since the beginning of
-            the process.  Currently, if a checkpointed process was inside
-            the <tt>sleep</tt> system call, then DMTCP restart will cause
-            <tt>sleep</tt> to resume based on the number of seconds
-            remaining to sleep.  (This last policy may change in the
-            future.)
+            the process.
           <p>
 	    <b>Three newer non-POSIX Linux system calls:</b>
 	    DMTCP supports three newer Linux system calls (epoll, eventfd,
@@ -95,29 +111,34 @@
           <p>
 	    <b>Work in Progress:</b>
 	    Support for inotify will be provided in a future release.
-	    Please contact us for the latest status, or if you have an
-	    additional application for which you need support.
+	    Please contact us if you have a need for this.
           <p>
 	    <b>Some of the commonly used applications supported by DMTCP:</b>
           <p>
 
           <ul>
-            <li>  Programming Languages: C/C++, Java, GNU Lisp, ...
-            <li>  Parallel Computing: Open MPI, MPICH2, OpenMP, Cilk,
-		 InfiniBand, SLURM and Torque resource managers, ...
+            <li>  Programming Languages: C/C++, Java, Haskell, Lisp, ...
+            <li>  Parallel Computing: Open MPI, MPICH2, MVAPICH2,
+                 Intel&reg;&nbsp;MPI, OpenMP,
+                 UPC (Unified Parallel&nbsp;C/C++),
+                 Cilk, InfiniBand, SLURM and Torque resource managers, ...
 		(see <a href="parallel.html">Parallel Computing page</a>)
+            <li>  Numerical Computing Environments: Matlab, R, Python/Numpy,
+                  ...
             <li>  Scripting and Shell Languages: Python, Perl,
 		 dash/bash/tcsh/zsh, screen, ...
             <li>  Web/Internet: MySQL, PHP, Firefox (see X Window Apps),
 		 Apache, ...
             <li>  Text-based Editors: vi/vim/cscope (vim mouse support
 		 not available), emacs, ...
-            <li>  <a name="xwindow">X Window Apps</a>: Supported with VNC
-		 -- disconnect VNC viewer,
-		 and then checkpoint VNC server. Reconnect viewer after
-		 resume/restart.  <em>(This method will not currently work
-		 for checkpointing 3D graphics (e.g. OpenGL).  We are in the
-		 progress of adding support for OpenGL.) </em>
+            <li>  <a name="xwindow">Graphics/X Window Apps</a>: Supported
+		 with VNC -- disconnect VNC viewer, and then checkpoint
+		 VNC server. Reconnect viewer after resume/restart.<br>
+		 <em>NOTE:  We also support direct checkpointing
+		 of graphics applications, including
+		 3D&nbsp;graphics based on OpenGL.  This uses a
+                 <a href="http://arxiv.org/abs/1312.6650">contributed
+		 pluginThis described here</a>.</em>
             <li> Not Supported: Statically Compiled Applications (using
 		 libc.a instead of libc.so).  Could be supported through
 		 use of trampolines.  Please contact us if you have an

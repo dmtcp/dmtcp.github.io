@@ -89,7 +89,8 @@ The coordinator is stateless and is <B>not</B> checkpointed.
 The dmtcp_coordinator initiates checkpoints of all processes in the
 system.  Checkpoints can be performed automatically on an interval (see
 DMTCP_CHECKPOINT_INTERVAL above), or they can be initiated manually on the
-command line of the coordinator.
+command line of the coordinator, or under program control using the
+plugin API.
 <P>
 The coordinator accepts the following commands on its standard input.
 Each command should be followed by the &lt;return&gt; key.  The commands are: 
@@ -120,7 +121,7 @@ Coordinator commands can also be issued remotely using <B>dmtcp_command</B>.
 <H2>EXAMPLE USAGE</H2>
 
 <DL COMPACT>
-<DT>1. In a separate terminal window, start the dmtcp_coodinator.  (See previous section.)<DD>
+<DT>1. In a separate terminal window, start the dmtcp_coordinator.  (See previous section.)<DD>
 <P>
 <BR>&nbsp;dmtcp_coordinator
 <P>
@@ -139,7 +140,31 @@ Coordinator commands can also be issued remotely using <B>dmtcp_command</B>.
 <A NAME="lbAH">&nbsp;</A>
 <H2>PROGRAMMING INTERFACE</H2>
 
-DMTCP provides a programming interface to allow checkpointed applications to interact with dmtcp.
+The source distribution includes a top-level <tt>plugin</tt> directory,
+with examples of how to write a plugin for DMTCP.  Plugins allow
+a checkpointed application to disconnect from an external resource,
+and then reconnect to it at the time of restart.  Further
+examples are in the <tt>test/plugin</tt> directory.  In particular,
+<tt>test/plugin/applic-initiated</tt> demonstrates how an application
+can request a checkpoint under program control.
+<P>
+The plugin feature adds three new user-programmable capabilities.
+A plugin may: add wrappers around system calls; take special actions
+at during certain events (e.g. pre-checkpoint, resume/post-checkpoint,
+restart); and may insert key-value pairs into a database at restart
+time that is then available to be queried by the restarted processes of
+a computation.
+(The events available to the plugin feature form a superset
+of the events available with the dmtcpaware interface.)
+One or more plugins are invoked via a list of colon-separated
+absolute pathnames.
+<P>
+<center>
+<code>dmtcp_launch --with-plugin PLUGIN1[:PLUGIN2]...</code>
+</center>
+<P>
+DMTCP also provides an earlier programming interface (now deprecated)
+to allow checkpointed applications to interact with dmtcp.
 <P>
 The user application should link with libdmtcpaware.so (-ldmtcpaware) and use the header file dmtcp/dmtcpaware.h.
 <P>
@@ -151,9 +176,12 @@ Full documentation is available from <A HREF="http://dmtcp.sourceforge.net/">htt
 <A NAME="lbAJ">&nbsp;</A>
 <H2>AUTHORS</H2>
 
-DMTCP and its standalone single-process compontent MTCP (MultiThreaded
-CheckPointing) were created and are maintained by Jason Ansel, Kapil Arya,
-Gene Cooperman, Mike Rieker, Ana Maria Visan, and Alex Brick.
+DMTCP and its standalone single-process component MTCP (MultiThreaded
+CheckPointing) were created by the long-term contributors, Jason Ansel,
+Kapil Arya, Gene Cooperman, Rohan Garg, Artem Y. Polyakov, Mike Rieker,
+and a series of additional contributors including Alex Brick, Tyler
+Denniston, William Enright, Gregory Kerr, Ana-Maria Visan, and others.
+For support, see DMTCP home page.
 <P>
 
 <HR>

@@ -25,7 +25,7 @@
             <tr><td><a class="sidebar" href="contributing.html">Contributing</a></td></tr> 
             <tr><td><a class="sidebar" href="team.html">Dev team</a></td></tr> 
             -->
-            <tr><td><a class="sidebar" href="FAQ.html">FAQ</a></td></tr> 
+            <tr><td><a class="sidebar" href="FAQ.html"><b>FAQ</b></a></td></tr> 
             <tr><td><a class="sidebar" href="http://sourceforge.net/projects/dmtcp">SF project page</a></td></tr> 
             <tr><td><a class="sidebar" href="http://github.com/dmtcp/dmtcp">Browse Source</a></td></tr>
 
@@ -64,6 +64,25 @@
 
             <p>
 
+            <h2>Quick start to learning DMTCP plugins:</h2>
+            <pre>
+              <code>
+                cd DMTCP_ROOT/test/plugin
+                cd sleep1
+                make clean
+                make -n check # To see how to compile and run it.
+                make check    # To actually compile and run it.
+             </code>
+            </pre>
+            <P>
+            After that, read the source code.  It should be small and easy to read.
+            For more complex examples, read
+            <a href="https://github.com/dmtcp/dmtcp/blob/master/test/plugin/README">
+            <i>DMTCP_ROOT/test/README</i></a>
+            and try the examples in other subdirectories of <i>DMTCP_ROOT/test</i>&nbsp;.
+
+            <p>
+
             <h2>Python Interface:</h2>
             <p>
               DMTCP also provides a simple Python module for accessing
@@ -72,7 +91,7 @@
               <a href="https://github.com/dmtcp/dmtcp/blob/master/contrib/python/dmtcp.py">
               <i>contrib/python/dmtcp.py</i></a>.  Other Python utilities
 	      are also in
-              <a href="https://github.com/dmtcp/dmtcp/tree/master/contrb/python">
+              <a href="https://github.com/dmtcp/dmtcp/tree/master/contrib/python">
               <i>contrib/python/</i></a>.
           </div>
           <hr>

@@ -18,7 +18,7 @@
             <tr><td><b><a class="sidebar" href="index.html">Home</a></b></td></tr> 
 
             <tr><td><a class="sidebar" href="downloads.html"><b>Downloads</b></a></td></tr> 
-            <tr><td><a class="sidebar" href="FAQ.html">FAQ</a></td></tr> 
+            <tr><td><a class="sidebar" href="FAQ.html"><b>FAQ</b></a></td></tr> 
             <tr><td><a class="sidebar" href="http://sourceforge.net/projects/dmtcp">SF project page</a></td></tr> 
             <tr><td><a class="sidebar" href="http://github.com/dmtcp/dmtcp">Browse Source</a></td></tr>
             <tr><td><a class="sidebar" href="demo.html">Demo</a></td></tr> 
@@ -53,11 +53,11 @@
             <li> <a href="#uses">Use Cases</a>
              <ol>
               <li> <a href="#cluster"> How does one use DMTCP for a distributed computation (for example, on a cluster)?
-              <li> <a href="#migrate"> Can I migrate my applications (re-start them on other hosts)? </a>
+              <li> <a href="#migrate"> Can I migrate my applications (re-start them on other hosts, and between different versions of Linux)? </a>
               <li> <a href="#dmtcpaware"> How can my software invoke a checkpoint or restart directly under control of my program?</a>
               <li> <a href="#exitcode"> What is the exit code (return status) for a target application running under DMTP?</a>
               <li> <a href="#plugins"> Does DMTCP support third-party plugins (add-ons) to change the behavior of DMTCP at run-time?</a>
-              <li> <a href="#root"> What if my target application uses the setuid bit, capabilities, or other special privileges?
+              <li> <a href="#root"> What if my target application runs as root, uses the setuid bit, uses capabilities, or uses other special privileges?
               <li> <a href="#debugging"> How do I debug my application under GDB when I am using DMTCP?
              </ol>
             <li> <a href="#architectures">Architectures Supported by DMTCP</a>
@@ -155,9 +155,6 @@
             remove old ckpt images.  DMTCP also writes out
             <tt>./dmtcp_restart_script.sh</tt>, which handles various
             bookkeeping and is safer to use.<br>
-            <em>NOTE:</em> Older versions of DMTCP use
-            <tt>dmtcp_checkpoint</tt> instead
-            of <tt>dmtcp_launch</tt>.<br>
             <em>NOTE:</em> Numerous configure and run-time options are
             also available.
 
@@ -166,14 +163,14 @@
             distributions.  Some examples on which users have
             verified that DMTCP works are: Matlab, R, Java, Python,
             Perl, Ruby, PHP, Ocaml, GCL (GNU Common Lisp), emacs,
-            vi/cscope, Open&nbsp;MPI, MPICH-2, OpenMP, and Cilk.
-            See <a href="supportedApps.html"> Supported Applications</a>
-            for further details.  Our goal
-            is to support DMTCP for all vanilla programs.  If DMTCP does not
-            work correctly on your program,
-            <strong>then this is a bug in DMTCP</strong>.
-	    We would be appreciative if you can then
-            <a href="contactUs.html">file a bug report with DMTCP</a>.
+	    vi/cscope, Open&nbsp;MPI, MPICH-2, MVAPICH2, Intel&reg;&nbsp;MPI,
+	    OpenMP, and Cilk.  Both TCP and InfiniBand connections are
+            supported.  See <a href="supportedApps.html">
+	    Supported Applications</a> for further details.  Our goal is
+	    to support DMTCP for all vanilla programs.	If DMTCP does not
+	    work correctly on your program, <strong>then this is a bug
+	    in DMTCP</strong>.	We would be appreciative if you can then
+	    <a href="contactUs.html">file a bug report with DMTCP</a>.
 
             <li> <div class="faq"> <a name="license"> What is the license for DMTCP? </a> </div>
             It is a free software distributed under the terms of the 
@@ -225,15 +222,35 @@
             --interval</tt> can be used to set the checkpoint interval
             on the coordinator.
 
-            <li> <div class="faq"> <a name="migrate"> Can I migrate my applications (re-start them on other hosts)? </a> </div>
+            <li> <div class="faq"> <a name="migrate"> Can I migrate my applications (re-start them on other hosts, and between different versions of Linux)? </a> </div>
             Yes.  Look at dmtcp_restart_script.sh for some options
             on migrating both single-process and distributed process
             computations.  This should usually work if the source and
             destination Linux kernel are both recent.  However, test
-            the migration first to be sure.
+            the migration first to be sure.  Problems are most likely
+            to occur when migrating from an older Linux/CPU to a newer
+            Linux/CPU.
+	    <P>
+            Note that in migrating between arbitrary
+            machines, it is possible to encounter
+            "<b><code>illegal&nbsp;instruction</code></b>" on restart.
+            This can occur if the CPUs of the source machine and
+            destination machine are different.  Most often, this occurs
+            when migrating from a newer CPU to an older CPU that does not
+            support the full range of extensions to the CPU instruction
+            set.  It may sometimes occur in migrating between AMD and
+            Intel CPUs if the application or libraries were optimized
+            during compilation for one CPU only.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Finally, DMTCP generally supports
+            process migration when migrating from an older Linux kernel
+            to a newer Linux kernel.  This works, because the checkpoint
+            image of the target application contains all of the original
+            run-time libraries, including libc.so.  So, when an older
+            libc.so makes a call to a newer Linux kernel, the newer
+            Linux kernel will generally preserve backwards compatibility.
 
             <li> <div class="faq"> <a name="dmtcpaware"> How can my software invoke a checkpoint or restart directly under control of my program? </a> </div>
-	    Yes.  The most full-featured mechanism is through
+	    The most full-featured mechanism is through
 	    <a href="#plugins">DMTCP plugins</a>.
             See especially
             <a href="http://github.com/dmtcp/dmtcp/tree/master/test/plugin/applic-initiated-ckpt">
@@ -269,7 +286,7 @@
             <a href="http://github.com/dmtcp/dmtcp/blob/master/doc/plugin-tutorial.pdf">
             doc/plugin-tutorial.pdf</a>.
 
-            <li> <div class="faq"> <a name="root"> What if my target application uses the setuid bit, capabilities, or other special privileges? </a> </div>
+            <li> <div class="faq"> <a name="root"> What if my target application runs as root, uses the setuid bit, uses capabilities, or uses other special privileges? </a> </div>
 	     DMTCP works internally by preloading its own library into
 	    the target application (see <a href="#internalWorking">
 	     How does DMTCP Work?</a>).  Linux will not honor the setuid
@@ -280,13 +297,17 @@
 	    describes two strategies for allowing DMTCP to initially
 	    run with privileges.  The constructor to use in the case of DMTCP
 	    is <code>dmtcp::DmtcpWorker::DmtcpWorker(bool)</code>
+	    (<code>dmtcp::DmtcpWorker::DmtcpWorker()</code> for
+            DMTCP-2.4 or later)
 	    in <code>DMTCP_ROOT/src/dmtcpworker.cpp</code>.
 	    Group permissions, and security authorizations such as
 	    polkit, ACL and PAM may offer other options.
 
             <li> <div class="faq"> <a name="debugging"> How do I debug my application under GDB when I am using DMTCP? </a> </div>
 	    Detailed advice is available in the file
-	    <a href="http://github.com/dmtcp/dmtcp/blob/master/doc/debugging-dmtcp.txt">doc/debugging-dmtcp.txt</a>.  General advice follows.
+	    <a href="http://github.com/dmtcp/dmtcp/blob/master/doc/debugging-dmtcp.txt">doc/debugging-dmtcp.txt</a>.  General advice follows.<br>
+            <p>
+	    <em>DEBUGGING DURING INITIAL LAUNCH:</em> 
             &nbsp;&nbsp;&nbsp;&nbsp;Run it as:
 		  <tt>gdb --args dmtcp_launch ./a.out</tt><br>
             (Older versions of DMTCP use <tt>dmtcp_checkpoint</tt> instead
@@ -308,17 +329,22 @@
             If you want to see the actions of the dmtcphijack.so library
             starting after the call to execvp and before the application's main
             routine, then at the beginning of your GDB session, do:<br>
-	    <p>
-            <em>NOTE:</em> If you want to trace the internals of DMTCP
-            (in addition to using GDB as above), see
-            <a href="#jassert"><em>tracing DMTCP internals</em></a>.
 	    <code>
+              (gdb) # For DMTCP-2.3.1 and earlier:<br>
               (gdb) break 'dmtcp::DmtcpWorker::DmtcpWorker(bool)'<br>
+              (gdb) # For DMTCP-2.4 and later:<br>
+              (gdb) break 'dmtcp::DmtcpWorker::DmtcpWorker()'<br>
               (gdb) run<br>
-	    </code>
+            </code>
             We have found the GDB command <tt>info proc mappings</tt> useful
             for deciding if an address belongs to libc.so, dmtcphijack.so,
             your target application, or other.<br>
+            <p>
+            <em>NOTE:</em> If you want to trace the internals of DMTCP
+            (in addition to using GDB as above), see
+            <a href="#jassert"><em>tracing DMTCP internals</em></a>.<br>
+            <p>
+            <em>DEBUGGING DURING RESTART:</em> 
             &nbsp;&nbsp;&nbsp;&nbsp;To capture your process under GDB during
             <tt>dmtcp_restart</tt>, you need a more roundabout strategy.
             This is because
@@ -327,25 +353,22 @@
             <tt>gdb&nbsp;attach</tt> or
             <tt>gdb&nbsp;./a.out&nbsp;`pgrep&nbsp;-n&nbsp;a.out`</tt>
             after your process has restarted.<br>
-	    <p>
-            <em>NOTE:</em> If you want to trace the internals of DMTCP
-            (in addition to using GDB as above), see
-            <a href="#jassert"><em>tracing DMTCP internals</em></a>.
-	    <P>
-            &nbsp;&nbsp;&nbsp;&nbsp;Your restarted process can be forced
+            &nbsp;&nbsp;&nbsp;&nbsp;In order to assist in using gdb to
+            attach, your restarted process can be forced
             to pause deep within DMTCP just as it restarts,
-            by setting the environment variable <tt>MTCP_RESTART_PAUSE2</tt>
-            (available beginning with DMTCP-1.2.5, missing from DMTCP-2.2
-            and&nbsp;2.3, avaialble again in later versions).
+            by setting the environment variable <tt>DMTCP_RESTART_PAUSE2</tt>.
             (Set <tt>DMTCP_RESTART_PAUSE2</tt> <em>before</em> the original
             <tt>dmtcp_launch</tt>, since
             the restarted process will remember only the original environment
-            variables prior to checkpoint.  The environment variable
+            variables prior to checkpoint. <em>(Prior to DMTCP-2.4, the
+            variable had the name MTCP_RESTART_PAUSE.)</em>
+            The environment variable
             <tt>DMTCP_RESTART_PAUSE</tt> is available to capture the
             restart even earlier --- primarily of interest for DMTCP
-            developers.))
-            On restart, dmtcp_restart will pause with a message to attach using
-            a gdb command.  If the gdb attach command fails with
+            developers.
+            &nbsp;&nbsp;&nbsp;&nbsp;On restart, dmtcp_restart will then pause
+            with a message to attach using a gdb command.  If the gdb
+            attach command fails with
             <tt>Operation not permitted</tt>, then you may need to execute:
             <tt>echo&nbsp;0&nbsp;&gt;&nbsp;/proc/sys/kernel/yama/ptrace_scope</tt>
             (requires root privilege).<br>
@@ -357,7 +380,6 @@
 	    with the latest DMTCP release.  Having said that, if you are
 	    using an older version of DMTCP, The information above
 	    is valid.
-
            </ol>
           <div class="faqHeader"> <a name="architectures"> Architectures Supported by DMTCP </a> </div>
            <ol>
@@ -410,16 +432,15 @@
 	    interested in doing the work, please write to us, and we will
 	    share our ideas on how to do that port.
 	    <P>
-	    See also <a href="http://www.slideshare.net/jserv/implement-checkpointing-for-android-elce2012">"Implementing Chackpointing for Android"</a>
+	    See also <a href="http://www.slideshare.net/jserv/implement-checkpointing-for-android-elce2012">"Implementing Checkpointing for Android"</a>
 	    for work toward porting DMTCP to Android.
 
             <li> <div class="faq"> <a name="networkPorts"> What types
 	    of networks does DMTCP support? </a> </div>
-	    DMTCP works directly with TCP.  It would also be relatively
-	    easy to port it to IP, but we haven't seen a demand for this.
-	    <P>
-	    Support for transparent checkpoint-restart over InfiniBand is
-	    available as a plugin since DMTCP-2.3 on an experimental basis.
+	    DMTCP works directly with both TCP and InfiniBand.
+	    It would also be relatively easy to port it to IP, but we
+	    haven't seen a demand for this.  When using InfiniBand,
+            launch with: <tt>dmtcp_launch&nbsp;--infiniband&nbsp;...</tt>
 
             <li> <div class="faq"> <a name="batchQueuePorts"> What types
 	    of batch queues does DMTCP support? </a> </div>
@@ -619,7 +640,7 @@
 
             <li> <div class="faq"> <a name="xwindowsSupport"> Does DMTCP support X-Windows graphics (GUI) programs? </a> </div>
             Partially.  DMTCP supports X-Windows programs
-            with the help of VNC.  Recally that <em>vncserver</em> will create
+            with the help of VNC.  Recall that <em>vncserver</em> will create
 	    a virtual desktop in which you can run your graphics application,
 	    and <em>vncviewer</em> invokes an Xserver to display the graphics.
 	    So, the recipe is:
@@ -663,21 +684,26 @@
           <div class="faqHeader"> <a name="matlab"> Matlab: </a> </div>
           <ol>
             <li> <div class="faq"> <a name="matlabCkpt"> Does DMTCP support checkpointing of Matlab programs? </a> </div>
-            Yes.  But Matlab has been a moving target for DMTCP.  It is best
-	    to use a recent DMTCP.  (For example, DMTCP-1.2.5 has added
-	    a bug fix in case Matlab is in the middle of talking to its
-	    license server at checkpoint time.)  The next comments are
-	    primarily of historical interest, for those with an old
+            Yes.  But Matlab is a moving target, as it continues to use
+            newer features of Linux.  It is best
+	    to use a recent DMTCP.  
+            DMTCP-2.4 added support for matlab-2013 and later.
+            DMTCP-2.3.x supported Matlab through matlab-2012.
+	    Much earlier, DMTCP-1.2.5 had added
+	    an enhancement for the case when Matlab is in the middle
+            of talking to its license server at checkpoint time.
+            <!--
+            For those with a very old
 	    version of Matlab:<br>
 	    Older Matlabs invoked two processes, matlab and matlab_helper,
 	    which DMTCP handles transparently.
 	    Older Matlabs might also generate
             a message about GLIBCXX-3.4.  This indicates that Matlab
-            is using an older, incompatible libstc++ library.  You can either
+            is using an older, incompatible libstdc++ library.  You can either
             cause Matlab to use the newer libstdc++ library, or re-compile
             DMTCP with the older libstdc++ library.  Matlab should also
             be invoked without graphics (-nodisplay).
-	    <!-- See the 
+	    See the 
               <a href="http://github.com/dmtcp/dmtcp/tree/master/QUICK-START">QUICK-START</a>
               file for further details.  
 	    -->
@@ -692,39 +718,32 @@
             Yes.  And to restart on different hosts, edit the 'ssh' lines
 	    in <tt>dmtcp_restart_script.sh</tt>&nbsp;.
 	    DMTCP operates by checkpointing the sockets (or InfiniBand
-	    connections, if using the new plugin)  created by the
+	    connections, if using <tt>--infinband</tt>)  created by the
             MPI library.  Hence, it is transparent to MPI and doesn't require
             any particular MPI configuration or hooks.  In principle, DMTCP
 	    should run on any MPI over TCP/IP.  We usually test on
-	    <a href="http://www.open-mpi.org/">Open&nbsp;MPI</a> and
+	    <a href="http://www.open-mpi.org/">Open&nbsp;MPI</a>,
+	    <a href="http://mvapich.cse.ohio-state.edu/">MVAPICH-2</a> and
 	    <a href="http://www.mcs.anl.gov/research/projects/mpich2/">
 	    MPICH-2</a>.  If you
 	    find an MPI that we don't support, <em>this is a bug in DMTCP</em>.
 	    We would be appreciative if you can file a bug report.
 	    For further details on using MPI, see the 
             <a href="http://github.com/dmtcp/dmtcp/tree/master/QUICK-START">QUICK-START</a>.
-	    <ol style="list-style-type:lower-alpha">
-	    <li> We are currently in the middle of porting DMTCP to InfiniBand
-		(see below).  Please tell us If you are interested in being
-		an alpha tester.
-	    <li> DMTCP is being integrated into the checkpoint-restart
-		service of Open MPI.  In this mode, DMTCP (actually, MTCP)
-		will be responsible <em>only</em> for checkpointing each
-		individual process.  Open MPI will quiesce the network, and
-		then call on DMTCP.  The use of DMTCP must be configured
-		by Open MPI users.
-	    </ol>
+	    <ul style="list-style-type:lower-alpha">
+	    <li> As of DMTCP-2.4, DMTCP should offer robust support for
+                popular implementations of MPI, along with support for the SLURM
+                batch queue.  (See the
+                <a href="https://github.com/dmtcp/dmtcp/tree/master/plugin/batch-queue/job_examples">example SLURM scripts for using DMTCP</a>.)
+	    </ul>
 	
 
             <li> <div class="faq"> <a name="mpiInfiniBand"> Does DMTCP support MPI for InfiniBand, Myrinet, or iWARP?</a> </div>
-            DMTCP is adding support for the librdmacm and
-            libibverbs API supported by the OFED implementation of InfiniBand.
-	    These libraries support
-            InfiniBand and iWARP.  At this time, we are not adding support
-            for other APIs like uDAPL, Mellanox verbs, or Myrinet API.
-	    If there is enough
-            interest, or if someone is willing to help work on such a port,
-            we will support those APIs.
+            DMTCP supports the OFED implementation of InfiniBand
+            (librdmacm and libibverbs API).
+	    These libraries support InfiniBand and iWARP.  At this time,
+	    we have not seen sufficient demand to add support for other
+	    APIs like uDAPL, Mellanox verbs, or Myrinet API.
           </ol> 
 
           <br>
@@ -752,7 +771,8 @@
 
             <li> <div class="faq"> <a name="documentation"> Is there documentation on the internals of DMTCP? </a> </div>
 	    Some sources of information follow.  If you wish to cite DMTCP,
-	    please cite the paper by Ansel&nbsp;et&nbsp;al.
+	    please cite the
+            <a href="publications.html">paper by Ansel&nbsp;et&nbsp;al.</a>
 	    <ol style="list-style-type:lower-roman">
 	    <li> The best high-level overview of the design of DMTCP
 	    is still in the paper

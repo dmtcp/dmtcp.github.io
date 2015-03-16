@@ -38,7 +38,7 @@ document.writeln('//--></style>') }
             <tr><td><a class="sidebar" href="contributing.html">Contributing</a></td></tr> 
             <tr><td><a class="sidebar" href="team.html">Dev team</a></td></tr> 
             -->
-            <tr><td><a class="sidebar" href="FAQ.html">FAQ</a></td></tr> 
+            <tr><td><a class="sidebar" href="FAQ.html"><b>FAQ</b></a></td></tr> 
             <tr><td><a class="sidebar" href="http://sourceforge.net/projects/dmtcp">SF project page</a></td></tr> 
             <tr><td><a class="sidebar" href="http://github.com/dmtcp/dmtcp">Browse Source</a></td></tr>
             <tr><td><a class="sidebar" href="demo.html">Demo</a></td></tr> 
@@ -68,18 +68,20 @@ document.writeln('//--></style>') }
 	  It operates directly on the user binary executable, without any Linux
           kernel modules or other kernel modifications.
           <P>
-          Among the applications supported by DMTCP are Open MPI, MATLAB,
+          Among the applications supported by DMTCP are Open MPI, MATLAB, R,
           Python, Perl, and many programming languages and shell scripting
           languages.  DMTCP also supports
           <a href="http://www.gnu.org/software/screen/">GNU screen</a> sessions,
-          including vim/cscope and emacs.
-          With the use of TightVNC, it can also checkpoint and restart X Window
-          applications, as long as they do not use extensions (e.g.: no OpenGL, 
-          no video). See the
-          <a href="https://github.com/dmtcp/dmtcp/blob/master/QUICK-START">QUICK-START</a>
+          including vim/cscope and emacs.  With the use of TightVNC,
+          it can also checkpoint and restart X Window applications.
+          The OpenGL library for 3D&nbsp;graphics is supported through
+          a <a href="http://arxiv.org/abs/1312.6650">special
+          plugin</a>.  See the <a
+          href="https://github.com/dmtcp/dmtcp/blob/master/QUICK-START">QUICK-START</a>
           file for further details.
+
           <P>
-          DMTCP supports the OFED API for InfiniBand on an experimental basis.
+          DMTCP supports the commonly used OFED API for InfiniBand.
           See <a href="https://github.com/dmtcp/dmtcp/blob/master/contrib/infiniband/README">contrib/infiniband/README</a> for more details.
 
         </div>
@@ -255,7 +257,7 @@ document.writeln('//--></style>') }
             <a href="http://www.ccs.neu.edu/home/kapil/">Kapil Arya</a>,
             <a href="http://www.ccs.neu.edu/home/gene/">Gene Cooperman</a>,
             <a href="http://www.ccs.neu.edu/home/rohgarg/">Rohan Garg</a>,
-            <a href="http://www.ccs.neu.edu/home/jiajun/">Jianun Cao</a>,
+            <a href="http://www.ccs.neu.edu/home/jiajun/">Jiajun Cao</a>,
             and
             Artem Polyakov.
             The list of active developers continues to evolve.
