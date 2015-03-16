@@ -71,7 +71,6 @@
               <li> <a href="#intel32-64"> How can I compile DMTCP for mixed x86/x86_64 architectures (mixed 32-/64-bit)?</a>
               <li> <a href="#osPorts"> What Operating Systems has DMTCP been ported to? </a>
               <li> <a href="#networkPorts"> What types of networks does DMTCP support? </a>
-              <li> <a href="#batchQueuePorts"> What types of batch queues does DMTCP support? </a>
               <li> <a href="#distros"> What Linux distributions do you test on?</a>
              </ol>
             <li> <a href="#performance">Performance</a>
@@ -89,6 +88,7 @@
               <li> <a href="#documentation"> Is there documentation on the internals of DMTCP?</a>
               <li> <a href="#jassert"> Can I enable tracing of DMTCP internals?</a>
               <li> <a href="#internalOverhead"> What is the run-time overhead of DMTCP?</a>
+              <li> <a href="#osFeatures"> What O/S features are supported by DMTCP? </a>
 <!--
               <li> <a href="#errorMsgs">DMTCP Error Messages</a>
               <ol>
@@ -120,10 +120,11 @@
               <li> <a href="#mpiSupport"> Does DMTCP support MPI?</a>
               <li> <a href="#openmpSupport"> Does DMTCP support
 	    	multi-threaded languages such as OpenMP and Cilk?</a>
+              <li> <a href="#batchQueue"> Does DMTCP support integration with batch queues (resource managers)? </a>
+              <li> <a href="#batchQueue"> Does DMTCP support integration with Condor? </a>
               <li> <a href="#screenSupport"> Does DMTCP support GNU screen?</a>
               <li> <a href="#gdb"> Can DMTCP checkpoint a GDB session?</a>
               <li> <a href="#xwindowsSupport"> Does DMTCP support X-Windows graphics (GUI) programs? </a>
-              <li> <a href="#osFeatures"> What other O/S features are supported by DMTCP? </a>
             </ol>
             <li> <a href="#matlab">Checkpointing Matlab</a>
             <ol>
@@ -134,6 +135,7 @@
             <ol>
               <li> <a href="#mpiCkpt"> Does DMTCP support checkpointing of MPI programs? </a>
               <li> <a href="#mpiInfiniBand"> Does DMTCP support MPI for InfiniBand, Myrinet, or iWARP?</a>
+              <li> <a href="#batchQueuePorts"> What types of batch queues (resource managers) does DMTCP support? </a>
             </ol>
 
             </ul>
@@ -394,11 +396,9 @@
             <li> <div class="faq"> <a name="cpuPorts"> What CPUs has
 	    DMTCP been ported to? </a> </div>
 	    DMTCP supported x86 and x86_64 since the beginning.  It has
-	    been ported to the 32-bit ARM CPU (armv7).  It uses the newer
-	    EABI API for Linux on ARM.  An experimental version has recently
-	    been extended to 64-bit ARM (armv8).  This exists currently
-	    in the git repository, and is expected to be part of a future DMTCP-2.4
-	    release.
+	    been ported to the 32-bit ARM CPU (armv7/armv7a), using the newer
+	    EABI API for Linux on ARM.  An experimental port
+	    to 64-bit ARM (armv8) has been added as of DMTCP-2.4.0.
 
             For porting to other CPUs, please see
 	    <a href="http://github.com/dmtcp/dmtcp/blob/master/src/mtcp/PORTING">
@@ -449,18 +449,6 @@
 	    It would also be relatively easy to port it to IP, but we
 	    haven't seen a demand for this.  When using InfiniBand,
             launch with: <tt>dmtcp_launch&nbsp;--infiniband&nbsp;...</tt>
-
-            <li> <div class="faq"> <a name="batchQueuePorts"> What types
-	    of batch queues does DMTCP support? </a> </div>
-	    As of DMTCP version&nbsp;2.0, DMTCP supports Torque,
-	    and some initial support for SLURM.  Support for both is
-	    implemented as a plugin, and can be found in the
-	    <a href="http://github.com/dmtcp/dmtcp/tree/master/plugin/batch-queue/">
-	    plugin/batch-queue</a> directory.  This is provided by Artem
-	    Polyakov, who can be reached as artpol84 through gmail.
-	    This is new code, and we welcome feedback on any issues
-	    encountered.  Ports to other batch queues will be added
-	    relatively easily using this model.
 
             <li> <div class="faq"> <a name="distros"> What Linux distributions do you test on? </a> </div>
 	    <!--
@@ -618,7 +606,19 @@
             etc.  We explicitly do <em>not</em> place a wrapper around read()
             or write(), since those are frequently called system calls that could
             produce measurable run-time overhead.
+
+	    <li> <div class="faq"> <a name="osFeatures"> What O/S features are supported by DMTCP? </a> </div>
+	    Among the Linux features supported by DMTCP are open file
+	    descriptors, pipes, sockets, signal handlers, process id and
+	    thread id virtualization (ensure old pids and tids continue
+	    to work upon restart), fifos, process group ids, session ids,
+	    ptys, terminal attributes, System V shared memory (shmget,
+	    etc.), timers, epoll, eventfd, signalfd, and
+            mmap/mprotect (including mmap-based shared memory).
+	    Such common O/S daemons as NSCD and LDAP are also
+	    transparently supported.
           </ol>
+
           <div class="faqHeader"> <a name="dmtcpProject"> About the DMTCP Project </a> </div>
            <ol>
             <li> <div class="faq"> <a name="supportContact"> Who should I write to for support? </a> </div>
@@ -704,6 +704,16 @@
             Yes.  DMTCP had partial support for OpenMP in the past.
 	    Starting with release 1.2.4, DMTCP fully supports OpenMP and Cilk.
 
+            <li> <div class="faq"> <a name="batchQueue">  Does DMTCP support integration with batch queues (resource managers)? </a> </div>
+	    As of DMTCP version&nbsp;2.4, DMTCP supports SLURM and Torque.
+	    See below
+	    for <a href="#batchQueuePorts">additional details</a>.
+
+            <li> <div class="faq"> <a name="condor">  Does DMTCP support integration with Condor? </a> </div>
+            Yes.  See the web page on
+            <a href="http://dmtcp.sourceforge.net/condor.html">
+            Condor integration</a>.
+
             <li> <div class="faq"> <a name="screenSupport"> Does DMTCP support 
 	    <a href="http://www.gnu.org/software/screen/">GNU screen</a> 
 	    sessions? </a> </div>
@@ -742,17 +752,6 @@
             as 3D graphics (3D visualization such as in many scientific
             graphics simulations) nor video nor sound.  We are continuing
             to look at improving graphics support.
-
-	    <li> <div class="faq"> <a name="osFeatures"> What other O/S features are supported by DMTCP? </a> </div>
-	    Among the Linux features supported by DMTCP are open file
-	    descriptors, pipes, sockets, signal handlers, process id and
-	    thread id virtualization (ensure old pids and tids continue
-	    to work upon restart), fifos, process group ids, session ids,
-	    ptys, terminal attributes, System V shared memory (shmget,
-	    etc.), timers, and
-            mmap/mprotect (including mmap-based shared memory).
-	    Such common O/S daemons as NSCD and LDAP are also
-	    transparently supported.
 
 	  </ol>
 
@@ -822,6 +821,20 @@
 	    These libraries support InfiniBand and iWARP.  At this time,
 	    we have not seen sufficient demand to add support for other
 	    APIs like uDAPL, Mellanox verbs, or Myrinet API.
+
+            <li> <div class="faq"> <a name="batchQueuePorts"> What types
+	    of batch queues (resource managers) does DMTCP support? </a> </div>
+	    As of DMTCP version&nbsp;2.4, DMTCP supports SLURM and Torque.
+            The integration of SLURM with MPI has been
+            especially intensively tested.
+	    Support for both is implemented
+	    as a plugin, and can be found in the <a
+	    href="http://github.com/dmtcp/dmtcp/tree/master/plugin/batch-queue/">
+	    plugin/batch-queue</a> directory, which includes example
+	    submission scripts for SLURM/DMTCP and Torque/DMTCP.  This is
+	    provided by Artem Polyakov, who can be reached as artpol84
+	    through gmail.  Ports to other batch queues can be added
+	    relatively easily using this model.
           </ol> 
 
 
