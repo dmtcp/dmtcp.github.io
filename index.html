@@ -111,11 +111,12 @@ document.writeln('//--></style>') }
               It is especially important to upgrade if you are using any
               of MATLAB, MPI, SLURM or Torque.  If you have a newer Linux
               kernel using '[vvar]' (test with:
-              <tt>cat&nbsp;/proc/self/maps|grep&nbsp;'\[vvar]'</tt>&nbsp;),
+              <tt>grep '\[vvar]' /proc/self/maps</tt>&nbsp;),
               then it will be important to upgrade to DMTCP-2.4.0-rc2
               (available soon).
             </dl>
 
+            <dl>
               <dt> <div class="news"> [2014-07-14]: DMTCP 2.3.1 released! </div>
 	      <dd>
 	      This is primarily a bug fix release. 
