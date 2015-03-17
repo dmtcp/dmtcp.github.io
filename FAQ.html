@@ -58,7 +58,7 @@
             <li> <a href="#uses">Use Cases</a>
              <ol>
               <li> <a href="#cluster"> How does one use DMTCP for a distributed computation (for example, on a cluster)?
-              <li> <a href="#migrate"> Can I migrate my applications (re-start on another host, possibly with a different Linux); and what if I see a message <code>illegal&nbsp;instruction</code>? </a>
+              <li> <a href="#migrate"> Can I migrate my applications (restart on another host, possibly with a different Linux); and what if I see a message <code>illegal&nbsp;instruction</code>? </a>
               <li> <a href="#dmtcpaware"> How can my software invoke a checkpoint or restart directly under control of my program?</a>
               <li> <a href="#exitcode"> What is the exit code (return status) for a target application running under DMTP?</a>
               <li> <a href="#plugins"> Does DMTCP support third-party plugins (add-ons) to change the behavior of DMTCP at run-time?</a>
@@ -232,7 +232,7 @@
             --interval</tt> can be used to set the checkpoint interval
             on the coordinator.
 
-            <li> <div class="faq"> <a name="migrate"> Can I migrate my applications (re-start on another host, possibly with a different Linux); and what if I see a message <code>illegal&nbsp;instruction</code>? </a> </div>
+            <li> <div class="faq"> <a name="migrate"> Can I migrate my applications (restart on another host, possibly with a different Linux); and what if I see a message <code>illegal&nbsp;instruction</code>? </a> </div>
             Yes, migration works.  Look at dmtcp_restart_script.sh for some
             options on migrating both single-process and distributed process
             computations.  Homogeneous host architectures are best, but
