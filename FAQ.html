@@ -58,7 +58,7 @@
             <li> <a href="#uses">Use Cases</a>
              <ol>
               <li> <a href="#cluster"> How does one use DMTCP for a distributed computation (for example, on a cluster)?
-              <li> <a href="#migrate"> Can I migrate my applications (re-start them on other hosts, and between different versions of Linux)? </a>
+              <li> <a href="#migrate"> Can I migrate my applications (re-start on another host, possibly with a different Linux); and what if I see a message <code>illegal&nbsp;instruction</code>? </a>
               <li> <a href="#dmtcpaware"> How can my software invoke a checkpoint or restart directly under control of my program?</a>
               <li> <a href="#exitcode"> What is the exit code (return status) for a target application running under DMTP?</a>
               <li> <a href="#plugins"> Does DMTCP support third-party plugins (add-ons) to change the behavior of DMTCP at run-time?</a>
@@ -232,17 +232,18 @@
             --interval</tt> can be used to set the checkpoint interval
             on the coordinator.
 
-            <li> <div class="faq"> <a name="migrate"> Can I migrate my applications (re-start them on other hosts, and between different versions of Linux)? </a> </div>
-            Yes.  Look at dmtcp_restart_script.sh for some options
-            on migrating both single-process and distributed process
-            computations.  This should usually work if the source and
-            destination Linux kernel are both recent.  However, test
-            the migration first to be sure.  Problems are most likely
-            to occur when migrating from an older Linux/CPU to a newer
-            Linux/CPU.
+            <li> <div class="faq"> <a name="migrate"> Can I migrate my applications (re-start on another host, possibly with a different Linux); and what if I see a message <code>illegal&nbsp;instruction</code>? </a> </div>
+            Yes, migration works.  Look at dmtcp_restart_script.sh for some
+            options on migrating both single-process and distributed process
+            computations.  Homogeneous host architectures are best, but
+            some heterogeneity is also tolerated.  This works best
+            if the source and destination Linux distro are both recent.
+            However, test the migration first.  Problems are most likely
+            to occur when migrating from a newer Linux/CPU to an older
+            Linux/CPU, since an older distro is often not future-proof.
 	    <P>
             Note that in migrating between arbitrary
-            machines, it is possible to encounter
+            computers, it is possible to encounter
             "<b><code>illegal&nbsp;instruction</code></b>" on restart.
             This can occur if the CPUs of the source machine and
             destination machine are different.  Most often, this occurs
@@ -250,7 +251,13 @@
             support the full range of extensions to the CPU instruction
             set.  It may sometimes occur in migrating between AMD and
             Intel CPUs if the application or libraries were optimized
-            during compilation for one CPU only.<br>
+            during compilation for one CPU only.  In principle, one can
+            get around this with <tt>gcc&nbsp;-mtune=generic</tt>, but
+            you would also have to make sure that (i)&nbsp;DMTCP,
+            (ii)&nbsp;your target application, and (iii)&nbsp;<em>all
+            libraries</em> used by it (including libc.so)
+            are compiled with <tt>gcc&nbsp;-mtune=generic</tt>.
+            <br>
             &nbsp;&nbsp;&nbsp;&nbsp;Finally, DMTCP generally supports
             process migration when migrating from an older Linux kernel
             to a newer Linux kernel.  This works, because the checkpoint
