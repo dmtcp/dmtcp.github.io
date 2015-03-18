@@ -63,6 +63,7 @@
               <li> <a href="#exitcode"> What is the exit code (return status) for a target application running under DMTP?</a>
               <li> <a href="#plugins"> Does DMTCP support third-party plugins (add-ons) to change the behavior of DMTCP at run-time?</a>
               <li> <a href="#root"> What if my target application runs as root, uses the setuid bit, uses capabilities, or uses other special privileges?
+              <li> <a href="#readdmtcp"> How can I read a summary of the contents of a DMTCP checkpoint image?</a>
               <li> <a href="#debugging"> How do I debug my application under GDB when I am using DMTCP?
              </ol>
             <li> <a href="#architectures">Architectures Supported by DMTCP</a>
@@ -320,6 +321,15 @@
 	    Group permissions, and security authorizations such as
 	    polkit, ACL and PAM may offer other options.
 
+            <li> <div class="faq"> <a name="readdmtcp"> How can I read a summary of the contents of a DMTCP checkpoint image? </a> </div>
+            Use readdmtcp.sh.  (The example below assumes only one
+            dmtcp ckpt file is present.)<br>
+	    <code>
+              &nbsp;&nbsp;gzip -dc ckpt_*.dmtcp &gt; tmp.dmtcp<br>
+              &nbsp;&nbsp;<em>&lt;DMTCP_DIR&gt;</em>/util/readdmtcp.sh tmp.dmtcp<br>
+	    </code>
+
+
             <li> <div class="faq"> <a name="debugging"> How do I debug my application under GDB when I am using DMTCP? </a> </div>
 	    Detailed advice is available in the file
 	    <a href="http://github.com/dmtcp/dmtcp/blob/master/doc/debugging-dmtcp.txt">doc/debugging-dmtcp.txt</a>.  General advice follows.<br>
@@ -565,7 +575,10 @@
             checkpoint thread.  The checkpoint thread then sends the
             checkpoint signal (SIGUSR2) to each of the user threads.
             (Note that the checkpoint signal is for internal DMTCP
-            use only.  It should not be used by non-DMTCP programs.)
+            use only.  It should not be used by non-DMTCP programs.)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Note that it is shown how to see
+            a summary of the <a href="#readdmtcp">contents of a
+            DMTCP checkpoint image</a> in a previous question.
 
             <li> <div class="faq"> <a name="documentation"> Is there documentation on the internals of DMTCP? </a> </div>
 	    Some sources of information follow.  If you wish to cite DMTCP,
