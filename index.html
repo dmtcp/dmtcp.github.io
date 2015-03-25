@@ -105,15 +105,22 @@ document.writeln('//--></style>') }
           <div class="section">
 
             <dl>
-              <dt> <div class="news"> [2014-03-17]: DMTCP 2.4.0-rc1 released! </div>
+              <dt> <div class="news"> [2015-03-25]: DMTCP 2.4.0-rc2 released! </div>
+	      <dd>
+	      This is release candidate&nbsp;2 for DMTCP&nbsp;2.4.0.
+              It is especially important to upgrade if you are using any
+              of MATLAB, MPI, SLURM or Torque; or if you have a newer Linux
+              kernel using '[vvar]' (test with:
+              <tt>grep&nbsp;'\[vvar]'&nbsp;/proc/self/maps</tt>&nbsp;);
+              or if you use glibc-2.21 or later (test with:
+              <tt>ls&nbsp;-l&nbsp;/lib*/libc.so.6&nbsp;/lib/*/libc.so.6</tt>&nbsp;).
+            </dl>
+
+            <dl>
+              <dt> <div class="news"> [2015-03-17]: DMTCP 2.4.0-rc1 released! </div>
 	      <dd>
 	      This is release candidate&nbsp;1 for DMTCP&nbsp;2.4.0.
-              It is especially important to upgrade if you are using any
-              of MATLAB, MPI, SLURM or Torque.  If you have a newer Linux
-              kernel using '[vvar]' (test with:
-              <tt>grep '\[vvar]' /proc/self/maps</tt>&nbsp;),
-              then it will be important to upgrade to DMTCP-2.4.0-rc2
-              (available soon).
+              (See above for latest release candidate.)
             </dl>
 
             <dl>
