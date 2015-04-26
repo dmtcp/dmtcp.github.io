@@ -105,15 +105,28 @@ document.writeln('//--></style>') }
           <div class="section">
 
             <dl>
+              <dt> <div class="news"> [2015-04-25]: DMTCP 2.4.0-rc3 released! </div>
+	      <dd>
+	      This is release candidate&nbsp;3 for DMTCP&nbsp;2.4.0.
+              It is especially important to upgrade:<br>
+	      if you are using MATLAB;<br>
+	      or if you are using MPI, including the following resource
+	      managers: SLURM, Torque, ibrun;<br>
+	      or if you have a newer Linux kernel using '[vvar]' (test with:
+	      <tt>grep&nbsp;'\[vvar]'&nbsp;/proc/self/maps</tt>&nbsp;);<br>
+              or if you use glibc-2.21 or later (test with:
+              <tt>ls&nbsp;-l&nbsp;/lib*/libc.so.6&nbsp;/lib/*/libc.so.6</tt>&nbsp;);<br>
+	      or if you are using the ARM CPU (either 32- or 64-bit versions).<br>
+	      Here is the
+	      <a href="https://github.com/dmtcp/dmtcp/blob/master/NEWS">NEWS file</a>
+	      from the internal development branch for the upcoming full release.
+            </dl>
+
+            <dl>
               <dt> <div class="news"> [2015-03-25]: DMTCP 2.4.0-rc2 released! </div>
 	      <dd>
 	      This is release candidate&nbsp;2 for DMTCP&nbsp;2.4.0.
-              It is especially important to upgrade if you are using any
-              of MATLAB, MPI, SLURM or Torque; or if you have a newer Linux
-              kernel using '[vvar]' (test with:
-              <tt>grep&nbsp;'\[vvar]'&nbsp;/proc/self/maps</tt>&nbsp;);
-              or if you use glibc-2.21 or later (test with:
-              <tt>ls&nbsp;-l&nbsp;/lib*/libc.so.6&nbsp;/lib/*/libc.so.6</tt>&nbsp;).
+              (See above for latest release candidate.)
             </dl>
 
             <dl>
@@ -135,7 +148,7 @@ document.writeln('//--></style>') }
 	      This is primarily a bug fix release. However, if you are using DMTCP
 	      for the ARM v7 CPU, or if you are using DMTCP either with the InfiniBand
 	      network or with the SLURM batch system, then it is strongly recommended
-	      to upgrade.  Check
+	      to upgrade.  Check the
 	      <a href="http://sourceforge.net/p/dmtcp/news/2014/07/dmtcp-23-released"> release notes</a>
               for more details.
             </dl>
@@ -145,7 +158,7 @@ document.writeln('//--></style>') }
 	      <dd>
 	      This is a bug fix release. Users relying on
 	      --enable-unique-checkpoint-filenames configure flag are highly
-              recommended to upgrade to this release.  Check
+              recommended to upgrade to this release.  Check the
 	      <a href="http://sourceforge.net/p/dmtcp/news/2014/03/dmtcp-221-released"> release notes</a>
               for more details.
             </dl>
@@ -156,7 +169,7 @@ document.writeln('//--></style>') }
 	      partially re-written for greater clarity of code and greater
 	      maintainability.  Also, users relying on the use of DMTCP with MPI,
 	      InfiniBand or the Toruqe or SLURM batch queues are strongly
-              advised to upgrade. Check
+              advised to upgrade. Check the
 	      <a href="http://sourceforge.net/p/dmtcp/news/2014/03/dmtcp-22-released"> release notes</a>
               for more details.
             </dl>
@@ -165,7 +178,7 @@ document.writeln('//--></style>') }
               <dt> <div class="news"> [2014-01-12]: DMTCP 2.1 released! </div>
 	      <dd>
               This release includes enhancement to the core feature set and some newly stable plugins.
-              Check
+              Check the
 	      <a href="http://sourceforge.net/p/dmtcp/news/2014/01/dmtcp-21-released"> release notes</a>
               for more details.
             </dl>
@@ -177,7 +190,7 @@ document.writeln('//--></style>') }
 	      version 2.0 has been re-designed around the concept of plugins.
 	      The older DMTCP version 1.2.x branch will continue to be
               maintained for bug fixes.
-              Check
+              Check the
 	      <a href="http://sourceforge.net/p/dmtcp/news/2013/10/dmtcp-20-released"> release notes</a>
               for more details.
             </dl>
@@ -192,14 +205,14 @@ document.writeln('//--></style>') }
 	      <dd> This is primarily a bug fix release. It is particularly
               recommended to upgrade if you are using DMTCP with the ARM CPU,
 	      or if you will compile DMTCP with a C++11 compiler (e.g. GNU flag
-              -std=c++11). Check
+              -std=c++11). Check the
 	      <a href="http://sourceforge.net/p/dmtcp/news/2013/08/dmtcp-128-released"> release notes</a>
               for more details.
             </dl>
 
             <dl>
               <dt> <div class="news"> [2013-03-13]: DMTCP 1.2.7 released! </div>
-	      <dd> This is primarily a bug fix release. Check
+	      <dd> This is primarily a bug fix release. Check the
 	      <a href="http://sourceforge.net/p/dmtcp/news/2013/03/dmtcp-127-released"> release notes</a>
               for more details.
 
@@ -208,7 +221,7 @@ document.writeln('//--></style>') }
               <dt> <div class="news"> [2012-07-31]: DMTCP 1.2.6 released! </div>
 	      <dd> Previous release had issues with compilation on older kernels, this
 	       release fixes that. It also contains some changes needed for gcc
-               4.7. Check
+               4.7. Check the
 	      <a href="http://sourceforge.net/news/?group_id=194616">release notes</a>
               for more details.
 
@@ -217,7 +230,7 @@ document.writeln('//--></style>') }
               <dt> <div class="news"> [2012-05-27]: DMTCP 1.2.5 released! </div>
 	      <dd> Along with numerous bug fixes, this release features support
               for ARM processors along with support for epoll/eventfd/signalfd system calls.
-              Check
+              Check the
 	      <a href="http://sourceforge.net/news/?group_id=194616">release notes</a>
               for more details.
 
@@ -226,7 +239,7 @@ document.writeln('//--></style>') }
               <dt> <div class="news"> [2012-01-23]: DMTCP 1.2.4 released! </div>
 	      <dd> Along with lot of bug fixes, this release focuses on robust
               treatment of processes that rapidly create and destroy threads. Users of DMTCP
-              1.2.3 are highly encouraged to upgrade to this release. Check
+              1.2.3 are highly encouraged to upgrade to this release. Check the
 	      <a href="http://sourceforge.net/news/?group_id=194616">release notes</a>
               for more details.
 
@@ -235,7 +248,7 @@ document.writeln('//--></style>') }
               <dt> <div class="news"> [2011-07-22]: DMTCP 1.2.3 released! </div>
 	      <dd> This is primarily a bug-fix release with lots of bug fixes that improve
 	      overall stability. Users of DMTCP 1.2.2 are highly encouraged to upgrade
-              to this release. Check
+              to this release. Check the
 	      <a href="http://sourceforge.net/news/?group_id=194616">release notes</a>
               for more details.
 
@@ -244,7 +257,7 @@ document.writeln('//--></style>') }
               <dt> <div class="news"> [2011-06-22]: DMTCP 1.2.2 released! </div>
 	      <dd> Along with a lot of bug fixes, this release provides support
 	      for a module system allowing users to write their own extension
-              to DMTCP, and removed dependency on libc.a for building. Check
+              to DMTCP, and removed dependency on libc.a for building. Check the
 	      <a href="http://sourceforge.net/news/?group_id=194616">release notes</a>
               for more details.
             </dl>
@@ -253,7 +266,7 @@ document.writeln('//--></style>') }
 	      <dd> Along with a lot of bug fixes, this release provides support
 	      for MPICH2 1.3.x (transparently checkpointing MPICH2 under
 	      DMTCP), and calling dmtcpaware API (dmtcpCheckpoint(), etc.)
-	      directly from inside a python session. Check 
+	      directly from inside a python session. Check the
 	      <a href="http://sourceforge.net/news/?group_id=194616">release notes</a>
               for more details.
             </dl>
