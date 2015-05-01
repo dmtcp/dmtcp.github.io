@@ -62,17 +62,18 @@ document.writeln('//--></style>') }
           <div class="subtitle"><h2>About DMTCP:</h2></div>
           <div class="section">
 
-	  DMTCP (Distributed MultiThreaded Checkpointing) is a tool to
-	  transparently checkpoint the state of multiple simultaneous
-	  applications, including multi-threaded and distributed applications.
-	  It operates directly on the user binary executable, without any Linux
+          DMTCP (Distributed MultiThreaded Checkpointing) is a tool to
+          transparently checkpoint the state of multiple simultaneous
+          applications, including multi-threaded and distributed applications.
+          It operates directly on the user binary executable, without any Linux
           kernel modules or other kernel modifications.
           <P>
-          Among the applications supported by DMTCP are Open MPI, MATLAB, R,
-          Python, Perl, and many programming languages and shell scripting
-          languages.  DMTCP also supports
-          <a href="http://www.gnu.org/software/screen/">GNU screen</a> sessions,
-          including vim/cscope and emacs.  With the use of TightVNC,
+          Among the applications supported by DMTCP are MPI (various
+          implementations), OpenMP, MATLAB, Python, Perl, R, and many
+          programming languages and shell scripting languages.  DMTCP
+          also supports
+          <a href="http://www.gnu.org/software/screen/">GNU screen</a>
+          sessions, including vim/cscope and emacs.  With the use of TightVNC,
           it can also checkpoint and restart X Window applications.
           The OpenGL library for 3D&nbsp;graphics is supported through
           a <a href="http://arxiv.org/abs/1312.6650">special
@@ -81,7 +82,9 @@ document.writeln('//--></style>') }
           file for further details.
 
           <P>
-          DMTCP supports the commonly used OFED API for InfiniBand.
+          DMTCP supports the commonly used OFED API for InfiniBand, as well as
+          its integration with various implementatoins of MPI, and resource
+          managers (e.g., SLURM).
           See <a href="https://github.com/dmtcp/dmtcp/blob/master/contrib/infiniband/README">contrib/infiniband/README</a> for more details.
 
         </div>
@@ -106,92 +109,92 @@ document.writeln('//--></style>') }
 
             <dl>
               <dt> <div class="news"> [2015-04-25]: DMTCP 2.4.0-rc3 released! </div>
-	      <dd>
-	      This is release candidate&nbsp;3 for DMTCP&nbsp;2.4.0.
+              <dd>
+              This is release candidate&nbsp;3 for DMTCP&nbsp;2.4.0.
               It is especially important to upgrade:<br>
-	      if you are using MATLAB;<br>
-	      or if you are using MPI, including the following resource
-	      managers: SLURM, Torque, ibrun;<br>
-	      or if you have a newer Linux kernel using '[vvar]' (test with:
-	      <tt>grep&nbsp;'\[vvar]'&nbsp;/proc/self/maps</tt>&nbsp;);<br>
+              if you are using MATLAB;<br>
+              or if you are using MPI, including the following resource
+              managers: SLURM, Torque, ibrun;<br>
+              or if you have a newer Linux kernel using '[vvar]' (test with:
+              <tt>grep&nbsp;'\[vvar]'&nbsp;/proc/self/maps</tt>&nbsp;);<br>
               or if you use glibc-2.21 or later (test with:
               <tt>ls&nbsp;-l&nbsp;/lib*/libc.so.6&nbsp;/lib/*/libc.so.6</tt>&nbsp;);<br>
-	      or if you are using the ARM CPU (either 32- or 64-bit versions).<br>
-	      Here is the
-	      <a href="https://github.com/dmtcp/dmtcp/blob/master/NEWS">NEWS file</a>
-	      from the internal development branch for the upcoming full release.
+              or if you are using the ARM CPU (either 32- or 64-bit versions).<br>
+              Here is the
+              <a href="https://github.com/dmtcp/dmtcp/blob/master/NEWS">NEWS file</a>
+              from the internal development branch for the upcoming full release.
             </dl>
 
             <dl>
               <dt> <div class="news"> [2015-03-25]: DMTCP 2.4.0-rc2 released! </div>
-	      <dd>
-	      This is release candidate&nbsp;2 for DMTCP&nbsp;2.4.0.
+              <dd>
+              This is release candidate&nbsp;2 for DMTCP&nbsp;2.4.0.
               (See above for latest release candidate.)
             </dl>
 
             <dl>
               <dt> <div class="news"> [2015-03-17]: DMTCP 2.4.0-rc1 released! </div>
-	      <dd>
-	      This is release candidate&nbsp;1 for DMTCP&nbsp;2.4.0.
+              <dd>
+              This is release candidate&nbsp;1 for DMTCP&nbsp;2.4.0.
               (See above for latest release candidate.)
             </dl>
 
             <dl>
               <dt> <div class="news"> [2014-07-14]: DMTCP 2.3.1 released! </div>
-	      <dd>
-	      This is primarily a bug fix release. 
+              <dd>
+              This is primarily a bug fix release. 
             </dl>
 
             <dl>
               <dt> <div class="news"> [2014-07-03]: DMTCP 2.3 released! </div>
-	      <dd>
-	      This is primarily a bug fix release. However, if you are using DMTCP
-	      for the ARM v7 CPU, or if you are using DMTCP either with the InfiniBand
-	      network or with the SLURM batch system, then it is strongly recommended
-	      to upgrade.  Check the
-	      <a href="http://sourceforge.net/p/dmtcp/news/2014/07/dmtcp-23-released"> release notes</a>
+              <dd>
+              This is primarily a bug fix release. However, if you are using DMTCP
+              for the ARM v7 CPU, or if you are using DMTCP either with the InfiniBand
+              network or with the SLURM batch system, then it is strongly recommended
+              to upgrade.  Check the
+              <a href="http://sourceforge.net/p/dmtcp/news/2014/07/dmtcp-23-released"> release notes</a>
               for more details.
             </dl>
 
             <dl>
               <dt> <div class="news"> [2014-03-20]: DMTCP 2.2.1 released! </div>
-	      <dd>
-	      This is a bug fix release. Users relying on
-	      --enable-unique-checkpoint-filenames configure flag are highly
+              <dd>
+              This is a bug fix release. Users relying on
+              --enable-unique-checkpoint-filenames configure flag are highly
               recommended to upgrade to this release.  Check the
-	      <a href="http://sourceforge.net/p/dmtcp/news/2014/03/dmtcp-221-released"> release notes</a>
+              <a href="http://sourceforge.net/p/dmtcp/news/2014/03/dmtcp-221-released"> release notes</a>
               for more details.
             </dl>
             <dl>
               <dt> <div class="news"> [2014-03-14]: DMTCP 2.2 released! </div>
-	      <dd>
-	      In this release, the lowest layers have been re-organized and
-	      partially re-written for greater clarity of code and greater
-	      maintainability.  Also, users relying on the use of DMTCP with MPI,
-	      InfiniBand or the Toruqe or SLURM batch queues are strongly
+              <dd>
+              In this release, the lowest layers have been re-organized and
+              partially re-written for greater clarity of code and greater
+              maintainability.  Also, users relying on the use of DMTCP with MPI,
+              InfiniBand or the Toruqe or SLURM batch queues are strongly
               advised to upgrade. Check the
-	      <a href="http://sourceforge.net/p/dmtcp/news/2014/03/dmtcp-22-released"> release notes</a>
+              <a href="http://sourceforge.net/p/dmtcp/news/2014/03/dmtcp-22-released"> release notes</a>
               for more details.
             </dl>
 
             <dl>
               <dt> <div class="news"> [2014-01-12]: DMTCP 2.1 released! </div>
-	      <dd>
+              <dd>
               This release includes enhancement to the core feature set and some newly stable plugins.
               Check the
-	      <a href="http://sourceforge.net/p/dmtcp/news/2014/01/dmtcp-21-released"> release notes</a>
+              <a href="http://sourceforge.net/p/dmtcp/news/2014/01/dmtcp-21-released"> release notes</a>
               for more details.
             </dl>
 
             <dl>
               <dt> <div class="news"> [2013-10-03]: DMTCP 2.0 released! </div>
-	      <dd>
-	      This version 2.0 release represents the future of DMTCP.  DMTCP
-	      version 2.0 has been re-designed around the concept of plugins.
-	      The older DMTCP version 1.2.x branch will continue to be
+              <dd>
+              This version 2.0 release represents the future of DMTCP.  DMTCP
+              version 2.0 has been re-designed around the concept of plugins.
+              The older DMTCP version 1.2.x branch will continue to be
               maintained for bug fixes.
               Check the
-	      <a href="http://sourceforge.net/p/dmtcp/news/2013/10/dmtcp-20-released"> release notes</a>
+              <a href="http://sourceforge.net/p/dmtcp/news/2013/10/dmtcp-20-released"> release notes</a>
               for more details.
             </dl>
 
@@ -202,78 +205,78 @@ document.writeln('//--></style>') }
           <div id="oldnews" style="display:none">
             <dl>
               <dt> <div class="news"> [2013-08-03]: DMTCP 1.2.8 released! </div>
-	      <dd> This is primarily a bug fix release. It is particularly
+              <dd> This is primarily a bug fix release. It is particularly
               recommended to upgrade if you are using DMTCP with the ARM CPU,
-	      or if you will compile DMTCP with a C++11 compiler (e.g. GNU flag
+              or if you will compile DMTCP with a C++11 compiler (e.g. GNU flag
               -std=c++11). Check the
-	      <a href="http://sourceforge.net/p/dmtcp/news/2013/08/dmtcp-128-released"> release notes</a>
+              <a href="http://sourceforge.net/p/dmtcp/news/2013/08/dmtcp-128-released"> release notes</a>
               for more details.
             </dl>
 
             <dl>
               <dt> <div class="news"> [2013-03-13]: DMTCP 1.2.7 released! </div>
-	      <dd> This is primarily a bug fix release. Check the
-	      <a href="http://sourceforge.net/p/dmtcp/news/2013/03/dmtcp-127-released"> release notes</a>
+              <dd> This is primarily a bug fix release. Check the
+              <a href="http://sourceforge.net/p/dmtcp/news/2013/03/dmtcp-127-released"> release notes</a>
               for more details.
 
             </dl>
             <dl>
               <dt> <div class="news"> [2012-07-31]: DMTCP 1.2.6 released! </div>
-	      <dd> Previous release had issues with compilation on older kernels, this
-	       release fixes that. It also contains some changes needed for gcc
+              <dd> Previous release had issues with compilation on older kernels, this
+               release fixes that. It also contains some changes needed for gcc
                4.7. Check the
-	      <a href="http://sourceforge.net/news/?group_id=194616">release notes</a>
+              <a href="http://sourceforge.net/news/?group_id=194616">release notes</a>
               for more details.
 
             </dl>
             <dl>
               <dt> <div class="news"> [2012-05-27]: DMTCP 1.2.5 released! </div>
-	      <dd> Along with numerous bug fixes, this release features support
+              <dd> Along with numerous bug fixes, this release features support
               for ARM processors along with support for epoll/eventfd/signalfd system calls.
               Check the
-	      <a href="http://sourceforge.net/news/?group_id=194616">release notes</a>
+              <a href="http://sourceforge.net/news/?group_id=194616">release notes</a>
               for more details.
 
             </dl>
             <dl>
               <dt> <div class="news"> [2012-01-23]: DMTCP 1.2.4 released! </div>
-	      <dd> Along with lot of bug fixes, this release focuses on robust
+              <dd> Along with lot of bug fixes, this release focuses on robust
               treatment of processes that rapidly create and destroy threads. Users of DMTCP
               1.2.3 are highly encouraged to upgrade to this release. Check the
-	      <a href="http://sourceforge.net/news/?group_id=194616">release notes</a>
+              <a href="http://sourceforge.net/news/?group_id=194616">release notes</a>
               for more details.
 
             </dl>
             <dl>
               <dt> <div class="news"> [2011-07-22]: DMTCP 1.2.3 released! </div>
-	      <dd> This is primarily a bug-fix release with lots of bug fixes that improve
-	      overall stability. Users of DMTCP 1.2.2 are highly encouraged to upgrade
+              <dd> This is primarily a bug-fix release with lots of bug fixes that improve
+              overall stability. Users of DMTCP 1.2.2 are highly encouraged to upgrade
               to this release. Check the
-	      <a href="http://sourceforge.net/news/?group_id=194616">release notes</a>
+              <a href="http://sourceforge.net/news/?group_id=194616">release notes</a>
               for more details.
 
             </dl>
             <dl>
               <dt> <div class="news"> [2011-06-22]: DMTCP 1.2.2 released! </div>
-	      <dd> Along with a lot of bug fixes, this release provides support
-	      for a module system allowing users to write their own extension
+              <dd> Along with a lot of bug fixes, this release provides support
+              for a module system allowing users to write their own extension
               to DMTCP, and removed dependency on libc.a for building. Check the
-	      <a href="http://sourceforge.net/news/?group_id=194616">release notes</a>
+              <a href="http://sourceforge.net/news/?group_id=194616">release notes</a>
               for more details.
             </dl>
             <dl>
               <dt> <div class="news"> [2011-03-12]: DMTCP 1.2.1 released! </div>
-	      <dd> Along with a lot of bug fixes, this release provides support
-	      for MPICH2 1.3.x (transparently checkpointing MPICH2 under
-	      DMTCP), and calling dmtcpaware API (dmtcpCheckpoint(), etc.)
-	      directly from inside a python session. Check the
-	      <a href="http://sourceforge.net/news/?group_id=194616">release notes</a>
+              <dd> Along with a lot of bug fixes, this release provides support
+              for MPICH2 1.3.x (transparently checkpointing MPICH2 under
+              DMTCP), and calling dmtcpaware API (dmtcpCheckpoint(), etc.)
+              directly from inside a python session. Check the
+              <a href="http://sourceforge.net/news/?group_id=194616">release notes</a>
               for more details.
             </dl>
             <dl>
               <p>
               <dt> <div class="news"> [2010-11-04]: DMTCP 1.2.0 released! </div>
-	      <dd> This is a semi-major release of DMTCP. The biggest change is
+              <dd> This is a semi-major release of DMTCP. The biggest change is
                   the support for
               <a href="http://www.gnu.org/software/screen/">GNU screen</a> sessions.
               It also fixes some instabilities in checkpointing
@@ -308,7 +311,7 @@ document.writeln('//--></style>') }
             //end hiding contents --->
           </script>
 
-	  <p> Click <a class="sidebar" href="contactUs.html">here for comments.</a>
+          <p> Click <a class="sidebar" href="contactUs.html">here for comments.</a>
           <p>
 
           <A href="http://sourceforge.net"><IMG src="http://sourceforge.net/sflogo.php?group_id=96405&amp;type=5" width="210" height="62" border="0" alt="SourceForge.net Logo" /></A> 

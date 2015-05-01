@@ -70,7 +70,7 @@
              <ol>
               <li> <a href="#cpuPorts"> What CPUs has DMTCP been ported to?</a>
               <li> <a href="#intel32-64"> How can I compile DMTCP for mixed x86/x86_64 architectures (mixed 32-/64-bit)?</a>
-              <li> <a href="#osPorts"> What Operating Systems has DMTCP been ported to? </a>
+              <li> <a href="#osPorts"> What operating systems has DMTCP been ported to? </a>
               <li> <a href="#networkPorts"> What types of networks does DMTCP support? </a>
               <li> <a href="#distros"> What Linux distributions do you test on?</a>
              </ol>
@@ -442,17 +442,17 @@
 	    <code>./configure &amp;&amp; make clean &amp;&amp;
 	            make -j &amp;&amp; make install</code><br>
 	    Use <code>./configure --prefix=$PWD/build</code> if you wish to
-	    build a local copy, instead of installing globally.
+	    build a local copy in $PWD/build, instead of installing globally.
 	    <P>
 	    Note that <code>--enable-m32</code> will not create the
 	    necessary DMTCP commands on a 64-bit Linux.  So, <em>on
 	    a 64-bit Linux</em>, you will still need the 64-bit install,
 	    even if you intend only to run with 32-bit targets.
 
-            <li> <div class="faq"> <a name="osPorts"> What Operating
-	    Systems has DMTCP been ported to? </a> </div>
+            <li> <div class="faq"> <a name="osPorts"> What operating
+	    systems has DMTCP been ported to? </a> </div>
 	    DMTCP operates only under Linux as of this writing.  Because its
-	    design stays close the POSIX API, it can be ported to other
+	    design stays close to the POSIX API, it can be ported to other
 	    operating systems, given sufficient demand.  If someone is
 	    interested in doing the work, please write to us, and we will
 	    share our ideas on how to do that port.
