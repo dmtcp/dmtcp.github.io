@@ -112,6 +112,14 @@ document.writeln('//--></style>') }
               <dd>
               <em>[NOTE: <tt>dmtcp_command</tt> is not working in rc4.  It is already fixed in github.  If you need this command (e.g., in MPI batch scripts), the fixed version is available through <a href="downloads.html"><b>downloads</b></a>.    We believe the standard commands (<tt>dmtcp_launch</tt>, <tt>dmtcp_restart</tt>, <tt>dmtcp_coordinator<tt>) are all working.  Thank you for your patience as we continue to fully test release&nbsp;2.4.0.]</em><br><br>
               <em>[NOTE: If you are running a 32-bit Linux, then after configure and make, you will need to execute </em><tt>(cd bin &amp;&amp; ln -s mtcp_restart mtcp_restart-32)</tt><em> from the DMTCP root directory.  This mis-feature will also be fixed in the next release candidate.]</em><br><br>
+              <em>[NOTE: On <em>some</em> RedHat/Fedora/CentOS distros only,
+                   the perl, tcsh, vim binaries are using libfreebl3.so with
+                   the prelink application.  This causes a bug on DMTCP launch.
+                   Unfortunately, we do not have access to a debuginfo package
+                   or a build of libfreebl3.so with '-g' on a distro that
+                   exhibits the bug.  Until we have such access, we are unable
+                   to read the symbol names needed to debug these binaries.
+                   Assistance anyone?]</em><br><br>
               This is release candidate&nbsp;4 for DMTCP&nbsp;2.4.0.
               It is especially important to upgrade:<br>
               if you are using MATLAB;<br>
