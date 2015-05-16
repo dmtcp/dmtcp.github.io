@@ -62,24 +62,33 @@ document.writeln('//--></style>') }
           <div class="subtitle"><h2>About DMTCP:</h2></div>
           <div class="section">
 
-          DMTCP (Distributed MultiThreaded Checkpointing) is a tool to
-          transparently checkpoint the state of multiple simultaneous
-          applications, including multi-threaded and distributed applications.
-          It operates directly on the user binary executable, without any Linux
-          kernel modules or other kernel modifications.
+          MTCP (Distributed MultiThreaded Checkpointing) transparently
+          checkpoints a single-host or distributed computation in
+          user-space -- with no modifications to user code or to
+          the O/S. It works on most Linux applications,
+          including Python, Matlab, R, GUI desktops, MPI, etc.
+          It is robust and widely used (on Sourceforge
+          since 2007).
           <P>
           Among the applications supported by DMTCP are MPI (various
           implementations), OpenMP, MATLAB, Python, Perl, R, and many
-          programming languages and shell scripting languages.  DMTCP
-          also supports
+          programming languages and shell scripting languages.
+          <!-- THIS SHOULD NO LONGER BE THE EMPHASIS.
+	  DMTCP also supports
           <a href="http://www.gnu.org/software/screen/">GNU screen</a>
-          sessions, including vim/cscope and emacs.  With the use of TightVNC,
-          it can also checkpoint and restart X Window applications.
+          sessions, including vim/cscope and emacs. 
+          -->
+          With the use of TightVNC,
+          it can also checkpoint and restart X-Window applications.
           The OpenGL library for 3D&nbsp;graphics is supported through
           a <a href="http://arxiv.org/abs/1312.6650">special
-          plugin</a>.  See the <a
-          href="https://github.com/dmtcp/dmtcp/blob/master/QUICK-START">QUICK-START</a>
-          file for further details.
+          plugin</a>.
+          It also has strong support for HPC (High Performance Computing)
+          environments, including MPI, SLURM, InfiniBand,
+          and other components.
+          See the
+          <a href="https://github.com/dmtcp/dmtcp/blob/master/QUICK-START">
+          QUICK-START</a> file for further details.
 
           <P>
           DMTCP supports the commonly used OFED API for InfiniBand, as well as
@@ -110,6 +119,9 @@ document.writeln('//--></style>') }
             <dl>
               <dt> <div class="news"> [2015-05-06]: DMTCP 2.4.0-rc4 released! </div>
               <dd>
+              [ The <em>release candidate</em> version is is avaiable
+              from the <a href="http://sourceforge.net/projects/dmtcp/">
+               DMTCP Sourceforge project page</a>.]<br><br>
               <em>[NOTE: <tt>dmtcp_command</tt> is not working in rc4.  It is already fixed in github.  If you need this command (e.g., in MPI batch scripts), the fixed version is available through <a href="downloads.html"><b>downloads</b></a>.    We believe the standard commands (<tt>dmtcp_launch</tt>, <tt>dmtcp_restart</tt>, <tt>dmtcp_coordinator<tt>) are all working.  Thank you for your patience as we continue to fully test release&nbsp;2.4.0.]</em><br><br>
               <em>[NOTE: If you are running a 32-bit Linux, then after configure and make, you will need to execute </em><tt>(cd bin &amp;&amp; ln -s mtcp_restart mtcp_restart-32)</tt><em> from the DMTCP root directory.  This mis-feature will also be fixed in the next release candidate.]</em><br><br>
               <em>[NOTE: On <em>some</em> RedHat/Fedora/CentOS distros only,
