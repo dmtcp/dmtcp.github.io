@@ -394,11 +394,15 @@
             restart even earlier --- primarily of interest for DMTCP
             developers.
             &nbsp;&nbsp;&nbsp;&nbsp;On restart, dmtcp_restart will then pause
-            with a message to attach using a gdb command.  If the gdb
-            attach command fails with
-            <tt>Operation not permitted</tt>, then you may need to execute:
+            with a message to attach using a gdb command.  In earlier versions
+            of DMTCP, the gdb attach command may fail with:
+            <tt>Operation not permitted</tt>.  In those cases, you may execute:
             <tt>echo&nbsp;0&nbsp;&gt;&nbsp;/proc/sys/kernel/yama/ptrace_scope</tt>
-            (requires root privilege).<br>
+            (requires root privilege, and may pose a security risk).<br>
+	    &nbsp;&nbsp;&nbsp;&nbsp;Beginning with DMTCP-2.4, one can also
+            set the environment variable <tt>DMTCP_GDB_ATTACH_ON_RESTART</tt>
+            prior to executing <tt>dmtcp_restart</tt>.  This also allows one
+            to use "gdb attach" on the restarted process for debugging.<br>
 	    &nbsp;&nbsp;&nbsp;&nbsp;Note that after DMTCP&nbsp;2.0,
             the MTCP directory was
 	    merged into DMTCP itself, and it is no longer possible to run
