@@ -116,64 +116,14 @@ document.writeln('//--></style>') }
           <div class="section">
 
             <dl>
-              <dt> <div class="news"> [2015-05-06]: DMTCP 2.4.0-rc4 released! </div>
+              <dt> <div class="news"> [2015-07-24]: DMTCP 2.4.0 released! </div>
               <dd>
-              [ The <em>release candidate</em> version is is avaiable
-              from the <a href="http://sourceforge.net/projects/dmtcp/">
-               DMTCP Sourceforge project page</a>.]<br><br>
-              <em>[NOTE: <tt>dmtcp_command</tt> is not working in rc4.  It is already fixed in github.  If you need this command (e.g., in MPI batch scripts), the fixed version is available through <a href="downloads.html"><b>downloads</b></a>.    We believe the standard commands (<tt>dmtcp_launch</tt>, <tt>dmtcp_restart</tt>, <tt>dmtcp_coordinator<tt>) are all working.  Thank you for your patience as we continue to fully test release&nbsp;2.4.0.]</em><br><br>
-              <em>[NOTE: If you are running a 32-bit Linux, then after configure and make, you will need to execute </em><tt>(cd bin &amp;&amp; ln -s mtcp_restart mtcp_restart-32)</tt><em> from the DMTCP root directory.  This mis-feature will also be fixed in the next release candidate.]</em><br><br>
-              <em>[NOTE: On <em>some</em> RedHat/Fedora/CentOS distros only,
-                   the perl, tcsh, vim binaries are using libfreebl3.so with
-                   the prelink application.  This causes a bug on DMTCP launch.
-                   Unfortunately, we do not have access to a debuginfo package
-                   or a build of libfreebl3.so with '-g' on a distro that
-                   exhibits the bug.  Until we have such access, we are unable
-                   to read the symbol names needed to debug these binaries.
-                   Assistance anyone?]</em><br><br>
-              This is release candidate&nbsp;4 for DMTCP&nbsp;2.4.0.
-              It is especially important to upgrade:<br>
-              if you are using MATLAB;<br>
-              &nbsp;&nbsp;or if you are using MPI, including the following resource
-              managers: SLURM, Torque, ibrun;<br>
-              &nbsp;&nbsp;or if you have a newer Linux kernel using '[vvar]'
-		 (test with:
-                  <tt>grep&nbsp;'\[vvar]'&nbsp;/proc/self/maps</tt>&nbsp;);<br>
-              &nbsp;&nbsp;or if you use glibc-2.21 or later (test with:
-              <tt>ls&nbsp;-l&nbsp;/lib*/libc.so.6&nbsp;/lib/*/libc.so.6</tt>&nbsp;);<br>
-              &nbsp;&nbsp;or if you are using the ARM CPU (either 32-
-                  or 64-bit versions);<br>
-              &nbsp;&nbsp;or if you are building DMTCP with the Intel icc
-                  compiler;<br>
-              &nbsp;&nbsp;or if you wish to create a standalone m32 build
-                 (32-bits:
-                 <tt>./configure --enable-m32</tt>) on a 64-bit Linux.<br>
-              <em>Note:</em> The options --host and DMTCP_HOST are now
-                deprecated in favor of --coord-host and DMTCP_COORD_HOST
-                (and similarly for --port/DMTCP_PORT).<br>
-              Here is the
-              <a href="https://github.com/dmtcp/dmtcp/blob/master/NEWS">NEWS file</a>
-              from the internal development branch for the upcoming full release.
-            </dl>
-            <dl>
-              <dt> <div class="news"> [2015-04-25]: DMTCP 2.4.0-rc3 released! </div>
-              <dd>
-              This is release candidate&nbsp;3 for DMTCP&nbsp;2.4.0.
-              (See above for latest release candidate.)
-            </dl>
-
-            <dl>
-              <dt> <div class="news"> [2015-03-25]: DMTCP 2.4.0-rc3 released! </div>
-              <dd>
-              This is release candidate&nbsp;2 for DMTCP&nbsp;2.4.0.
-              (See above for latest release candidate.)
-            </dl>
-
-            <dl>
-              <dt> <div class="news"> [2015-03-17]: DMTCP 2.4.0-rc1 released! </div>
-              <dd>
-              This is release candidate&nbsp;1 for DMTCP&nbsp;2.4.0.
-              (See above for latest release candidate.)
+              This release provides better support for MPI/SLURM integration for
+              Intel MPI, MVAPICH-2, MPICH-2, and Open MPI; glibc 2.21; and
+              shared-memory segments.
+              Check the
+              <a href="http://sourceforge.net/p/dmtcp/news/2015/08/dmtcp-240-released">release notes</a>
+              for more details.
             </dl>
 
             <dl>
