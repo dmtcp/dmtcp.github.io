@@ -66,14 +66,14 @@
 
             <h2>Quick start to learning DMTCP plugins:</h2>
             <pre>
-              <code>
+            <code>
                 cd DMTCP_ROOT/test/plugin
                 cd sleep1
                 make clean
                 make -n check # To see how to compile and run it.
                 make check    # To actually compile and run it.
-             </code>
-            </pre>
+                # Kill the running process using ^C, and then restart it:
+                ./dmtcp_restart_script.sh </code> </pre>
             <P>
             After that, read the source code.  It should be small and easy to read.
             For more complex examples, read
