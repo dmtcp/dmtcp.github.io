@@ -116,6 +116,22 @@ document.writeln('//--></style>') }
           <div class="section">
 
             <dl>
+              <dt> <div class="news"> [2015-10-15]: DMTCP 2.4.2 released! </div>
+              <dd>
+              This is a bug fix release.  Some issues were fixed concerning:
+              <tt>./configure&nbsp;--enable-debug</tt>;
+              compiling under clang;
+              interval checkpointing (<tt>dmtcp_launch&nbsp;--interval</tt>);
+              having <tt>dmtcp_launch --quiet</tt> pass on the <tt>--quiet</tt>
+              flag when implicitly starting a new coordinator;
+              when an application mmap's /dev/zero;
+              improved support for <tt>sched_setaffinity()</tt> and friends;
+              a report on tclsh-8.6 and its use of pthread_atfork();
+              <tt>on_semget()</tt> and <tt>semctl()</tt>;
+              and a compilation error for SLES10.
+	    </dl>
+
+            <dl>
               <dt> <div class="news"> [2015-09-02]: DMTCP 2.4.1 released! </div>
               <dd>
               This is primarily a bug fix release.  It fixes an issue with
@@ -296,7 +312,12 @@ document.writeln('//--></style>') }
 
           <div class="subtitle"><h2><a name="acknowledgement">Acknowledgement</a></h2></div>
           <div class="section">
-            The DMTCP project is partially supported by Intel Corporation and by the National Science Foundation under grant OCI-0960978. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of Intel Corporation or of the National Science Foundation.
+            The DMTCP project is partially supported by grants from Intel
+            Corporation, and from the National Science Foundation under
+            grant ACI-1440788. Any opinions, findings, and conclusions
+            or recommendations expressed in this material are those of
+            the author(s) and do not necessarily reflect the views of
+            Intel Corporation or of the National Science Foundation.
           </div>
 
           <hr>
