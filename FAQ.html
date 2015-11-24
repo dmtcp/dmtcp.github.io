@@ -88,6 +88,7 @@
               <li> <a href="#internalWorking"> How does DMTCP work?</a>
               <li> <a href="#documentation"> Is there documentation on the internals of DMTCP?</a>
               <li> <a href="#jassert"> Can I enable tracing of DMTCP internals?</a>
+              <li> <a href="#debugPlugins"> I suspect a bug concerning an interaction with an internal plugin of DMTCP.  How can I debug this?</a>
               <li> <a href="#internalOverhead"> What is the run-time overhead of DMTCP?</a>
               <li> <a href="#osFeatures"> What O/S features are supported by DMTCP? </a>
 <!--
@@ -411,6 +412,15 @@
 	    with the latest DMTCP release.  Having said that, if you are
 	    using an older version of DMTCP, The information above
 	    is valid.
+            <p>
+            <em>DEBUGGING PLUGINS:</em> 
+            Some bugs may be produced by interactions among plugins.  In such
+            cases, consider temporarily disabling plugins, and see if the
+            bug goes away.  (This is similar to the standard advice often
+            given for web browsers.)  In some exceptional cases, there can
+            also be a bug in the interaction with internal plugins of DMTCP.
+            See <a href="#debugPlugins">"debugging internal DMTCP plugins"</a>
+            for more information concerning this issue.
            </ol>
           <div class="faqHeader"> <a name="architectures"> Architectures Supported by DMTCP </a> </div>
            <ol>
@@ -621,6 +631,23 @@
             <tt>CFLAGS += -O0 -g -DDEBUG -DTIMING -Wall</tt><br>
             <em>NOTE:</em> If you also want to debug under GDB, see
             <a href="#debugging"><em>debugging under GDB</em></a>.
+
+            <li> <div class="faq"> <a name="debugPlugins"> I suspect a bug concerning an interaction with an internal plugin of DMTCP.  How can I debug this? </a> </div>
+            Normally this should not happen.  However, a complex new user
+            plugin might uncover a bug in DMTCP itself.  If so, the first
+            thing to look at is a bug in the interaction with an internal
+            DMTCP plugin.  Just as browser plugins have a "safe mode",
+            DMTCP can be loaded without some of its internal plugins.</br>
+            The file <tt>src/dmtcp_launch.cpp</tt> has global variables of
+            the form <tt>enableIPCPlugin=true</tt>, etc.  Try setting some
+            of the internal plugins to false, re-compiling, and testing
+            if the bug goes away.  If an interaction with an internal
+            plugin is uncovered, try commenting out some of the wrapper
+            functions in that plugin.  Note that it is generally safe to
+            disable the internal plugins when testing only DMTCP launch
+            and resume after writing a checkpoint.  However, in testing
+            DMTCP restart (from a checkpoint image file), some of of the
+            DMTCP internal plugins may be required for correct operation.
 
             <li> <div class="faq"> <a name="internalOverhead"> What is the run-time overhead of DMTCP? </a> </div>
             The run-time overhead of DMTCP is essentially zero.  When there is
