@@ -637,9 +637,20 @@
             plugin might uncover a bug in DMTCP itself.  If so, the first
             thing to look at is a bug in the interaction with an internal
             DMTCP plugin.  Just as browser plugins have a "safe mode",
-            DMTCP can be loaded without some of its internal plugins.</br>
-            The file <tt>src/dmtcp_launch.cpp</tt> has global variables of
-            the form <tt>enableIPCPlugin=true</tt>, etc.  Try setting some
+            DMTCP can be loaded without some of its internal plugins.
+            </br>&nbsp;&nbsp;&nbsp;&nbsp;
+            If one is only testing the initial launch (no checkpoint or
+            restart, one can safely disable all plugins for "save mode".
+            However, if testing checkpoint or restart, then some (but not
+            all) of the plugins will generally be required for correct
+            operation.
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;
+            All plugins can be disabled by launching an application with
+            <code>dmtcp_launch&nbsp;--disable-all-plugins</code>&nbsp;.
+            If one wishes to disable only some of the plugins,
+            then one must modify the source code.  The file
+            <tt>src/dmtcp_launch.cpp</tt> has global variables of the
+            form <tt>enableIPCPlugin=true</tt>, etc.  Try setting some
             of the internal plugins to false, re-compiling, and testing
             if the bug goes away.  If an interaction with an internal
             plugin is uncovered, try commenting out some of the wrapper
