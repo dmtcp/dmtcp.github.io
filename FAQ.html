@@ -62,6 +62,8 @@
               <li> <a href="#dmtcpaware"> How can my software invoke a checkpoint or restart directly under control of my program?</a>
               <li> <a href="#exitcode"> What is the exit code (return status) for a target application running under DMTP?</a>
               <li> <a href="#plugins"> Does DMTCP support third-party plugins (add-ons) to change the behavior of DMTCP at run-time?</a>
+              <li> <a href="#modifyEnv"> On restart, a process sees only the environment variables from the time of checkpoint (since DMTCP restores the previous memory).  What do I do if I want to see the newest environment values at the time of restart?</a>
+              <li> <a href="#root"> What if my target application runs as root, uses the setuid bit, uses capabilities, or uses other special privileges?
               <li> <a href="#root"> What if my target application runs as root, uses the setuid bit, uses capabilities, or uses other special privileges?
               <li> <a href="#readdmtcp"> How can I read a summary of the contents of a DMTCP checkpoint image?</a>
               <li> <a href="#debugging"> How do I debug my application under GDB when I am using DMTCP?
@@ -289,6 +291,16 @@
             with exit code&nbsp;99 (by default),
             or the integer value of DMTCP_FAIL_RC if that environment
             variable has been set.
+
+              <li> <div class="faq"> <a name="modifyEnv"> On restart, a process sees only the environment variables from the time of checkpoint (since DMTCP restores the previous memory).  What do I do if I want to see the newest environment values at the time of restart?</a> </div>
+            Please look at the directory of the
+            <a href="https://github.com/dmtcp/dmtcp/tree/master/plugin/modify-env">
+            modify-env plugin</a>.  In particular, look at the
+            <code>README</code> file and the <code>dmtcp_env.txt</code> example
+            from that directory.
+            You can invoke this plugin with:<br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;dmtcp_launch --with-plugin
+              <em>/absolute/path/to/</em>libdmtcp-modify-env.so</code>
 
             <li> <div class="faq"> <a name="plugins"> Does DMTCP support third-party plugins (add-ons) to change the behavior of DMTCP at run-time?</a> </div>
 	    Yes.  Please look at the
