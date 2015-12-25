@@ -116,6 +116,22 @@ document.writeln('//--></style>') }
           <div class="section">
 
             <dl>
+              <dt> <div class="news"> [2015-12-26]: DMTCP/MPI: alpha version
+		now supports UD mode for InfiniBand.  </div>
+              <dd>
+              The upcoming DMTCP 2.4.4 release (early January) will add
+              support for the UD mode of InfiniBand.  Many MPI distros
+              now use this mode in their standard configuration.  If you
+              are using DMTCP with MPI over InfiniBand, you are welcome to
+              try out an alpha version of DMTCP with UD support over
+              the holidays:<br>
+              <code>
+              &nbsp;&nbsp;
+              git clone -b infiniband-ud https://github.com/jiajuncao/dmtcp.git
+              </code>
+	    </dl>
+
+            <dl>
               <dt> <div class="news"> [2015-11-25]: DMTCP 2.4.3 released! </div>
               <dd>
               This is a bug fix release.  Some issues were fixed concerning:
