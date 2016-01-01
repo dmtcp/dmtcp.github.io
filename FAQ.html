@@ -349,6 +349,14 @@
 	    Detailed advice is available in the file
 	    <a href="http://github.com/dmtcp/dmtcp/blob/master/doc/debugging-dmtcp.txt">doc/debugging-dmtcp.txt</a>.  General advice follows.<br>
             <p>
+            For compiling DMTCP with debugging support under GNU gcc,
+              we recommend:<br>
+            &nbsp;&nbsp;
+              <code>./configure CXXFLAGS="-g3 -O0" CFAGS="-g3 -O0"</code><br>
+            &nbsp;&nbsp;
+              <code>make -j clean &amp;&amp; make -j</code><br>
+            (Omit the "<code>-j</code> if you are on a less powerful computer.)
+            <p>
 	    <em>DEBUGGING DURING INITIAL LAUNCH:</em> 
             &nbsp;&nbsp;&nbsp;&nbsp;Run it as:
 		  <tt>gdb --args dmtcp_launch ./a.out</tt><br>
