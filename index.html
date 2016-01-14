@@ -106,9 +106,11 @@ document.writeln('//--></style>') }
             <div class="subtitle"><h2>Announcement!</h2></div>
             <div class="section">
               We are currently looking for well qualified applicants who are interested in
-              joining a Ph.D. program in order to do research on checkpointing and reversible
-              debugging. Interested applicants should write to Gene Cooperman
-              (gene@ccs.neu.edu) at Northeastern University.
+              joining a Ph.D. program in order to do research on checkpointing
+              with applications to HPC, supercomputing, cloud computing,
+              security, and other areas. Interested applicants should
+              write to Gene Cooperman (gene@ccs.neu.edu) at Northeastern
+              University.
             </div>
           </font>
 
@@ -116,19 +118,22 @@ document.writeln('//--></style>') }
           <div class="section">
 
             <dl>
-              <dt> <div class="news"> [2015-12-26]: DMTCP/MPI: alpha version
-		now supports UD mode for InfiniBand.  </div>
+              <dt> <div class="news"> [2016-01-14]: DMTCP 2.4.4 released! </div>
               <dd>
-              The upcoming DMTCP 2.4.4 release (early January) will add
-              support for the UD mode of InfiniBand.  Many MPI distros
-              now use this mode in their standard configuration.  If you
-              are using DMTCP with MPI over InfiniBand, you are welcome to
-              try out an alpha version of DMTCP with UD support over
-              the holidays:<br>
-              <code>
-              &nbsp;&nbsp;
-              git clone -b infiniband-ud https://github.com/jiajuncao/dmtcp.git
-              </code>
+              DMTCP now supports InfiniBand UD.  (Newer implementations of
+              MPI are now often configured to use this transport mode.)
+              Additionally, some issues were fixed concerning:
+              a regression in our support for multi-arch installations
+              (for a mixture of 32- and 64-bit target applications);
+              a race appearing after many ckpt-restart cycles (restart
+              of ckpt of restart of ...);
+              some utilities for plugins from dmtcp.h marked "FOR EXPERTS ONLY"
+              are now supported "out of the box";
+              the modify-env plugin was extended to support "dmtcp_env.txt"
+              files of size up to 12&nbsp;KB (with warnings for larger files);
+              an improved error message for "dmtcp_launch --no-coordinator";
+              and some minor fixes.  More details are
+              <a href="https://github.com/dmtcp/dmtcp/releases">here</a>.
 	    </dl>
 
             <dl>
