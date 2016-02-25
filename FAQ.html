@@ -276,10 +276,10 @@
             See especially
             <a href="http://github.com/dmtcp/dmtcp/tree/master/test/plugin/applic-initiated-ckpt">
               application-initiated checkpointing</a>
-            (using <tt>dmtcpCheckpoint()</tt>), and
+            (using <tt>dmtcp_checkpoint()</tt>), and
             <a href="http://github.com/dmtcp/dmtcp/tree/master/test/plugin/applic-delayed-ckpt">
 	    application-delayed checkpointing</a>
-            (using <tt>dmtcpDelayCheckpointsLock()</tt>).
+            (using <tt>dmtcp_disable_ckpt()</tt>/<tt>dmtcp_enable_ckpt()</tt>).
 
             <li> <div class="faq"> <a name="exitcode"> What is the exit code (return status) for a target application running under DMTP? </a> </div>
             Normally, commands like <tt>dmtcp_launch&nbsp;a.out</tt>
