@@ -329,10 +329,12 @@
 	    This <a href="http://stackoverflow.com/questions/18058426/does-using-linux-capabilities-disables-ld-preload">"Stack Overflow" web page</a>
 	    describes two strategies for allowing DMTCP to initially
 	    run with privileges.  The constructor to use in the case of DMTCP
-	    is <code>dmtcp::DmtcpWorker::DmtcpWorker(bool)</code>
-	    (<code>dmtcp::DmtcpWorker::DmtcpWorker()</code> for
-            DMTCP-2.4 or later)
+	    is <code>dmtcp::DmtcpWorker::DmtcpWorker()</code>
+	    (or <code>dmtcp::DmtcpWorker::DmtcpWorker(bool)</code> for
+            earlier than DMTCP-2.4)
 	    in <code>DMTCP_ROOT/src/dmtcpworker.cpp</code>.
+	    (If you're putting this in a gdbinit script, don't forget
+	    to use:  <tt>set&nbsp;break&nbsp;pending&nbsp;on</tt>&nbsp;.)
 	    Group permissions, and security authorizations such as
 	    polkit, ACL and PAM may offer other options.
 
@@ -379,12 +381,14 @@
             starting after the call to execvp and before the application's main
             routine, then at the beginning of your GDB session, do:<br>
 	    <code>
-              (gdb) # For DMTCP-2.3.1 and earlier:<br>
-              (gdb) break 'dmtcp::DmtcpWorker::DmtcpWorker(bool)'<br>
               (gdb) # For DMTCP-2.4 and later:<br>
               (gdb) break 'dmtcp::DmtcpWorker::DmtcpWorker()'<br>
+              (gdb) # For prior to DMTCP-2.4:<br>
+              (gdb) # break 'dmtcp::DmtcpWorker::DmtcpWorker(bool)'<br>
               (gdb) run<br>
             </code>
+	    (If you're putting this in a gdbinit script, don't forget
+	    to use: <tt>set&nbsp;break&nbsp;pending&nbsp;on</tt>&nbsp;)
             We have found the GDB command <tt>info proc mappings</tt> useful
             for deciding if an address belongs to libc.so, dmtcphijack.so,
             your target application, or other.<br>

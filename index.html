@@ -117,6 +117,146 @@ document.writeln('//--></style>') }
           <div class="subtitle"><h2><a name="news">News</a></h2></div>
           <div class="section">
 
+            <dl>
+              <dt> <div class="news"> [2017-02-15]: Upcoming releases:<br></div>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;1.
+		A DMTCP module for Slurm providing tighter integration
+                is expected by March.<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;1.
+		A 2.5.1 release is expected by March.<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;2.
+		Longer-term, a DMTCP version 3.0 is being prepared
+		with new and better features (e.g., user-programmable
+		barriers within a plugin).
+	      <dd>
+	    </dl>
+
+            <dl>
+              <dt> <div class="news"> [2017-01-03]: DMTCP 2.5.0 released! </div>
+              <dd>
+	      This release includes a few new plugins and several bug
+	      fixes for robustness. Some of the highlights include:
+              <ul>
+		<li> Support for InfiniBand UD (in addition to the more common InfiniBand RC).
+                <li> Added support for CMA (Cross-Memory Attach): process_vm_readv and process_vm_writev
+                <li> Improved multi-arch (mixed 32-/64- bit) support.
+                <li> Re-added --enable-fast-restart.
+                <li> Added a new commandline option --with-plugin-32 for dmtcp_launch to specify 32-bit plugins in a 64-bit environment.
+                <li> Added --enable-pthread-mutex-wrappers configure flag to enable pthread_mutex_{lock,unlock} wrappers needed for Open MPI.
+                <li> Added ability to specify environment file used in the modify-env plugin.
+                <li> Allow dmtcp_restart to be invoked by root.
+                <li> The following new plugins were added:
+                <ul>
+                  <li> pathvirt: to virtualize filesystem paths.
+                  <li> delayresume: for finer-grained control over
+                       resuming of user threads during resume/restart.
+                </ul>
+
+              </ul>
+              More details are
+              <a href="https://github.com/dmtcp/dmtcp/releases">here</a>.
+	    </dl>
+
+            <dl>
+              <dt> <div class="news"> [2017-02-13]: DMTCP 2.4.8 released! </div>
+              <dd>
+	      If you are using a recent Linux kernel or a recent GLIBC
+	      library, and you need to continue to use the 2.4.x branch,
+	      then you are recommended to upgrade to this 2.4.8 release.
+              <ul>
+    		<li> The newest kernels (approximately Linux version 4.0 and
+			later map VDSO into memory slightly differently
+			for 32-bit processes running in a 64-bit
+			Linux. DMTCP was failing to restart for such
+			32-bit processes.  This is now fixed.
+		<li> dmtcp_dlsym() extended to provide more robust wrapper
+			 functions.
+		<li> Corner case fixed: signal handlers now restored
+			 before plugins restart.
+		<li> Minor bug fixes.
+              </ul>
+              More details are
+              <a href="https://github.com/dmtcp/dmtcp/releases">here</a>.
+	    </dl>
+
+            <dl>
+              <dt> <div class="news"> [2017-01-03]: DMTCP 2.4.7 released! </div>
+              <dd>
+	      If you are using a recent Linux kernel or a recent GLIBC
+	      library, and you need to continue to use the 2.4.x branch,
+	      then you are recommended to upgrade to this 2.4.7 release.
+              <ul>
+		<li> The newest kernels (approximately Linux version 4.0
+		     and later) map vDSO into memory slightly differently
+		     for 32-bit processes running in a 64-bit Linux. DMTCP
+		     was failing to restart for such 32-bit processes. This
+		     is now fixed.
+		<li> In recent versions of GLIBC, libdl/dlerror calls
+		     libc/malloc, creating an infinite recursion when we
+		     interpose using libdl/dlsym. We now implement our own
+		     dlsym and use it in most cases, thus reducing our reliance
+		     on libdl.
+              </ul>
+              More details are
+              <a href="https://github.com/dmtcp/dmtcp/releases">here</a>.
+	    </dl>
+
+            <dl>
+              <dt> <div class="news"> [2016-12-31]: DMTCP 2.4.6 released! </div>
+              <dd>
+	      Fixed JLOG to work with '--enable-debug' configure flag.
+	      A corner case in handling of InfiniBand was fixed, where
+	      two queue pairs were not connected.
+              More details are
+              <a href="https://github.com/dmtcp/dmtcp/releases">here</a>.
+	    </dl>
+
+            <dl>
+              <dt> <div class="news"> [2016-07-19]: DMTCP 2.4.5 released! </div>
+              <dd>
+              This now provides more robust handling of mutexes and InfiniBand.
+	      An '--enable-pthread-mutex-wrappers' configure flag was added
+	      to enable pthread_mutex_{lock,unlock} wrappers needed
+	      for Open MPI.
+              A failure to build on SLES10 was fixed.  Restart was fixed
+	      in a case where independent processes had orphaned roots
+	      of trees.  The signals SIGCANCEL (signal #32) and SIGSETXID
+	      (signal #33) used by NPTL for threads were not being properly
+	      restored on restart.
+              More details are
+              <a href="https://github.com/dmtcp/dmtcp/releases">here</a>.
+	    </dl>
+
+	    <dl>
+              <dt> <div class="news"> [2016-05-22]:
+		 DMTCP 2.5.0-rc2 released! </div>
+              <dd>
+		This "rc" version (release candidate version) is an
+		a second, early version of a "feature release".  This should
+		be reasonably stable, and is the current
+		recommended version.  Back-ports of bug fixes continue
+		to be supported for the previous DMTCP 2.4.x series.
+
+		This version, like rc1, emphasizes more robust handling of
+		InfiniBand, and also adds some minor enhancements.
+		See the <a href="https://sourceforge.net/p/dmtcp/news/">
+		News page</a> for further information.
+	    </dl>
+
+	    <dl>
+              <dt> <div class="news"> [2016-10-29]:
+		 A DMTCP module for Slurm is coming. </div>
+              <dd>
+		There is now a private fork of Slurm that provides
+		a DMTCP module for Slurm with tight integration.
+		This will be submitted for inclusion in the main branch
+		of Slurm.  If someone is interested in testing an
+		advance version, please contact us.
+	    </dl>
+
 	    <dl>
               <dt> <div class="news"> [2016-02-11]:
 		 DMTCP 2.5.0-rc1 released! </div>
@@ -126,9 +266,10 @@ document.writeln('//--></style>') }
 		need the newest features, they are still recommended to
 		download the latest DMTP 2.4.x version.
 
-		An early description of the newer features for DMTCP 2.5.0
-		will be added later.
-
+		This version emphasizes more robust handling of
+		InfiniBand with <tt>dmtcp_launch --infiniband</tt>.
+		See the <a href="https://sourceforge.net/p/dmtcp/news/">
+		News page</a> for further information.
 	    </dl>
 
             <dl>
