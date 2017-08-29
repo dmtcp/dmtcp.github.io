@@ -381,14 +381,18 @@
             starting after the call to execvp and before the application's main
             routine, then at the beginning of your GDB session, do:<br>
 	    <code>
-              (gdb) # For DMTCP-2.4 and later:<br>
+              (gdb) break execvp<br>
+              (gdb) run<br>
+              (gdb) # 'pending on' is required if using a gdbinit script<br>
+              (gdb) set breakpoint pending on<br>
+              (gdb) # For DMTCP-2.4 and later in 2.x:<br>
               (gdb) break 'dmtcp::DmtcpWorker::DmtcpWorker()'<br>
+              (gdb) # For DMTCP-3.0 and later (stops in each DMTCP plugin):<br>
+              (gdb) break dmtcp_prepare_wrappers<br>
               (gdb) # For prior to DMTCP-2.4:<br>
               (gdb) # break 'dmtcp::DmtcpWorker::DmtcpWorker(bool)'<br>
               (gdb) run<br>
             </code>
-	    (If you're putting this in a gdbinit script, don't forget
-	    to use: <tt>set&nbsp;break&nbsp;pending&nbsp;on</tt>&nbsp;)
             We have found the GDB command <tt>info proc mappings</tt> useful
             for deciding if an address belongs to libc.so, dmtcphijack.so,
             your target application, or other.<br>
