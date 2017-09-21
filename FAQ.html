@@ -388,10 +388,10 @@
               (gdb) # For DMTCP-2.4 and later in 2.x:<br>
               (gdb) break 'dmtcp::DmtcpWorker::DmtcpWorker()'<br>
               (gdb) # For DMTCP-3.0 and later (stops in each DMTCP plugin):<br>
-              (gdb) break dmtcp_prepare_wrappers<br>
+              (gdb) # break dmtcp_prepare_wrappers<br>
               (gdb) # For prior to DMTCP-2.4:<br>
               (gdb) # break 'dmtcp::DmtcpWorker::DmtcpWorker(bool)'<br>
-              (gdb) run<br>
+              (gdb) continue<br>
             </code>
             We have found the GDB command <tt>info proc mappings</tt> useful
             for deciding if an address belongs to libc.so, dmtcphijack.so,

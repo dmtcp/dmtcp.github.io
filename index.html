@@ -122,16 +122,53 @@ document.writeln('//--></style>') }
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		&nbsp;&nbsp;1.
 		A DMTCP module for Slurm providing tighter integration
-                is expected by March.<br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;1.
-		A 2.5.1 release is expected by March.<br>
+                is expected by early Fall, 2017.<br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		&nbsp;&nbsp;2.
 		Longer-term, a DMTCP version 3.0 is being prepared
 		with new and better features (e.g., user-programmable
 		barriers within a plugin).
+              <dd>
+            </dl>
+
+            <dl>
+              <dt> <div class="news"> [2017-09-05]: DMTCP 2.5.1 released! </div>
 	      <dd>
+                This release mostly provides added robustness.  Two notable items of
+                added functionality are:
+                <ol>
+                 <li> DMTCP_RESTART_PAUSE and DMTCP_RESTART_PAUSE0 environment variables
+                    for easier debugging upon initial restart
+                 <li> The --debug-logs flag was added to dmtcp_launch/dmtcp_restart.
+                     One can now turn on logging individually for separate plugins,
+                     instead of only turning it on globally.
+                </ol>
+                <p>
+                An incompatibility of DMTCP with Open MPI 1.10 when using orterun (mpirun)
+                was discovered.  This may also affect some other versions of Open MPI 1.10.
+                This bug will be fixed in a future release.
+                <p>
+                Other fixes and enhancements include:
+                <ul>
+                <li> Fixed an issue when starting multiple DMTCP coordinators on same host
+                  at approximately the same time
+                <li> Fixed issue with PBS scheduler for HPC
+                <li> Fixed issue when restarting on a different host with a larger
+                  limit on the number of open file descriptors
+                <li> dmtcp_launch/dmtcp_restart now accept '--debug-logs' flag to specify
+                  which DMTCP plugins should produce logging information
+                  (It used to be all or nothing.)
+                <li> Improved robustness for IB (InfiniBand) plugin
+                <li> Fixed DMTCP_RESTART_PAUSE and DMTCP_RESTART_PAUSE0 environment variables
+                   for debugging upon restart
+                <li> The brk() call was failing on restart on Debian due to overly strict assert
+                <li> dmtcp_launch was hanging on some RHEL5 and RHEL6 due to deadlock with
+                    libc low-level locks.  Fixed now.
+                <li> Updated tls_pid_offset in DMTCP to handle newer GLIBc (versions &gt; 2.24)
+                <li> Fixed launch of 32-bit binary when forking/execing from a 64-bit executable
+                <li> Fixed issue that can affect a parent holding a malloc-lock while forking
+                <li> Fixed issue when a user thread calls 'dmtcp_get_coord_ckpt_dir()'
+                </ul>
 	    </dl>
 
             <dl>
