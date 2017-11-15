@@ -116,7 +116,9 @@ document.writeln('//--></style>') }
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		&nbsp;&nbsp;1.
 		A DMTCP module for Slurm providing tighter integration
-                is expected by early Fall, 2017.<br>
+                is being reviewed by the Slurm developers.
+		We plan to include a pointer to it here when it
+		is accepted.<br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		&nbsp;&nbsp;2.
 		Longer-term, a DMTCP version 3.0 is being prepared
@@ -124,6 +126,59 @@ document.writeln('//--></style>') }
 		barriers within a plugin).
               <dd>
             </dl>
+
+
+              <dt> <div class="news"> [2017-11-15]: DMTCP 2.5.2 released! </div>
+	      <dd>
+		The small fixes and ehancements of this "point release" include:
+                <ul>
+                  <li> All fixes in Release DMTCP-2.4.9 are incorporated in
+			 this release.
+                  <li> An incompatibility of DMTCP with Open MPI 1.10 when
+			 using orterun (mpirun) was discovered.  This does not
+			 affect recent versions, such as Open MPI 2.x.
+                  <li> In some rare cases, open files were not properly restored
+			 due to a use-after-free bug.  This is now fixed.
+                  <li> In some rare cases, one process had created a SysV
+			 shared memory object, and a different process was
+			 assigned to restore it on restart.  This
+                         was not handled correctly, and is now fixed.
+                  <li> Correctly restore CPU affinities of threads
+                  <li> Virtualized SysV shared memory keys to avoid race
+			 condition on restart
+                  <li> Fixed logic for checking if relative path to file was
+			 a duplicate of another existing path
+                  <li> The NSCD area for name service caching daemon was not
+			 handled correctly in CentOS 6.8 and later correctly.
+			 Fixed now.
+                  <li> The Linux sched.h include file for scheduling of cores
+			 was added to satisfy some older Linux distros that
+			 needed it for compiling DMTCP.
+                  <li> Fixed a regression in which --enable-debug (for verbose
+			 debug logs) was not being properly written.
+                  <li> The DMTCP coordinator was displaying a spurious warning,
+			 "Failed to find coordinator IP address", because it
+			 did not check for a canoncial hostname.  A related
+			 issue prevented DMTCP from working properly on some
+                    SUSE/openSUSE distros.
+                </ul>
+	    </dl>
+
+              <dt> <div class="news"> [2017-11-14]: DMTCP 2.4.9 released! </div>
+	      <dd>
+		The small fixes and ehancements of this "point release" include:
+                <ul>
+		  <li> Fixed a regression causing deleted NFS files to be
+			 handled incorrectly
+		  <li> Fixed handling of glibc for versions greater than
+			 glibc-2.24
+		  <li> Errors and warnings with gcc-7.x are fixed
+		  <li> A rare bug affecting pthread_cancel, etc., created
+			 incorrect pid on restart
+		  <li> man pages fixed:  Description section was always
+			 describing dmtcp_command
+                </ul>
+	    </dl>
 
             <dl>
               <dt> <div class="news"> [2017-09-05]: DMTCP 2.5.1 released! </div>

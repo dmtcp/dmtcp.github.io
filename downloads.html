@@ -45,13 +45,23 @@
 
           <hr>
           <P>
-          DMTCP version 2.5.0, released on Jan.&nbsp;3, 2017, is
+          DMTCP version 2.5.2, released on Nov.&nbsp;15, 2017, is
           the latest stable version.<br>
           The latest stable version of DMTCP (and earlier releases)
           can always be obtained through:
           <ul>
-            <li> the <a href="http://downloads.sourceforge.net/dmtcp/">sourceforge.net downloads page</a>; or
+            <li> the <a href="http://downloads.sourceforge.net/dmtcp/">sourceforge.net downloads page</a>
+<!--
+            Github says that the overhead of incrementing the number of
+        downloads in their database is too high.  So, they will not allow
+        developers to discover the number of downloads of their releases.
+        We should not advertise Github releases until they fix that.
+            Github does allow developers to discover the number of clones,
+        but only for the last 6 weeks, and no further.  Google Analytics
+        may have a workaround to the Github restrictions.  But that is
+        not clear.
             <li> the <a href = "http://github.com/dmtcp/dmtcp/releases"> github releases page</a>.
+-->
           </ul>
           <p>
           <hr>
@@ -60,13 +70,13 @@
           <li> To obtain the most recent developer version
 		(possibly unstable) from the github repository,
             <ul>
-              <li> run the following command for the 2.5.x series:<br>
-             <code>git&nbsp;clone&nbsp;--branch=2.5&nbsp;https://github.com/dmtcp/dmtcp.git</code><br>&nbsp;
+              <li> run the following command for the 2.6.x series:<br>
+             <code>git&nbsp;clone&nbsp;--branch=2.6&nbsp;https://github.com/dmtcp/dmtcp.git</code><br>&nbsp;
               </li>
 
            <li> or else download the "master" branch (planned for release
-		in 2017 as version&nbsp;3.0) as a zip file of the latest git
-		revision from:<br>
+		in late 2017 or early 2018 as version&nbsp;3.0) as a zip file
+		of the latest git revision from:<br>
                   <a href="https://github.com/dmtcp/dmtcp/archive/master.zip">
                     https://github.com/dmtcp/dmtcp/archive/master.zip </a><br>
              <em>(The "master" (newer&nbsp;3.0) branch has new features and a
@@ -84,7 +94,8 @@
           <P>
 	  <ul>
             <li> DMTCP packages also exist for Debian/Ubuntu, and
-		 Red&nbsp;Hat/Fedora/CentOS
+		 Red&nbsp;Hat/Fedora/CentOS (and planned for
+		 <a href="https://openhpc.community/">OpenHPC</a>)
 		 <!-- and SUSE/Open&nbsp;Suse -->;
                  although they are generally not as recent as the
                  software above.
