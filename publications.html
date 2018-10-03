@@ -65,18 +65,32 @@
 		 <em>using</em> DMTCP in their work</a>
 	  </ol>
 
-	  <hr style="background:red; border:0; height:3px" />
+	  <hr style="background:red; border:0; height:3px">
 
 	  <p>
-          <h2 <a name="enhancements">A. DMTCP Publications</a> (enhancements to
+          <h2> <a name="enhancements">A. DMTCP Publications</a> (an
+		<font style="color:green">annotated</font> history of
+		 enhancements to
 		 DMTCP distribution; reverse chronological order):</h2>
           <p>
           <ul>
 
-<!-- <a href="ADD NCA16 (IoT), and fill in links and page numbers below"> -->
+<!-- <a href="Fill in links and page numbers below for CRUM"> -->
+
+        <li><p>
+	<a href="http://www.ccs.neu.edu/home/gene/papers/cluster18.pdf">
+	"CRUM: Checkpoint-Restart Support for CUDA's Unified Memory"</a>,<br>
+        Rohan Garg, Apoorve Mohan, Michael Sullivan, and Gene Cooperman,
+        <em>Proc. of IEEE Int. Conf. on Cluster Computing (Cluster'18)</em>,<br>
+	Belfast, United Kingdon, IEEE, Sept., 2018,
+        (and tech. report at <a href="https://arxiv.org/abs/1808.00117">
+	https://arxiv.org/abs/1808.00117</a>),
+            <a href="papers/cluster18.bib">Bibtex</a>.
+	  <br>
+	  <em style="color:green">(Transparent checkpointing of CUDA, including UVM (Unified
+		Virtual Memory), using a proxy approach)</em>
 
             <li><p>
-<!-- <a href="ADD PAGE NUMBERS"> -->
             <a href="http://www.ccs.neu.edu/home/gene/papers/icpads16.pdf">
 System-level Scalable Checkpoint-Restart for Petascale Computing</a>.<br>
 Jiajun Cao, Kapil Arya, Rohan Garg, Shawn Matott, Dhabaleswar K. Panda,
@@ -87,6 +101,10 @@ J&eacute;r&ocirc;me Vienne and Gene Cooperman, <br>
 Wuhan, China,
 IEEE Press, pp.&nbsp;932--941, Dec., 2016,
             <a href="papers/icpads16.bib">Bibtex</a>.
+	  <br>
+	  <em style="color:green">(Scalable transparent checkpointing: MPI-based
+		 HPCG over 32,752 CPU cores,
+               and MPI-based NAMD over 16,368 CPU cores)</em>
 
             <li><p>
 <!-- <a href="ADD LINK"> -->
@@ -98,6 +116,9 @@ pp.&nbsp;402--412,
 Taipei, Taiwan,
 IEEE Press, Sept., 2016.
             <a href="papers/cluster16a.bib">Bibtex</a>.
+	  <br>
+	  <em style="color:green">(Extensible, adaptable, transparent checkpointing
+		via a plugin implementation of process virtualization)</em>
 
             <li><p>
             <a href="http://www.ccs.neu.edu/home/gene/papers/hpdc14.pdf">
@@ -106,19 +127,11 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
 <i>Proc. of ACM Symposium on High Performance Parallel and
 	 Distributed Computing (HPDC'14)</i>,<br>
 12&nbsp;pages, Vancouver, Canada, June, 2014.
-<!--
-            <a href="papers/ckpt-vm-cluster13-slides.pdf">Slides</a>.
--->
-<!--
-            <a href="http://www.ccs.neu.edu/home/gene/papers/cluster13.pdf">
-            Checkpoint-Restart for a Network of Virtual Machines</a>.<br>
-            Rohan Garg, Komal Sodha, Zhengping Jin and Gene Cooperman,<br>
-	    <i>Proc. of 2013 IEEE Computer Society International Conference on
-            Cluster Computing</i>.<br>
-            Indianapolis, USA. Sept., 2013. 
-            <a href="papers/ckpt-vm-cluster13-slides.pdf">Slides</a>.
--->
             <a href="papers/hpdc14.bib">Bibtex</a>.
+	  <br>
+	  <em style="color:green">(Transparent checkpointing of MPI over
+		 InfiniBand; no need to tear down network, and reconstruct
+		during restart)</em>
 
             <li><p>
             <a href="http://www.ccs.neu.edu/home/gene/papers/cluster13.pdf">
@@ -129,6 +142,9 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
             8&nbsp;pages, Indianapolis, USA. Sept., 2013. 
             <a href="papers/ckpt-vm-cluster13-slides.pdf">Slides</a>.
             <a href="papers/ckpt-vm-cluster13.bib">Bibtex</a>.
+	  <br>
+	  <em style="color:green">(Transparent checkpointing of network of Qemu's
+		 over KVM)</em>
 
             <li><p>
             <a href="papers/dmtcp.pdf">DMTCP: Transparent Checkpointing for Cluster Computations and the Desktop</a>.<br>
@@ -138,29 +154,40 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
             12&nbsp;pages, Rome, Italy. May, 2009. 
             <a href="papers/dmtcp-slides-ipdps09.pdf">Slides</a>.
             <a href="papers/dmtcp.bib">Bibtex</a>.
+	  <br>
+	  <em style="color:green">(Transparent checkpointing of
+		 distributed processes)</em>
 
 	    <li><p>
 	    <a href="http://www.ccs.neu.edu/home/gene/papers/ccgrid06.pdf">
 	    Transparent Adaptive Library-Based Checkpointing for
 	     Master-Worker Style Parallelism</a>,<br>
 	     Gene Cooperman, Jason Ansel and Xiaoqin Ma,<br>
-	     <em>Proc. of 6th IEEE International Symposium on Cluster
-		 Computing and the Grid (CCGrid06)</em>,<br>
+	     <em style="color:green">Proc. of 6th IEEE International Symposium on
+		 Cluster Computing and the Grid (CCGrid06)</em>,<br>
 	     pp.&nbsp;283--291,
 	    IEEE Press, 2006 <a href="papers/ccgrid06.bib">Bibtex</a>
+	  <br>
+	  <em style="color:green">(Master-worker style checkpointing experiment
+		 in distributed checkpointing, prior to DMTCP itself)</em>
 
             <li><p>
             <a href="papers/mtcp.pdf">Transparent User-Level Checkpointing for the Native POSIX Thread Library for Linux</a>.<br>
             Michael Rieker, Jason Ansel, and Gene Cooperman.<br>
-            <i>Proc. of 2006 International Conference on Parallel and Distributed Processing Techniques and Applications (PDPTA'06)</i>.<br>
+            <i>Proc. of 2006 International Conference on Parallel and
+	 Distributed Processing Techniques and Applications (PDPTA'06)</i>.<br>
             pp.&nbsp;492--498, Las Vegas, NV. Jun., CSREA Press, 2006.
 	    <a href="papers/mtcp.bib">Bibtex</a>.
+	    <br>
+	    <em style="color:green">(The original MTCP:  Transparent checkpointing
+		 for multi-threaded checkpointing for a single process)</em>
           </ul>
 
 	  <hr style="background:red; border:0; height:3px" />
 
 	  <p>
           <h2> <a name="others">B. Publications and Conference Presentations
+		mostly by other teams, and
 		<em>using</em> DMTCP
 		 in their work</a> (not simply citing DMTCP)
 		<em>(in reverse chronological order)</em>:</h2>
@@ -180,6 +207,128 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
 	published in Springer or elsewhere  -->
 
 <!-- SELSE'17 -->
+
+<!-- Verify ICAC'17 citation below refers to us -->
+
+
+          <li><p>
+            <a href="https://core.ac.uk/download/pdf/159408051.pdf">
+	    Simulation Infrastructure for the Study
+		 of Performance/QOS/Energy</a>,<br>
+	    Georgios Ioannis Kopanas,<br>
+            <em>Diploma Thesis</em>, U. of Thessaly<br>
+            Feb., 2016;
+            <a href="papers/diploma16.bib">Bibtex</a>.
+
+          <li><p>
+            <a href="https://dl.acm.org/citation.cfm?id=3236383">
+	    Transparent High-Speed Network Checkpoint/Restart in MPI</a>,<br>
+	     Adam, Julien and Besnard, Jean-Baptiste and Malony, Allen D and
+	     Shende, Sameer and P{\'e}rache, Marc and Carribault, Patrick and
+	     Jaeger, Julien,<br>
+            <em>Proc. of 25th European MPI Users' Group Meeting</em>,<br>
+	    ACM,
+	    12&nbsp;pages,
+            Sept., 2018;
+            <a href="papers/eurompi18.bib">Bibtex</a>.
+
+          <li><p>
+            <a href="http://mug.mvapich.cse.ohio-state.edu/static/media/mug/presentations/18/cooperman-mug-18.pdf">
+            Checkpointing a Subsystem Remotely</a>,<br>
+            Gene Cooperman,<br>
+            <em>MVAPICH User's Group (MUG'18)</em>,<br>
+            Columbus, Ohio, Aug.&nbsp;7,&nbsp;2018;
+            <a href="http://mug.mvapich.cse.ohio-state.edu/mug/18/">
+                MUG'18 program</a>,
+            <a href="http://mug.mvapich.cse.ohio-state.edu/static/media/mug/presentations/18/cooperman-mug-18.pdf">slides</a>;<br>
+            <a href="https://www.youtube.com/watch?v=kwD71IPmQy0">video</a>;<br>
+            <a href="papers/mug18.bib">Bibtex</a>.
+
+          <li><p>
+            <a href="http://www.ccs.neu.edu/home/gene/papers/dsn18.pdf">
+	    Shiraz: Exploiting System Reliability and Application Resilience
+	      Characteristics to Improve Large Scale System Throughput</a>,<br>
+	    Rohan Garg, Tirthak Patel, Gene Cooperman, and Devesh Tiwari,<br>
+            <em>48th Annual IEEE/IFIP Int. Conf. on Dependable Systems
+		 and Networks (DSN'18)</em>,<br>
+	    IEEE,
+	    pp.&nbsp;83--94,
+            July, 2018;
+            <a href="papers/dsn18.bib">Bibtex</a>.
+
+          <li><p>
+            <a href="https://ieeexplore.ieee.org/abstract/document/8442098">
+	    Fault-Tolerance Support for Mobile Robotic Applications</a>,<br>
+	    Manos Koutsoubelias and Spyros Lalis,<br>
+            <em>13th Int. Symp. on Industrial Embedded Systems (SIES'18)</em>,<br>
+	    IEEE,
+	    pp.&nbsp;1--10,
+            June, 2018;
+            <a href="papers/sies18.bib">Bibtex</a>.
+
+          <li><p>
+            <a href="https://dl.acm.org/citation.cfm?id=3213070">
+	    CDBB: an NVRAM-based Burst Buffer Coordination System
+	      for Parallel File Systems</a>,<br>
+	    Ziqi Fan, Fenggang Wu, Jim Diehl, David HC Du, and Doug Voigt,<br>
+            <em>Proc. of the High Performance Computing Symposium
+		 (HPC'18)</em>,<br>
+            Society for Computer Simulation International, Apr., 2018;
+            <a href="papers/hpc18.bib">Bibtex</a>.
+
+          <li><p>
+            <a href="https://dl.acm.org/citation.cfm?id=3152558">
+	    ITALC: Interactive Tool for Application-Level Checkpointing</a>,<br>
+	     Ritu Arora and Trung Nguyen Ba,<br>
+            <em>Proc. of Fourth International Workshop
+		 on HPC User Support Tools (HUST'17)</em>,<br>
+            Nov., 2017;
+	    (<a href="https://hust17.github.io/2017_presentations/ITALC.pdf">slides</a>),
+            <a href="papers/hust17.bib">Bibtex</a>.
+
+          <li><p>
+            <a href="https://dl.acm.org/citation.cfm?id=3150996">
+	    E-HPC: a Library for Elastic Resource Management
+	      in HPC Environments></a>,<br>
+	    William Fox, Devarshi Ghoshal, Abel Souza, Gonzalo P Rodrigo,
+	      and LavanyaRamakrishnan,<br>
+            <em>Proc. of the 12th Workshop on Workflows in Support
+		 of Large-Scale Science</em>,<br>
+            Nov., 2017;
+            <a href="papers/works17.bib">Bibtex</a>.
+
+          <li><p>
+            <a href="https://dl.acm.org/citation.cfm?id=3166106">
+	    Constructing the Formal Grammar of System Calls</a>,<br>
+	    Nikolay Efanovand and Pavel Emelyanov,<br>
+            <em>Proc. 13th Central &amp; Eastern European Software
+            Engineering Conference in Russia</em>,<br>
+            Oct., 2017;
+            <a href="papers/atl17.bib">Bibtex</a>.
+
+          <li><p>
+            <a href="https://ieeexplore.ieee.org/abstract/document/8323571">
+	    Selective Checkpointing for Minimizing Recovery Energy
+		 and Efforts of Smartphone Apps</a>,<br>
+	    Li Li, Yunhao Bai, Xiaorui Wang, Mai Zheng, and Feng Qin,<br>
+            <em>Eighth Int. Green and Sustainable Computing
+		 Conference (IGSC'18)</em>,<br>
+	    IEEE,
+	    pp.&nbsp;1--8,
+            Oct., 2017;
+            <a href="papers/igsc17.bib">Bibtex</a>.
+
+          <li><p>
+            <a href="https://cds.cern.ch/record/2286989/files/ATL-SOFT-PROC-2017-054.pdf">
+	    Leveraging the Checkpoint-restart Technique for Optimizing
+	    CPU Efficiency of ATLAS Production Applications on Opportunistic
+	    Platforms</a>,<br>
+	    D.&nbsp;Cameron, J.&nbsp;Elmsheuser, L.&nbsp;Heinrich,
+	  W.&nbsp;Lavrijsen, P.&nbsp;Nilsson, V.&nbsp;Tsulaia, M.&nbsp;Vogel
+	    on behalf of the ATLAS Collaboration,<br>
+            <em>ATL-SOFT-PROC-2017-064)</em>,<br>
+            Oct., 2017;
+            <a href="papers/atl17.bib">Bibtex</a>.
 
           <li><p>
             <a href="https://slurm.schedmd.com/slurm_ug_agenda.html">
@@ -217,16 +366,107 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
             <a href="papers/dvcon-india17.bib">Bibtex</a>.
 
           <li><p>
+            <a href="https://hal.laas.fr/hal-01807513/document">
+	    Intelligent Checkpointing Strategies
+		 for IoT System Management</a>,<br>
+	     A&iuml;ssaoui, Fran&ccedil;ois and Cooperman, Gene
+	      and Monteil, Thierry and Tazi, Sa&iuml;d,<br>
+
+            <em>Future Internet of Things and Cloud (FiCloud'17)</em>,<br>
+	    IEEE,
+	    pp.&nbsp;305--312,
+            Aug., 2017;
+            <a href="papers/ficloud17.bib">Bibtex</a>.
+
+          <li><p>
             <a href="http://mug.mvapich.cse.ohio-state.edu/static/media/mug/presentations/17/cooperman-mug-17.pdf">
             Extending DMTCP Checkpointing for a Hybrid Software World</a>,<br>
             Gene Cooperman,<br>
             <em>MVAPICH User's Group (MUG'17)</em>,<br>
             Columbus, Ohio, Aug.&nbsp;16,&nbsp;2017;
-            <a href="http://mug.mvapich.cse.ohio-state.edu/mug/16/">
+            <a href="http://mug.mvapich.cse.ohio-state.edu/mug/17/">
                 MUG'17 program</a>,
             <a href="http://mug.mvapich.cse.ohio-state.edu/static/media/mug/presentations/17/cooperman-mug-17.pdf">slides</a>;<br>
-            <a href="">video (to appear)</a>;<br>
+            <a href="https://www.youtube.com/watch?v=5omfeh15Fq4">video</a>;<br>
             <a href="papers/mug17.bib">Bibtex</a>.
+
+          <li><p>
+            <a href="https://ieeexplore.ieee.org/abstract/document/8411044/references#references">
+	    RaaS: Resilience as a Service</a>,<br>
+	     Jorge Villamayor, Dolores Rexachs, Emilio Luque, Diego Lugones,<br>
+            <em>Proc. 18th IEEE/ACM Int. Symp. on Cluster, Cloud
+		 and Grid Computing (CCGRID'18)</em>,<br>
+	    IEEE,
+	    pp.&nbsp;356--359,
+            May, 2018;
+            <a href="papers/ccgrid18.bib">Bibtex</a>.
+
+          <li><p>
+            <a href="https://ieeexplore.ieee.org/abstract/document/8323571">
+	    Selective Checkpointing for Minimizing Recovery
+		 Efforts of Smartphone Apps</a>,<br>
+	    Li Li, Yunhao Bai, Xiaorui Wang, Mai Zheng, and Feng Qin,<br>
+            <em>IEEE Conf. on Autonomic Computing (ICAC'17)</em>,<br>
+	    IEEE,
+	    pp.&nbsp;69--70,
+            July, 2017;
+            <a href="papers/icac17.bib">Bibtex</a>.
+
+          <li><p>
+            <a href="https://www.computer.org/csdl/proceedings/hpcs/2017/3250/00/08035110.pdf">
+	    A Methodology for Soft Errors Detection and Automatic Recovery</a>,<br>
+	    Jorge Villamayor, Dolores Rexachs, Emilio Luque,
+	     Diego Montezanti, A. De Giusti, and M. Naiouf,<br>
+            <em>Int. Conf. on High Performance Computing \& Simulation</em>,<br>
+            July, 2017;
+            <a href="papers/hpcs17c.bib">Bibtex</a>.
+
+          <li><p>
+            <a href="https://www.computer.org/csdl/proceedings/hpcs/2017/3250/00/08035109.pdf">
+	    When is the Right Time to Start the Fault Tolerance Protection?</a>,<br>
+	    Jorge Villamayor, Dolores Rexachs, and Emilio Luque,<br>
+            <em>Int. Conf. on High Performance Computing \& Simulation</em>,<br>
+            July, 2017;
+            <a href="papers/hpcs17b.bib">Bibtex</a>.
+
+          <li><p>
+            <a href="https://www.computer.org/csdl/proceedings/hpcs/2017/3250/00/08035112.pdf">
+	    A Fault Tolerance Manager with Distributed Coordinated Checkpoints
+	      for Automatic Recovery</a>,<br>
+	    Jorge Villamayor, Dolores Rexachs, and Emilio Luque,<br>
+            <em>Int. Conf. on High Performance Computing
+		 \& Simulation (HPCS-17)</em>,<br>
+            July, 2017;
+            <a href="papers/hpcs17a.bib">Bibtex</a>.
+
+	<li><p>
+  	<a href="https://link.springer.com/article/10.1007/s11277-017-3978-9">
+	Performance of Android Cluster System Allowing Dynamic Node
+	Reconfiguration</a>,<br>
+	Yuki Sawada, Yusuke Arai, Kanemitsu Ootsu, Takashi Yokota,
+		 and Takesh Ohkawa,<br>
+	<em>?Wireless Personal Communications</em>, <b>93</b>(4),
+	pp.&nbsp;1067--1087, April, 2017, Springer,<br>
+	<a href="papers/wireless-comm17.bib">Bibtex</a>
+
+          <li><p>
+            <a href="https://arxiv.org/pdf/1703.10864.pdf">
+	    Transition Watchpoints: Teaching Old Debuggers New Tricks</a>,<br>
+	     Kapil Arya, Tyler Denniston, Ariel Rabkin, and Gene Cooperman,<br>
+            <em><a href="http://programming-journal.org/2017/1/16/">The Art,
+		 Science, and Engineering of Programming</a></em><b>1</b>(2),<br>
+	    28&nbsp;pages,
+            Apr., 2017;
+            <a href="papers/prog17.bib">Bibtex</a>.
+
+          <li><p>
+            <a href="https://web.a.ebscohost.com/abstract?jrnl=09765697&AN=122961204&h=HuFZHC8oEkZ8vYlLsqJ39pvVXNUQvgwz%2fls4El7DZxFP6oReUJoxhIi21Tc86e6xWS4l%2faOriy6Dq9Rik013TA%3d%3d&crl=c&crlhashurl=login.aspx%3fdirect%3dtrue%26profile%3dehost%26scope%3dsite%26authtype%3dcrawler%26jrnl%3d09765697%26AN%3d122961204">
+	    Fault Tolerance and Message Passing Interface Programs</a>,<br>
+	     Mohammad Miyan,<br>
+            <em>Int. J. of Advanced Research in Computer Science</em>,<br>
+	    pp.&nbsp;128--135,
+            Mar/Apr, 2017;
+            <a href="papers/arcs17.bib">Bibtex</a>.
 
 	<li><p>
   	<a href="https://hal.archives-ouvertes.fr/hal-01510979/document">
@@ -234,17 +474,8 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
 	and Floating-point Computations</a>,<br>
 	&Eacute;rik Martin-Dorel and Pierre Roux,<br>
 	ACM SIGPLAN Conference on Certified Programs and Proofs (CPP 2017),
-	pp.&nbsp;90--99, 2017, ACM,<br>
+	pp.&nbsp;90--99, Jan., 2017, ACM,<br>
 	<a href="papers/cpp17.bib">Bibtex</a>
-
-	<li><p>
-  	<a href="https://link.springer.com/article/10.1007/s11277-017-3978-9">
-	Performance of Android Cluster System Allowing Dynamic Node
-	Reconfiguration</a>,<br>
-	Y. Sawada, Y. Arai, K. Ootsu, T. Yokota, and T. Ohkawa,<br>
-	Wireless Personal Communications, <b>93</b>(4), 2017,
-	pp.&nbsp;1067--1087, 2017, Springer,<br>
-	<a href="papers/wireless-comm17.bib">Bibtex</a>
 
 	<li><p>
   	<a href="http://ieeexplore.ieee.org/document/7962737/">
@@ -252,7 +483,7 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
 	Huang, Chengyuan, Zhang, Jiao, Huang, Tao and Liu, Yunjie,<br>
 	<em>Proc. of Communications Workshops</em>
 	 (2017 IEEE Int. Conf. on ICC),
-	pp.&nbsp;681--686, 2017, IEEE,<br>
+	pp.&nbsp;681--686, May, 2017, IEEE,<br>
 	<a href="papers/icc-comm17.bib">Bibtex</a>
 
 	<li><p>
@@ -303,10 +534,10 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
 	Alvaro LGA Coutinho, Daniel Fern&aacute;ndez-Galisteo,
 	Carmen Jim&eacute;nez, Vadim Kourdioumov,
 	Marta Mattoso, Rafael Mayo-Garc&iacute;a, Thomas Miras,
-	and others,<br>
+	and J.A. Mor&iacute;&ntilde;igo,<br>
 	<em><a href="http://RussianSCDays.org">Proc. of
 	   Russian Supercomputing Days&nbsp;2016</a></em>,
-	11&nbsp;pages, Sept., 2016,<br>
+	p.&nbsp;9--19, Sept., 2016,<br>
 	<a href="papers/russianscdays16.bib">Bibtex</a>
 
         <li><p>
@@ -327,7 +558,7 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
   	<a href="https://upcommons.upc.edu/bitstream/handle/2117/100183/Enhancing%20Energy%20Production%20with%20Exascale%20HPC.pdf">
 	  prior technical report</a>)</em>,<br>
 	Rafael Mayo-Garc&iacute;a, Jos&eacute; J. Camata, Jos&eacute; M.Cela,
-	Danilo Costa, Alvaro LGA Coutinho, Daniel Fernández-Galiste,
+	Danilo Costa, Alvaro LGA Coutinho, Daniel Fern&aacute;ndez-Galiste,
 	Carmen Jim&eacute;nez, Vadim Kourdioumov, Marta Mattoso,
 	Thomas Miras, Jos&eacute; A. Mor&iacute;&ntilde;igo, Jorge Navarro;
 	Philippe O. A. Navaux, Daniel de Oliveira,
@@ -343,7 +574,7 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
 	<a href="http://www.ccs.neu.edu/home/gene/papers/openshmem16.pdf">Scalable System-level Transparent Checkpointing for OpenSHMEM</a>,<br>
 	Rohan Garg, J&eacute;r&ocirc;me Vienne and Gene Cooperman,<br>
 	<em>OpenSHMEM and Related Technologies.  Enhancing OpenSHMEM
-        for Hybrid Environements --- Third Workshop,<br>
+        for Hybrid Environments --- Third Workshop,<br>
 	OpenSHMEM 2016,
         Baltimore, MD, USA, Aug. 2--4, 2016, Revised Selected Papers
    	(OpenSHMEM'16)</em>,<br>
