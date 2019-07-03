@@ -354,45 +354,46 @@
             For compiling DMTCP with debugging support under GNU gcc,
               we recommend:<br>
             &nbsp;&nbsp;
-              <code>./configure CXXFLAGS="-g3 -O0" CFAGS="-g3 -O0"</code><br>
+              <code>./configure --enable-debug</code>
+               ("-g3 -O0" for gcc and g++)<br>
             &nbsp;&nbsp;
               <code>make -j clean &amp;&amp; make -j</code><br>
-            (Omit the "<code>-j</code> if you are on a less powerful computer.)
+            (Omit the "<code>-j</code>" if you are on a less powerful computer.)
             <p>
 	    <em>DEBUGGING DURING INITIAL LAUNCH:</em> 
             &nbsp;&nbsp;&nbsp;&nbsp;Run it as:
 		  <tt>gdb --args dmtcp_launch ./a.out</tt><br>
             (Older versions of DMTCP use <tt>dmtcp_checkpoint</tt> instead
             of <tt>dmtcp_launch</tt>.)<br>
-            Then <tt>dmtcp_launch</tt> will call execvp
+            Then <tt>dmtcp_launch</tt> will call execve
             on <tt>./a.out</tt>.  So, try the following:<br>
 	    <code>
-              (gdb) break execvp<br>
+              (gdb) break execve<br>
               (gdb) run<br>
-              (gdb) [stops at execvp]<br>
+              (gdb) # [stops at execve]<br>
               (gdb) break main<br>
               (gdb) next<br>
               (gdb) next<br>
               (gdb) ...<br>
 	    </code>
             &nbsp;&nbsp;&nbsp;&nbsp;Note that <tt>dmtcp_launch</tt>
-            calls execvp to execute the main routine of the application
+            calls execve to execute the main routine of the application
             (<tt>a.out</tt> in the above example).
             If you want to see the actions of the dmtcphijack.so library
-            starting after the call to execvp and before the application's main
+            starting after the call to execve and before the application's main
             routine, then at the beginning of your GDB session, do:<br>
 	    <code>
-              (gdb) break execvp<br>
+              (gdb) break execve<br>
               (gdb) run<br>
               (gdb) # 'pending on' is required if using a gdbinit script<br>
               (gdb) set breakpoint pending on<br>
-              (gdb) # For DMTCP-2.4 and later in 2.x:<br>
-              (gdb) break 'dmtcp::DmtcpWorker::DmtcpWorker()'<br>
-              (gdb) # For DMTCP-3.0 and later (stops in each DMTCP plugin):<br>
-              (gdb) # break dmtcp_prepare_wrappers<br>
-              (gdb) # For prior to DMTCP-2.4:<br>
-              (gdb) # break 'dmtcp::DmtcpWorker::DmtcpWorker(bool)'<br>
-              (gdb) continue<br>
+              (gdb) # For DMTCP-2.4 and later in DMTCP-2.x:<br>
+              (gdb) break dmtcp_initialize
+              (gdb) # For DMTCP-3.0 and later:<br>
+              (gdb) # &nbsp; break dmtcp_initialize_entry_point<br>
+              (gdb) # &nbsp; &nbsp; OBSOLETE: For prior to DMTCP-2.4:<br>
+              (gdb) # &nbsp; &nbsp; OBSOLETE: break 'dmtcp::DmtcpWorker::DmtcpWorker(bool)'<br>
+              (gdb) next # May need to repeat 'next' a few times.<br>
             </code>
             We have found the GDB command <tt>info proc mappings</tt> useful
             for deciding if an address belongs to libc.so, dmtcphijack.so,
@@ -650,7 +651,7 @@
 
             <li> <div class="faq"> <a name="jassert"> Can I enable tracing of DMTCP internals? </a> </div>
             Yes.  You will have to re-configure and re-make:<br>
-            <tt>./configure --enable-debug &amp;&amp; make -j5 clean &amp;&amp; make -j5</tt><br>
+            <tt>./configure --enable-logging &amp;&amp; make -j5 clean &amp;&amp; make -j5</tt><br>
             After this, you will see lots of output sent to stderr on screen.
             In addition, there will be files in
             <tt>$DMTCP_TMPDIR/dmtcp-$USER@$HOST</tt>
@@ -691,7 +692,7 @@
             DMTCP internal plugins may be required for correct operation.
 
             <li> <div class="faq"> <a name="internalOverhead"> What is the run-time overhead of DMTCP? </a> </div>
-            The run-time overhead of DMTCP is essentially zero.  When there is
+            The run-time overhead of DMTCP is usually negligible.  When there is
             no checkpoint or restart in process, DMTCP code will run only within
             DMTCP wrappers around certain less frequently used system calls.
             Examples of such wrappers are wrappers for open(), getpid(), socketpair(),

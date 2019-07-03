@@ -59,7 +59,7 @@
 
 	  <ol type="A" style="font-size:200%">
 	    <li> <a href="#enhancements">
-		DMTCP Publications (enhancements to DMTCP distribution)</a>
+		DMTCP Publications (enhancements to the DMTCP distribution)</a>
 	    <li> <a href="#others">
           	Publications and Conference Presentations
 		 <em>using</em> DMTCP in their work</a>
@@ -70,19 +70,36 @@
 	  <p>
           <h2> <a name="enhancements">A. DMTCP Publications</a> (an
 		<font style="color:green">annotated</font> history of
-		 enhancements to
+		 enhancements to the
 		 DMTCP distribution; reverse chronological order):</h2>
           <p>
           <ul>
 
-<!-- <a href="Fill in links and page numbers below for CRUM"> -->
+        <li><p>
+	<a href="http://www.ccs.neu.edu/home/gene/papers/hpdc19.pdf">
+	MANA for MPI: MPI-Agnostic Network-Agnostic Transparent Checkpointing
+</a>,<br>
+        Rohan Garg, Gregory Price, and Gene Cooperman,
+        <em>Proc. of 28th Int. Symp. on High PErformance Parallel and Distributed Computing (HPDC'19)</em>,<br>
+	Phoenix, AZ, USA, ACM, pp.&nbsp;49--60, June., 2019,
+        (and tech. report at <a href="https://arxiv.org/abs/1904.12595">
+	https://arxiv.org/abs/1904.12595</a>),
+          <br>
+            &bull; <a href="papers/hpdc19-slides.pdf">Slides</a>.
+            <a href="papers/hpdc19.bib">Bibtex</a>.
+	  <br>
+	  <em style="color:green">(Novel "split-process" approach to
+	isolating and checkpointing just the MPI application.
+	During restart, fresh copies of the MPI/network/system libraries
+	are restored from locally optimized libraries at the destination
+	cluster)</em>
 
         <li><p>
 	<a href="http://www.ccs.neu.edu/home/gene/papers/cluster18.pdf">
-	"CRUM: Checkpoint-Restart Support for CUDA's Unified Memory"</a>,<br>
+	CRUM: Checkpoint-Restart Support for CUDA's Unified Memory</a>,<br>
         Rohan Garg, Apoorve Mohan, Michael Sullivan, and Gene Cooperman,
         <em>Proc. of IEEE Int. Conf. on Cluster Computing (Cluster'18)</em>,<br>
-	Belfast, United Kingdon, IEEE, Sept., 2018,
+	Belfast, United Kingdon, IEEE, pp.&nbsp;302--313, Sept., 2018,
         (and tech. report at <a href="https://arxiv.org/abs/1808.00117">
 	https://arxiv.org/abs/1808.00117</a>),
             <a href="papers/cluster18.bib">Bibtex</a>.
@@ -169,8 +186,8 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
 	    IEEE Press, 2006 <a href="papers/ccgrid06.bib">Bibtex</a>
 	  <br>
 	  <em style="color:green">(Master-worker style checkpointing experiment
-		 in distributed checkpointing, prior to DMTCP itself)</em>
-
+		 in distributed checkpointing, prior 
+to DMTCP itself)</em>
             <li><p>
             <a href="papers/mtcp.pdf">Transparent User-Level Checkpointing for the Native POSIX Thread Library for Linux</a>.<br>
             Michael Rieker, Jason Ansel, and Gene Cooperman.<br>
@@ -264,6 +281,17 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
 	    IEEE,
 	    pp.&nbsp;1--10,
             June, 2018;
+
+          <li><p>
+            <a href="https://ieeexplore.ieee.org/abstract/document/8411044/references#references">
+	    RaaS: Resilience as a Service</a>,<br>
+	     Jorge Villamayor, Dolores Rexachs, Emilio Luque, Diego Lugones,<br>
+            <em>Proc. 18th IEEE/ACM Int. Symp. on Cluster, Cloud
+		 and Grid Computing (CCGRID'18)</em>,<br>
+	    IEEE,
+	    pp.&nbsp;356--359,
+            May, 2018;
+            <a href="papers/ccgrid18.bib">Bibtex</a>.
             <a href="papers/sies18.bib">Bibtex</a>.
 
           <li><p>
@@ -275,6 +303,20 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
 		 (HPC'18)</em>,<br>
             Society for Computer Simulation International, Apr., 2018;
             <a href="papers/hpc18.bib">Bibtex</a>.
+
+          <li><p>
+            <a href="http://events.dvcon.org/events/proceedings.aspx?id=246--5">
+            Transparently Checkpointing Software Test Benches to Improve Productivity of SoC Verification in an Emulation Environment</a (paper to appear)>,<br>
+	    Ankit Garg, Suresh Krishnamurthy, Gene Cooperman, Rohan Garg,
+		 and Jeff Evans,<br>
+            <em>2018 Design and Verification Conference and Exhibition
+	 (DVCON-US 2018)</em>,<br>
+            San Jose, CA, Feb.&nbsp;27,&nbsp;2018;
+            <a href="https://dvcon.org/">
+                DVCON-US 2018</a>,<br>
+            <a href="papers/dvcon-us18.bib">Bibtex</a>.<br>
+	<em>(IMPORTANT: Browser must allow popups, to view paper
+	    at DVCon site.)</em>
 
           <li><p>
             <a href="https://dl.acm.org/citation.cfm?id=3152558">
@@ -304,7 +346,7 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
             <em>Proc. 13th Central &amp; Eastern European Software
             Engineering Conference in Russia</em>,<br>
             Oct., 2017;
-            <a href="papers/atl17.bib">Bibtex</a>.
+            <a href="papers/eesec17.bib">Bibtex</a>.
 
           <li><p>
             <a href="https://ieeexplore.ieee.org/abstract/document/8323571">
@@ -363,7 +405,9 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
             Bengalauru, India, Sept.&nbsp;15,&nbsp;2017;
             <a href="https://dvcon-india.org/">
                 DVCON-India 2017</a>,<br>
-            <a href="papers/dvcon-india17.bib">Bibtex</a>.
+            <a href="papers/dvcon-india17.bib">Bibtex</a>. <br>
+	<em>(IMPORTANT: Browser must allow popups, to view paper
+	    at DVCon site.)</em>
 
           <li><p>
             <a href="https://hal.laas.fr/hal-01807513/document">
@@ -391,17 +435,6 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
             <a href="papers/mug17.bib">Bibtex</a>.
 
           <li><p>
-            <a href="https://ieeexplore.ieee.org/abstract/document/8411044/references#references">
-	    RaaS: Resilience as a Service</a>,<br>
-	     Jorge Villamayor, Dolores Rexachs, Emilio Luque, Diego Lugones,<br>
-            <em>Proc. 18th IEEE/ACM Int. Symp. on Cluster, Cloud
-		 and Grid Computing (CCGRID'18)</em>,<br>
-	    IEEE,
-	    pp.&nbsp;356--359,
-            May, 2018;
-            <a href="papers/ccgrid18.bib">Bibtex</a>.
-
-          <li><p>
             <a href="https://ieeexplore.ieee.org/abstract/document/8323571">
 	    Selective Checkpointing for Minimizing Recovery
 		 Efforts of Smartphone Apps</a>,<br>
@@ -417,7 +450,7 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
 	    A Methodology for Soft Errors Detection and Automatic Recovery</a>,<br>
 	    Jorge Villamayor, Dolores Rexachs, Emilio Luque,
 	     Diego Montezanti, A. De Giusti, and M. Naiouf,<br>
-            <em>Int. Conf. on High Performance Computing \& Simulation</em>,<br>
+            <em>Int. Conf. on High Performance Computing &amp; Simulation</em>,<br>
             July, 2017;
             <a href="papers/hpcs17c.bib">Bibtex</a>.
 
@@ -425,7 +458,7 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
             <a href="https://www.computer.org/csdl/proceedings/hpcs/2017/3250/00/08035109.pdf">
 	    When is the Right Time to Start the Fault Tolerance Protection?</a>,<br>
 	    Jorge Villamayor, Dolores Rexachs, and Emilio Luque,<br>
-            <em>Int. Conf. on High Performance Computing \& Simulation</em>,<br>
+            <em>Int. Conf. on High Performance Computing &amp; Simulation</em>,<br>
             July, 2017;
             <a href="papers/hpcs17b.bib">Bibtex</a>.
 
@@ -435,7 +468,7 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
 	      for Automatic Recovery</a>,<br>
 	    Jorge Villamayor, Dolores Rexachs, and Emilio Luque,<br>
             <em>Int. Conf. on High Performance Computing
-		 \& Simulation (HPCS-17)</em>,<br>
+		 &amp; Simulation (HPCS-17)</em>,<br>
             July, 2017;
             <a href="papers/hpcs17a.bib">Bibtex</a>.
 
