@@ -72,7 +72,7 @@
             <li> <a href="#architectures">Architectures Supported by DMTCP</a>
              <ol>
               <li> <a href="#cpuPorts"> What CPUs has DMTCP been ported to?</a>
-              <li> <a href="#intel32-64"> How can I compile DMTCP for mixed x86/x86_64 architectures (multi-arch: mixed 32-/64-bit)?</a>
+              <li> <a href="#intel32-64"> How can I compile DMTCP for mixed x86/x86_64 architectures (multi-arch/multilib: mixed 32-/64-bit)?</a>
               <li> <a href="#osPorts"> What operating systems has DMTCP been ported to? </a>
               <li> <a href="#networkPorts"> What types of networks does DMTCP support? </a>
               <li> <a href="#distros"> What Linux distributions do you test on?</a>
@@ -349,51 +349,65 @@
 
             <li> <div class="faq"> <a name="debugging"> How do I debug my application under GDB when I am using DMTCP? </a> </div>
 	    Detailed advice is available in the file
-	    <a href="http://github.com/dmtcp/dmtcp/blob/master/doc/debugging-dmtcp.txt">doc/debugging-dmtcp.txt</a>.  General advice follows.<br>
+	    <a href="http://github.com/dmtcp/dmtcp/blob/master/doc/debugging-dmtcp.txt">doc/debugging-dmtcp.txt</a> (although this FAQ is often more current).  General advice follows.<br>
+            <p>
+            When using GDB with DMTCP, you may find it useful to load some
+            utilities (available since DMTCP-2.6.1 and DMTCP-3.0):<br>
+	    <code>
+            (gdb) source util/gdb-dmtcp-utils<br>
+            (gdb) dmtcp  # lists the new GDB commands<br>
+	    </code>
             <p>
             For compiling DMTCP with debugging support under GNU gcc,
               we recommend:<br>
             &nbsp;&nbsp;
               <code>./configure --enable-debug</code>
-               ("-g3 -O0" for gcc and g++)<br>
+               ("-Wall -g3 -O0" for gcc and g++)<br>
             &nbsp;&nbsp;
               <code>make -j clean &amp;&amp; make -j</code><br>
             (Omit the "<code>-j</code>" if you are on a less powerful computer.)
+            <p>
+	    <em>CATCHING DMTCP INTERNAL ERRORS (CREATE A CORE DUMP):</em>
+	    <br>Prior to running <tt>dmtcp_launch</tt>, do:<br>
+	    <tt>
+	    ulimit -c unlimited &amp;&amp; export DMTCP_ABORT_ON_FAILED_ASSERT=1
+	    </tt>
+	    <br>(and also, if using GDB, set a breakpoint at <tt>_exit</tt>)
             <p>
 	    <em>DEBUGGING DURING INITIAL LAUNCH:</em> 
             &nbsp;&nbsp;&nbsp;&nbsp;Run it as:
 		  <tt>gdb --args dmtcp_launch ./a.out</tt><br>
             (Older versions of DMTCP use <tt>dmtcp_checkpoint</tt> instead
             of <tt>dmtcp_launch</tt>.)<br>
-            Then <tt>dmtcp_launch</tt> will call execve
+            Then <tt>dmtcp_launch</tt> will call execvp
             on <tt>./a.out</tt>.  So, try the following:<br>
 	    <code>
-              (gdb) break execve<br>
+              (gdb) break execvp<br>
               (gdb) run<br>
-              (gdb) # [stops at execve]<br>
+              (gdb) # [stops at execvp]<br>
               (gdb) break main<br>
               (gdb) next<br>
               (gdb) next<br>
               (gdb) ...<br>
 	    </code>
             &nbsp;&nbsp;&nbsp;&nbsp;Note that <tt>dmtcp_launch</tt>
-            calls execve to execute the main routine of the application
+            calls execvp to execute the main routine of the application
             (<tt>a.out</tt> in the above example).
             If you want to see the actions of the dmtcphijack.so library
-            starting after the call to execve and before the application's main
+            starting after the call to execvp and before the application's main
             routine, then at the beginning of your GDB session, do:<br>
 	    <code>
-              (gdb) break execve<br>
+              (gdb) break execvp<br>
               (gdb) run<br>
               (gdb) # 'pending on' is required if using a gdbinit script<br>
               (gdb) set breakpoint pending on<br>
               (gdb) # For DMTCP-2.4 and later in DMTCP-2.x:<br>
-              (gdb) break dmtcp_initialize
+              (gdb) break dmtcp_initialize<br>
               (gdb) # For DMTCP-3.0 and later:<br>
               (gdb) # &nbsp; break dmtcp_initialize_entry_point<br>
               (gdb) # &nbsp; &nbsp; OBSOLETE: For prior to DMTCP-2.4:<br>
               (gdb) # &nbsp; &nbsp; OBSOLETE: break 'dmtcp::DmtcpWorker::DmtcpWorker(bool)'<br>
-              (gdb) next # May need to repeat 'next' a few times.<br>
+              (gdb) continue # Might need to repeat 'continue' a few times.<br>
             </code>
             We have found the GDB command <tt>info proc mappings</tt> useful
             for deciding if an address belongs to libc.so, dmtcphijack.so,
@@ -402,6 +416,20 @@
             <em>NOTE:</em> If you want to trace the internals of DMTCP
             (in addition to using GDB as above), see
             <a href="#jassert"><em>tracing DMTCP internals</em></a>.<br>
+            <p>
+            <em>DEBUGGING DURING CHECKPOINT:</em> 
+            Begin your DMTCP session under GDB (<tt>gdb&nbsp;--args&nbsp;dmtcp_launch&nbsp;...</tt>),
+            and just <tt>run</tt> (without any checkpoints).
+            At the time of checkpoint, the checkpoint thread (typically thread&nbsp;2 in GDB)
+            will send a SIGUSR2 to each user thread.  By default, GDB will intercept that
+            signal, announce it to the user, and wait until the user executes:<br>
+	    <code>
+              (gdb) signal SIGUSR2<br>
+	    </code>
+            At this time, you can gain control with GDB.  Tell GDB to switch to
+            <tt>thread&nbsp;2</tt>, and you
+            can then examine the stack and set a breakpoint, before issuing the
+            "<tt>signal&nbsp;SIGUSR2</tt>" command.
             <p>
             <em>DEBUGGING DURING RESTART:</em> 
             &nbsp;&nbsp;&nbsp;&nbsp;To capture your process under GDB during
@@ -452,7 +480,24 @@
             also be a bug in the interaction with internal plugins of DMTCP.
             See <a href="#debugPlugins">"debugging internal DMTCP plugins"</a>
             for more information concerning this issue.
+            <P> In debugging during restart using 'gdb attach', we have
+            reports in early 2020 saying that under Ubuntu, we are not
+            seeing the symbol tables when we attach.  This problem is
+            seen <em>only</em> on Ubuntu (e.g., Ubuntu&nbsp;18.04).  A stack is
+            seen with the addresses, but without the function names.
+            We see this on Ubuntu, but <em>not</em> on CentOS.  We are
+            guessing that GDB under Ubuntu is having trouble "walking
+            the stack" to find the symbol table.  As a workaround,
+            after restart, please use inside GDB:<br>
+            <tt>(gdb)&nbsp;source&nbsp;DMTCP_ROOT/util/gdb-add-symbol-files-all</tt>
+            (or the older bash shell script from the command line, 
+            <tt>DMTCP_ROOT/util/gdb-add-symbol-file</tt> 
+            , if not using the latest DMTCP).
+            The shell script
+            <tt>DMTCP_ROOT/util/save-symbol-files-to-gdb-script.py</tt>
+            may also be useful in this setting.
            </ol>
+
           <div class="faqHeader"> <a name="architectures"> Architectures Supported by DMTCP </a> </div>
            <ol>
             <li> <div class="faq"> <a name="cpuPorts"> What CPUs has
@@ -479,7 +524,7 @@
 
             <li> <div class="faq"> <a name="intel32-64"> How can I compile
 	    DMTCP for mixed x86/x86_64 architectures
-	    (multi-arch: mixed 32-/64-bit)? </a> </div>
+	    (multi-arch/multilib for mixed 32-/64-bit)? </a> </div>
 	    See <a href="http://github.com/dmtcp/dmtcp/blob/master/doc/multi-arch.txt">
               doc/multi-arch.txt</a> for details.  In short,<br>
 	    <code>./configure --enable-m32 &amp;&amp; make clean &amp;&amp;
@@ -493,6 +538,10 @@
 	    necessary DMTCP commands on a 64-bit Linux.  So, <em>on
 	    a 64-bit Linux</em>, you will still need the 64-bit install,
 	    even if you intend only to run with 32-bit targets.
+	    <P>
+            On recent versions of DMTCP (late 2019),
+            a <tt./configure&nbsp;>--enable-multilib</tt> option has been
+            made available to automate this.
 
             <li> <div class="faq"> <a name="osPorts"> What operating
 	    systems has DMTCP been ported to? </a> </div>
@@ -520,13 +569,14 @@
 	    There are also "dmtcp" packages in
 	     Debian (since version&nbsp;7.0, "wheezy"),
 	    Ubuntu (since version&nbsp;11.10),
-	    Fedora (since version&nbsp;17),
-	    Red&nbsp;Hat (via <a href="https://fedoraproject.org/wiki/EPEL">Fedora EPEL</a>),
+	    Fedora (since version&nbsp;17), and
+	    Red&nbsp;Hat (via <a href="https://fedoraproject.org/wiki/EPEL">Fedora EPEL</a>).
+	    <!--
 	    and
 	    openSUSE (since version&nbsp;12.1).
+	    -->
             In-house, we commonly use DMTCP under
-            Ubuntu (64-bit), openSUSE (64-bit), and Linux Mint (32-bit,
-	    based on Ubuntu).
+            Ubuntu, CentOS, and openSUSE.
 	    On an irregular basis, we also test on other distributions.
 
            </ol>
@@ -888,7 +938,7 @@
             Yes.  And to restart on different hosts, edit the 'ssh' lines
 	    in <tt>dmtcp_restart_script.sh</tt>&nbsp;.
 	    DMTCP operates by checkpointing the sockets (or InfiniBand
-	    connections, if using <tt>--infinband</tt>)  created by the
+	    connections, if using <tt>--infiniband</tt>)  created by the
             MPI library.  Hence, it is transparent to MPI and doesn't require
             any particular MPI configuration or hooks.  In principle, DMTCP
 	    should run on any MPI over TCP/IP.  We usually test on

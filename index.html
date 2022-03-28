@@ -1,9 +1,17 @@
-<html> 
-<head> 
-  <title>DMTCP : Distributed MultiThreaded Checkpointing</title> 
-  <link rel="stylesheet" type="text/css" href="dmtcp.css" /> 
+<html>
+<head>
+  <title>DMTCP : Distributed MultiThreaded Checkpointing</title>
+  <link rel="stylesheet" type="text/css" href="dmtcp.css" />
 
-  <script language="JavaScript" type="text/javascript">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+<script language="JavaScript" type="text/javascript">
 if (document.getElementById) {
   document.writeln('<style type="text/css"><!--')
 document.writeln('.texter {display:none} @media print {.texter {display:block;}}')
@@ -14,43 +22,43 @@ document.writeln('//--></style>') }
   else { document.getElementById(theID).style.display = "block" } }
   </script>
 
-</head> 
- 
-<body> 
+</head>
+
+<body>
   <div class="title" align="center" valign="center">
     <h1>DMTCP: Distributed MultiThreaded CheckPointing</h1>
   </div>
 
-  <table width="100%"> 
-    <tr> 
-      <td bgcolor="#b9b9fe" valign="top" align="left" width="15%"> 
+  <table width="100%">
+    <tr>
+      <td bgcolor="#b9b9fe" valign="top" align="left" width="15%">
         <div class="cell">
-          <table width="100%" cellspacing="8" border="0"> 
+          <table width="100%" cellspacing="8" border="0">
 
-            <tr><td><b><a class="sidebar" href="index.html">Home</a></b></td></tr> 
+            <tr><td><b><a class="sidebar" href="index.html">Home</a></b></td></tr>
 
 
-            <tr><td><a class="sidebar" href="downloads.html"><b>Downloads</b></a></td></tr> 
-            <tr><td><a class="sidebar" href="dmtcp-mug-17.pdf"><b>Overview (pdf)</b></a></td></tr> 
-            <tr><td><a class="sidebar" href="FAQ.html"><b>FAQ</b></a></td></tr> 
-            <tr><td><a class="sidebar" href="http://sourceforge.net/projects/dmtcp">SF project page</a></td></tr> 
+            <tr><td><a class="sidebar" href="downloads.html"><b>Downloads</b></a></td></tr>
+            <tr><td><a class="sidebar" href="dmtcp-mug-17.pdf"><b>Overview (pdf)</b></a></td></tr>
+            <tr><td><a class="sidebar" href="FAQ.html"><b>FAQ</b></a></td></tr>
+            <tr><td><a class="sidebar" href="http://sourceforge.net/projects/dmtcp">SF project page</a></td></tr>
             <tr><td><a class="sidebar" href="http://github.com/dmtcp/dmtcp">Browse Source</a></td></tr>
-            <tr><td><a class="sidebar" href="demo.html">Demo</a></td></tr> 
+            <tr><td><a class="sidebar" href="demo.html">Demo</a></td></tr>
 
-            <tr><td><a class="sidebar" href="supportedApps.html">Supported Apps</a></td></tr> 
-            <tr><td><a class="sidebar" href="parallel.html">Parallel Computing</a></td></tr> 
-            <tr><td><a class="sidebar" href="condor.html">Condor Integration</a></td></tr> 
+            <tr><td><a class="sidebar" href="supportedApps.html">Supported Apps</a></td></tr>
+            <tr><td><a class="sidebar" href="parallel.html">Parallel Computing</a></td></tr>
+            <tr><td><a class="sidebar" href="condor.html">Condor Integration</a></td></tr>
 
-            <tr><td><a class="sidebar" href="docs/index.html">Manual/Documentation</a></td></tr> 
-            <tr><td><a class="sidebar" href="plugins.html">Plugins and other APIs</a></td></tr> 
-            <tr><td><a class="sidebar" href="publications.html">Publications</a></td></tr> 
-            <tr><td><a class="sidebar" href="contactUs.html">Contact Us</a></td></tr> 
+            <tr><td><a class="sidebar" href="docs/index.html">Manual/Documentation</a></td></tr>
+            <tr><td><a class="sidebar" href="plugins.html">Plugins and other APIs</a></td></tr>
+            <tr><td><a class="sidebar" href="publications.html">Publications</a></td></tr>
+            <tr><td><a class="sidebar" href="contactUs.html">Contact Us</a></td></tr>
 
-          </table> 
+          </table>
         </div>
-      </td> 
+      </td>
 
-      <td align="left" valign="top"> 
+      <td align="left" valign="top">
         <div class="cell">
 
           <div class="subtitle"><h2>About DMTCP:</h2></div>
@@ -70,7 +78,7 @@ document.writeln('//--></style>') }
           <!-- THIS SHOULD NO LONGER BE THE EMPHASIS.
 	  DMTCP also supports
           <a href="http://www.gnu.org/software/screen/">GNU screen</a>
-          sessions, including vim/cscope and emacs. 
+          sessions, including vim/cscope and emacs.
           -->
           With the use of TightVNC,
           it can also checkpoint and restart X-Window applications.
@@ -93,7 +101,7 @@ document.writeln('//--></style>') }
           <a href="#news">News</a> |
           <a href="#seeAlso">See Also</a> |
           <a href="#authors">Authors</a> |
-          <a href="#acknowledgment">Acknowledgment</a> 
+          <a href="#acknowledgment">Acknowledgment</a>
           <p></p>
 
           <font color="red">
@@ -112,21 +120,66 @@ document.writeln('//--></style>') }
           <div class="section">
 
             <dl>
-              <dt> <div class="news"> [2017-02-15]: Upcoming releases:<br></div>
+              <dt> <div class="news"> [2019-08-14]: Upcoming releases:<br></div>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		&nbsp;&nbsp;1.
-		A DMTCP module for Slurm providing tighter integration
-                is being reviewed by the Slurm developers.
-		We plan to include a pointer to it here when it
-		is accepted.<br>
+		A totally revised DMTCP module for support of MPI
+		is planned
+		(based on MANA; MPI-Agnostic, Network-Agnostic;
+		see <a href="http://dmtcp.sourceforge.net/publications.html">
+		DMTCP Publications</a>).<br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		&nbsp;&nbsp;2.
 		Longer-term, a DMTCP version 3.0 is being prepared
 		with new and better features (e.g., user-programmable
-		barriers within a plugin).
+		barriers within a plugin).  If you would like to try it now,
+		see <a href="http://dmtcp.sourceforge.net/downloads.html">
+		Downloads</a>.
               <dd>
             </dl>
 
+
+            <dl>
+              <dt> <div class="news"> [2019-08-14]: DMTCP 2.6.0 released! </div>
+	      <dd>
+Newer flags for configure:
+<ul>
+  <li> Rename --enable-debug to --enable-logging
+  <li> Add --enable-debug: "-Wall -g3 -O0"  (for debugging DMTCP)
+</ul>
+
+Newer flags for dmtcp_restart:
+<ul>
+  <li> Add --debug-restart-pause flag to dmtcp_restart
+</ul>
+
+Bug fixes and enhancements:
+<ul>
+<li> Fixes for glibc versions greater than or equal to 2.24
+<li> Fix deadlock in system() wrapper when the child crashes
+<li> Fix deadlock when a process is forked in the resume phase (issue #691)
+<li> jsocket: Warn user if peer closes socket while draining (issue #701)
+<li> Fix epoll1 test (initialize addrlen for accept()) (#705)
+<li> Fix to correctly calculate Coordinator/Host IP:
+    Affects some distributed applications
+<li> Allow restored stack to grow if needed.
+<li> Fix bug in POSIX timer: race condition manifested in test/timer.c/Ubuntu-18.04
+<li> Modified InfiniBand plugin for more robust support
+    (primarily of interest for MPI)
+<li> The floating point environment (fegetenv()) is now restored on restart.
+    (Formerly, only the rounding mode (fegetround()) was restored.)
+<li> The current resource limits (rlim_cur) for RLIMIT_NOFILE and RLIMIT_STACK
+    are restored if possible.
+<li> Mutex ownership and robust mutexes are now supported if DMTCP is configured
+    with --enable-mutex-wrappers.  (However, this configuration can also
+    add runtime overhead if mutex operations are called very frequently.)
+    [Thanks to Johannes Stoelp, Laurent Buchard, Pankaj Mehta of Synopsys, Inc.]
+<li> Fix bug if stack grows a lot after a restart.
+<li> Improved support for pty's
+<li> util/gdbinit-example added for those who wish to debug DMTCP internals.
+<li> Many bug fixes
+</ul>
+	    </dl>
 
               <dt> <div class="news"> [2017-11-15]: DMTCP 2.5.2 released! </div>
 	      <dd>
@@ -426,7 +479,7 @@ document.writeln('//--></style>') }
             <dl>
               <dt> <div class="news"> [2014-07-14]: DMTCP 2.3.1 released! </div>
               <dd>
-              This is primarily a bug fix release. 
+              This is primarily a bug fix release.
             </dl>
 
             <dl>
@@ -595,7 +648,7 @@ document.writeln('//--></style>') }
 
           <hr>
 
-          <script language="JavaScript"> 
+          <script language="JavaScript">
             <!---//hide script from old browsers
             document.write( "<br>Last updated " + document.lastModified + "." );
             //end hiding contents --->
@@ -604,7 +657,7 @@ document.writeln('//--></style>') }
           <p> Click <a class="sidebar" href="contactUs.html">here for comments.</a>
           <p>
 
-          <A href="http://sourceforge.net"><IMG src="http://sourceforge.net/sflogo.php?group_id=96405&amp;type=5" width="210" height="62" border="0" alt="SourceForge.net Logo" /></A> 
+          <A href="http://sourceforge.net"><IMG src="http://sourceforge.net/sflogo.php?group_id=96405&amp;type=5" width="210" height="62" border="0" alt="SourceForge.net Logo" /></A>
 
           <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
@@ -616,8 +669,8 @@ document.writeln('//--></style>') }
               pageTracker._trackPageview();
             } catch(err) {}</script>
         </div>
-      </td> 
-    </tr> 
-  </table> 
-</body> 
-</html> 
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
