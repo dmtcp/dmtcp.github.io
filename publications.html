@@ -76,6 +76,29 @@
           <ul>
 
         <li><p>
+	<a href="http://www.ccs.neu.edu/home/gene/papers/cluster24.pdf">
+        Enabling Practical Transparent Checkpointing for {MPI}: A Topological Sort Approach</a>,
+	<br>
+        (and earlier technical report of same name at
+        <a href="https://arxiv.org/abs/2408.02218">
+        https://arxiv.org/abs/2408.02218</a>)<br>
+	Yao Xu and Gene Cooperman,<br>
+	<em>Proc. of 2024 IEEE International Conference on Cluster Computing
+	 (Cluster'24)</em>, Sept., 2024, IEEE Computer Society,
+	<br>
+        <a href="papers/cluster24.bib">Bibtex</a>.
+	 <br>
+	<em style="color:green">(The MANA paper introduced "split processes"
+	to transparently checkpointing independently of the underlying
+	network software.  But that algorithm interposed an MPI barrier
+	in front of each collective communication, in order to ensure
+	a safe syncronization point (and hence a consistent snapshot
+	for checkpointing).  This incurred high runtime overhead for
+	collective communication.  A new sequence number algorithm is shown
+	with zero additional inter-process communication, and so has almost
+	no runtime overhead.)</em>
+
+        <li><p>
 	<a href="http://www.ccs.neu.edu/home/gene/papers/sc20.pdf">
         CRAC: Checkpoint-Restart Architecture for CUDA with Streams and UVM</a>,
 	<br>
@@ -242,6 +265,117 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
 <!-- longer version of CCNCheck submitted to ACM-SIGCOMM ICN-2015 -->
 
 
+
+	<li><p>
+	  <a href="https://dl.acm.org/doi/abs/10.1145/3660319.3660330">
+	     Live Migration of Multi-Container Kubernetes Pods in Multi-Cluster Serverless Edge Systems</a>,<br>
+          Poggiani, Leonardo and Puliafito, Carlo and Virdis, Antonio and Mingozzi, Enzo,<br>
+           <em>Proceedings of the 1st Workshop on Serverless at the Edge (SEATED'24)</em>
+	 pp.&nbsp;9--16, Sept., 2024,
+          <br>
+          <a href="papers/seated24.bib">Bibtex</a>
+
+	<li><p>
+	  <a href="https://link.springer.com/chapter/10.1007/978-3-031-69583-4_24">
+	     AdapCK: Optimizing I/O for Checkpointing on Large-Scale High Performance Computing Systems</a>,<br>
+          Jia, Jie and Liu, Yi and Liu, Yanke and Chen, Yifan and Lin, Fang,<br>
+           <em>European Conference on Parallel Processing (Euro-Par'24)</em>
+	Lecture Notes in Computer Science&nbsp;<b>14803</b>,
+	 pp.&nbsp;342--355, Aug., 2024, Springer Nature,
+          <br>
+          <a href="papers/ecpp24.bib">Bibtex</a>
+
+	<li><p>
+	  <a href="https://arxiv.org/abs/2407.19117">
+	     Optimizing Checkpoint-Restart Mechanisms for HPC with DMTCP in Containers at NERSC</a>,<br>
+	  Timalsina, Madan and Gerhardt, Lisa and Tyler, Nicholas and Blaschke, Johannes P and Arndt, William,<br>
+	  <em>arXiv preprint arXiv:2407.19117</em>,
+	  9&nbsp;pages, Jul., 2024,
+          <br>
+          <a href="papers/arxiv24.bib">Bibtex</a>
+
+	<li><p>
+	  <a href="https://ieeexplore.ieee.org/abstract/document/10533362?casa_token=4jp1iSXhY5gAAAAA:JTK1iXGcudt7wg-Pr2Kvb--u71QNi2cFHZnUkEnhGTiKfYkVdTdv5etfMM48PKCz_rIz9Go8Zg">
+	   Limitless FaaS: Overcoming serverless Functions Execution
+	   Time Limits with Invoke Driven Architecture and Memory
+	   Checkpoints</a>,<br>
+          Rodrigo Landa Andraca and Mahdi Zaree,<br>
+         <em>10th International Conference on Web Research (ICWR'24)</em>,
+	 pp.&nbsp;210--215, May, 2024,
+          <br>
+          <a href="papers/icwr24.bib">Bibtex</a>
+
+	<li><p>
+        <a href="https://www.proquest.com/docview/3039622274">
+	<em>Application-Transparent Strategies to Optimize Limited Resources in HPC and Big Data</em></a>,<br>
+	Twinkle Jain, PhD&nbsp;thesis,
+	Northeastern University, May, 2024,<br>
+	<a href="papers/jainthesis24.bib">Bibtex</a>
+
+	<li><p>
+	  <a href="https://link.springer.com/article/10.1007/s42514-023-00178-4">
+	     DCU-CHK: Checkpointing for Large-scale CPU-DCU Heterogeneous Computing Systems</a>,<br>
+          Jia, Jie and Lin, Xinyuan and Lin, Fang and Liu, Yi,<br>
+           <em>CCF Transactions on High Performance Computing</em>
+	 pp.&nbsp;171--187, Jan., 2024, Springer,
+          <br>
+          <a href="papers/ccf24.bib">Bibtex</a>
+
+        <li><p>
+        <a href="https://ieeexplore.ieee.org/abstract/document/10368494">
+        Digital Twin Migration using the {OKD} Platform: A Use-Case for Emergency Vehicles</a>,<br>
+        Ribeiro, Bruno and Gon&ccedil;alves, Pedro and Bartolomeu, Paulo C,<br>
+         <em>33rd International Telecommunication Networks and Applications Conference (ATNAC'24)</em>,
+        pp.&nbsp;63--69, Dec..,&nbsp;2023, IEEE,<br>
+        <a href="papers/atnac23.bib">Bibtex</a>.
+
+	  <li><p>
+	    <a href="https://repositorio.ufsc.br/handle/123456789/254816">
+	 HPC@Cloud: a Provider-Agnostic Toolkit to Enable the Execution
+	 of {HPC} Applications on Public Clouds</a>,<br>
+	Pereira Filho, Vanderlei Munhoz,<br>
+	<em>Masters Thesis, Universidade Federal de Santa Catarina</em>, Nov.&nbsp;4,&nbsp;2023, <br>
+	<a href="papers/pereira23.bib">Bibtex</a>.
+
+	<li><p>
+	  <a href="https://dl.acm.org/doi/abs/10.1145/3624062.3624255">
+	     Implementation-Oblivious Transparent Checkpoint-Restart for MPI</a>,<br>
+	  Xu, Yao and Belyaev, Leonid and Jain, Twinkle and Schafer,
+	  Derek and Skjellum, Anthony and Cooperman, Gene,<br>
+	  <em>Proceedings of the SC'23 Workshops of The International
+	  Conference on High Performance Computing, Network, Storage,
+	  and Analysis (SC-W'23; SuperCheck'23)</em>,
+	  pp.&nbsp;1738--1747, Nov., 2023,
+          <br>
+          <a href="papers/supercheck23.bib">Bibtex</a>
+
+	<li><p>
+	  <a href="https://www.researchgate.net/profile/Abdelaziz-Hamdi-2/publication/374256675_ZFS-volume-migrator_Un_outil_de_migration_de_conteneurs_de_niveau_de_stockage_pour_les_clusters_Kubernetes_bases_sur_zfs/links/651593f92c6cfe2cc215bbb0/ZFS-volume-migrator-Un-outil-de-migration-de-conteneurs-de-niveau-de-stockage-pour-les-clusters-Kubernetes-bases-sur-zfs.pdf">
+	   Migration Transparente de Conteneurs</a>,<br>
+          Hamdi Abdelaziz, Daniele Miorandi, and Guillaume Pierre,<br>
+         <em>Masters Thesis</em>,
+	&Eacute;cole nationale Supérieurede lInformatique; ex. INI (Institut National de formation en Informatique, Alger, Alg&eactue;rie),
+	 Sept., 2023,
+          <br>
+          <a href="papers/abdelazizthesis23.bib">Bibtex</a>
+
+	<li><p>
+        <a href="https://ddd.uab.cat/record/287110">
+	<em>Gesti&oacute;n del Almacenamiento para Tolerancia a Fallos
+	en Computaci&oacute;n de Altas Prestaciones</em></a>,<br>
+	Betzabeth Le&oacute;n, PhD&nbsp;thesis,
+	Universitat Aut&oacute;noma de Barcelona, Mar., 2023,<br>
+        <a href="papers/leonthesis23.bib">Bibtex</a>
+
+	<li><p>
+	  <a href="https://ieeexplore.ieee.org/abstract/document/10025545">
+	     Debugging MPI Implementations via Reduction-to-Primitives</a>,<br>
+	  Cooperman, Gene and Li, Dahong and Zhao, Zhengji,<br>
+	  <em>IEEE/ACM Third International Symposium on Checkpointing for Supercomputing (SuperCheck'22</em>,
+	  pp.&nbsp;10--18, Nov., 2022,
+          <br>
+          <a href="papers/supercheck22.bib">Bibtex</a>
+
 	<li><p>
 	  <a href="https://hal.inria.fr/hal-03587358/document">
 	   Good Shepherds Care For Their Cattle: Seamless Pod Migration
@@ -251,6 +385,18 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
 	 9~pages, May, 2022,
           <br>
           <a href="papers/icfec22.bib">Bibtex</a>
+
+	<li><p>
+	  <a href="https://link.springer.com/article/10.1007/s11227-022-04482-8">
+	   A Model of Checkpoint Behavior for Applications that have I/O</a>,
+           <br>
+	  Le&oacute;n, Betzabeth and M{&eacute;ndez, Sandra and Franco,
+	  Daniel and Rexachs, Dolores and Luque, Emilio,<br>
+         <em>The Journal of Supercomputing</em>&nbsp;<b>78</b>,
+	 pp.&nbsp; 15404–15436, Apr., 2022, Springer,
+          <br>
+          <a href="papers/jsc22.bib">Bibtex</a>
+	<a href="papers/leonthesis23.bib">Bibtex</a>
 
 	<li><p>
         <a href="http://hdl.handle.net/2047/D20420684">
@@ -449,7 +595,7 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
         Florian Kriebel, Faiq Khalid, Bharath Srinivas
           Prabakaran, Semeen Rehman, and Muhammad Shafique,<br>
         <em>Dependable Embedded Systems
-            (Embedded Ssystems series, open access)</em>,<br>
+            (Embedded Systems series, open access)</em>,<br>
 	eds. J&ouml;rg Henkelandand  Nikil Dutt,
         pp.&nbsp;161--180, Jan.,&nbsp;2021, Springer<br>
         <a href="papers/dep-emb-sys21.bib">Bibtex</a>.
@@ -457,7 +603,6 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
 	<li><p>
         <a href="https://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1508220&dswid=-5259"><em>
         Direct Heap Snapshotting in the Java HotSpot VM: a Prototype</em></a>,<br>
-        <br>
 	Ludvig Janiuk,<br>
         M.S.&nbsp;thesis,
 	KTH Royal Institute of Technology,<br>
@@ -955,19 +1100,6 @@ Jiajun Cao, Gregory Kerr, Kapil Arya and Gene Cooperman,<br>
             <a href="http://mug.mvapich.cse.ohio-state.edu/static/media/mug/presentations/18/cooperman-mug-18.pdf">slides</a>;<br>
             <a href="papers/mug18.bib">Bibtex</a>.
 
-  https://dl.acm.org/citation.cfm?id=3219121, Automatic Characterization
-    of HPC Job Parallel Filesystem I/O Patterns, ACM
-https://dl.acm.org/doi/abs/10.1145/3219104.3219121
-@incollection{white2018automatic,
-  title={Automatic Characterization of {HPC} Job Parallel Filesystem {I/O} Patterns},
-  author={White, Joseph P and Kofke, Alexander D and DeLeon, Robert L and
-          Innus, Martins and Jones, Matthew D and Furlani, Thomas R},
-  booktitle={Proc. of the Practice and Experience on Advanced Research Computing
-	(PEARC'18)},
-  pages={1--8},
-  year={2018}
-}
-
           <li><p>
             <a href="https://dl.acm.org/doi/abs/10.1145/3219104.3219121">
 	    Automatic Characterization of HPC Job Parallel Filesystem
@@ -1025,15 +1157,16 @@ https://dl.acm.org/doi/abs/10.1145/3219104.3219121
             <a href="papers/hpc18.bib">Bibtex</a>.
 
           <li><p>
-            <a href="http://events.dvcon.org/events/proceedings.aspx?id=246--5">
+            <a href="https://dvcon-proceedings.org/document/transparently-checkpointing-software-test-benches-to-improve-productivity-of-soc-verification-in-an-emulation-environment/">
             Transparently Checkpointing Software Test Benches to Improve Productivity of SoC Verification in an Emulation Environment</a>,<br>
 	    Ankit Garg, Suresh Krishnamurthy, Gene Cooperman, Rohan Garg,
 		 and Jeff Evans,<br>
             <em>2018 Design and Verification Conference and Exhibition
 	 (DVCON-US 2018)</em>,<br>
             San Jose, CA, Feb.&nbsp;27,&nbsp;2018;
-            <a href="https://dvcon.org/">
+            <a href="https://dvcon-proceedings.org/choose-your-location/united-states/">
                 DVCON-US 2018</a>,<br>
+	    <a href="https://dvcon-proceedings.org/document/transparently-checkpointing-software-test-benches-to-improve-productivity-of-soc-verification-in-an-emulation-environment-presentation/">slides</a>,
             <a href="papers/dvcon-us18.bib">Bibtex</a>.<br>
 	<em>(IMPORTANT: Browser must allow popups, to view paper
 	    at DVCon site.)</em>
@@ -1081,7 +1214,7 @@ https://dl.acm.org/doi/abs/10.1145/3219104.3219121
 		 and Efforts of Smartphone Apps</a>,<br>
 	    Li Li, Yunhao Bai, Xiaorui Wang, Mai Zheng, and Feng Qin,<br>
             <em>Eighth Int. Green and Sustainable Computing
-		 Conference (IGSC'18)</em>,<br>
+		 Conference (IGSC'17)</em>,<br>
 	    IEEE,
 	    pp.&nbsp;1--8,
             Oct., 2017;
@@ -1124,7 +1257,7 @@ https://dl.acm.org/doi/abs/10.1145/3219104.3219121
             <a href="papers/roscon17.bib">Bibtex</a>.
 
           <li><p>
-            <a href="https://dvcon-india.org/content/event-details?id=241--13">
+            <a href="https://dvcon-proceedings.org/document/expedite-any-simulation-with-dmtcp-and-save-decades-of-computation-presentation/">
             Expedite any Simulation with DMTCP and Save Decades of Computation</a (paper to appear)>,<br>
             Balaji R (presenting), Sathish Kumar Sugumara, Gene Cooperman, Rohan Garg, and Jiajun Cao,<br>
             <em>2017 Design and Verification Conference and Exhibition
@@ -1133,8 +1266,6 @@ https://dl.acm.org/doi/abs/10.1145/3219104.3219121
             <a href="https://dvcon-india.org/">
                 DVCON-India 2017</a>,<br>
             <a href="papers/dvcon-india17.bib">Bibtex</a>. <br>
-	<em>(IMPORTANT: Browser must allow popups, to view paper
-	    at DVCon site.)</em>
 
           <li><p>
             <a href="https://hal.laas.fr/hal-01807513/document">
@@ -1570,6 +1701,14 @@ https://dl.acm.org/doi/abs/10.1145/3219104.3219121
 	<a href="papers/comp-sci-disc15.bib">Bibtex</a>.
 
 	  <li><p>
+	<a href="http://www.ijnc.org/index.php/ijnc/article/view/112">
+	Using Checkpointing and Virtualization for Fault Injection</a>,<br>
+        Cyrille Artho and Kuniyasu Suzaki and Masami Hagiya and Watcharin Leungwattanakit and Richard Potter and Eric Platon and Yoshinori Tanabe and Franz Weitl and Mitsuharu Yamamoto,<br>
+        <em>International Journal of Networking and Computing&nbsp;<b>5</b>(2)</em>,
+	pp.&nbsp;347--372, 2015,<br>
+	<a href="papers/ijnc15.bib">Bibtex</a>.
+
+	  <li><p>
 	    <a href="http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=7052174">
               Using Checkpointing and Virtualization for Fault Injection</a>,
 	    <br>
@@ -1740,7 +1879,7 @@ https://dl.acm.org/doi/abs/10.1145/3219104.3219121
 	    <a href="http://e-collection.library.ethz.ch/view/eth:8582">
 	 Improving the Efficiency of Fuzz Testing Using Checkpointing</a>,<br>
 	Erenst-Friedrich&nbsp;Zachow,<br>
-	<em>Master Thesis, ETH-Z&uuml;rich, April&nbsp;1,&nbsp;2014</em>, <br>
+	<em>Masters Thesis, ETH-Z&uuml;rich, April&nbsp;1,&nbsp;2014</em>, <br>
 	<a href="papers/ethz14.bib">Bibtex</a>.
 
 	  <li><p>
