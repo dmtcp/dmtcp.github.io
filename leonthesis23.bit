@@ -1,0 +1,10 @@
+@phdthesis{leon23gestion,
+  title = {Gesti\'{o}n del Almacenamiento para Tolerancia a Fallos en Computaci\'{o}n de Altas Prestaciones},
+  author = {Le\'{o}n, Betzabeth},
+  month = mar,
+  year = {2023},
+  school = {Universitat Aut\'{o}noma de Barcelona},
+  note = {\url{https://ddd.uab.cat/record/287110} ;
+          \url{https://www.tdx.cat/handle/10803/689691} ;
+          \url{https://www.tdx.cat/bitstream/handle/10803/689691/blo1de1.pdf?sequence=1&isAllowed=y}}
+}

@@ -40,60 +40,60 @@
         <div class="cell">
           <h2>Frequently Asked Questions:</h2>
           <ul>
-            <li> <a href="#sect-general"><b>I. General Questions</b></a>
-            <li> <a href="#sect-targetApps"><b>II. Support for Specific Types of Software Applications</b></a>
+            <li> <a href="FAQ.html#sect-general"><b>I. General Questions</b></a>
+            <li> <a href="FAQ.html#sect-targetApps"><b>II. Support for Specific Types of Software Applications</b></a>
           </ul>
           <hr>
 
           <ul> 
-            <li> <a name="sect-general" href="#general"><b>I. General Questions</b></a>
+            <li> <a name="sect-general" href="FAQ.html#general"><b>I. General Questions</b></a>
             <ul>
-            <li> <a href="#basics">Basics</a>
+            <li> <a href="FAQ.html#basics">Basics</a>
              <ol>
-              <li> <a href="#runningDMTCP"> How does one run DMTCP? </a>
-              <li> <a href="#progType"> What types of programs can DMTCP checkpoint? </a>
-              <li> <a href="#license"> What is the license for DMTCP? </a>
-              <li> <a href="#compile"> Do I need to re-compile or re-link my applications to use DMTCP? </a>
-              <li> <a href="#kernelMod"> Do I need to add kernel modules or patch my kernel? </a>
+              <li> <a href="FAQ.html#runningDMTCP"> How does one run DMTCP? </a>
+              <li> <a href="FAQ.html#progType"> What types of programs can DMTCP checkpoint? </a>
+              <li> <a href="FAQ.html#license"> What is the license for DMTCP? </a>
+              <li> <a href="FAQ.html#compile"> Do I need to re-compile or re-link my applications to use DMTCP? </a>
+              <li> <a href="FAQ.html#kernelMod"> Do I need to add kernel modules or patch my kernel? </a>
              </ol>
-            <li> <a href="#uses">Use Cases</a>
+            <li> <a href="FAQ.html#uses">Use Cases</a>
              <ol>
-              <li> <a href="#cluster"> How does one use DMTCP for a distributed computation (for example, on a cluster)?
-              <li> <a href="#migrate"> Can I migrate my applications (restart on another host, possibly with a different Linux); and what if I see a message <code>illegal&nbsp;instruction</code>? </a>
-              <li> <a href="#dmtcpaware"> How can my software invoke a checkpoint or restart directly under control of my program?</a>
-              <li> <a href="#exitcode"> What is the exit code (return status) for a target application running under DMTP?</a>
-              <li> <a href="#plugins"> Does DMTCP support third-party plugins (add-ons) to change the behavior of DMTCP at run-time?</a>
-              <li> <a href="#modifyEnv"> On restart, a process sees only the environment variables from the time of checkpoint (since DMTCP restores the previous memory).  What do I do if I want to see the newest environment values at the time of restart?</a>
-              <li> <a href="#root"> What if my target application runs as root, uses the setuid bit, uses capabilities, or uses other special privileges?
-              <li> <a href="#root"> What if my target application runs as root, uses the setuid bit, uses capabilities, or uses other special privileges?
-              <li> <a href="#readdmtcp"> How can I read a summary of the contents of a DMTCP checkpoint image?</a>
-              <li> <a href="#debugging"> How do I debug my application under GDB when I am using DMTCP?
+              <li> <a href="FAQ.html#cluster"> How does one use DMTCP for a distributed computation (for example, on a cluster)?
+              <li> <a href="FAQ.html#migrate"> Can I migrate my applications (restart on another host, possibly with a different Linux); and what if I see a message <code>illegal&nbsp;instruction</code>? </a>
+              <li> <a href="FAQ.html#dmtcpaware"> How can my software invoke a checkpoint or restart directly under control of my program?</a>
+              <li> <a href="FAQ.html#exitcode"> What is the exit code (return status) for a target application running under DMTP?</a>
+              <li> <a href="FAQ.html#plugins"> Does DMTCP support third-party plugins (add-ons) to change the behavior of DMTCP at run-time?</a>
+              <li> <a href="FAQ.html#modifyEnv"> On restart, a process sees only the environment variables from the time of checkpoint (since DMTCP restores the previous memory).  What do I do if I want to see the newest environment values at the time of restart?</a>
+              <li> <a href="FAQ.html#root"> What if my target application runs as root, uses the setuid bit, uses capabilities, or uses other special privileges?
+              <li> <a href="FAQ.html#root"> What if my target application runs as root, uses the setuid bit, uses capabilities, or uses other special privileges?
+              <li> <a href="FAQ.html#readdmtcp"> How can I read a summary of the contents of a DMTCP checkpoint image?</a>
+              <li> <a href="FAQ.html#debugging"> How do I debug my application under GDB when I am using DMTCP?
              </ol>
-            <li> <a href="#architectures">Architectures Supported by DMTCP</a>
+            <li> <a href="FAQ.html#architectures">Architectures Supported by DMTCP</a>
              <ol>
-              <li> <a href="#cpuPorts"> What CPUs has DMTCP been ported to?</a>
-              <li> <a href="#intel32-64"> How can I compile DMTCP for mixed x86/x86_64 architectures (multi-arch/multilib: mixed 32-/64-bit)?</a>
-              <li> <a href="#osPorts"> What operating systems has DMTCP been ported to? </a>
-              <li> <a href="#networkPorts"> What types of networks does DMTCP support? </a>
-              <li> <a href="#distros"> What Linux distributions do you test on?</a>
+              <li> <a href="FAQ.html#cpuPorts"> What CPUs has DMTCP been ported to?</a>
+              <li> <a href="FAQ.html#intel32-64"> How can I compile DMTCP for mixed x86/x86_64 architectures (multi-arch/multilib: mixed 32-/64-bit)?</a>
+              <li> <a href="FAQ.html#osPorts"> What operating systems has DMTCP been ported to? </a>
+              <li> <a href="FAQ.html#networkPorts"> What types of networks does DMTCP support? </a>
+              <li> <a href="FAQ.html#distros"> What Linux distributions do you test on?</a>
              </ol>
-            <li> <a href="#performance">Performance</a>
+            <li> <a href="FAQ.html#performance">Performance</a>
              <ol>
-	      <li> <a href="#speed"> My application takes several seconds
+	      <li> <a href="FAQ.html#speed"> My application takes several seconds
 		 (or longer) to checkpoint and restart.  What can I do
 	         to speed it up?
-	      <li> <a href="#size"> Can I tell DMTCP that some of my memory
+	      <li> <a href="FAQ.html#size"> Can I tell DMTCP that some of my memory
                  does not need to be checkpointed (specifying <em>cutouts</em>,
                  for a smaller checkpoint image)?
              </ol>
-            <li> <a href="#internals">DMTCP Internals</a>
+            <li> <a href="FAQ.html#internals">DMTCP Internals</a>
             <ol>
-              <li> <a href="#internalWorking"> How does DMTCP work?</a>
-              <li> <a href="#documentation"> Is there documentation on the internals of DMTCP?</a>
-              <li> <a href="#jassert"> Can I enable tracing of DMTCP internals?</a>
-              <li> <a href="#debugPlugins"> I suspect a bug concerning an interaction with an internal plugin of DMTCP.  How can I debug this?</a>
-              <li> <a href="#internalOverhead"> What is the run-time overhead of DMTCP?</a>
-              <li> <a href="#osFeatures"> What O/S features are supported by DMTCP? </a>
+              <li> <a href="FAQ.html#internalWorking"> How does DMTCP work?</a>
+              <li> <a href="FAQ.html#documentation"> Is there documentation on the internals of DMTCP?</a>
+              <li> <a href="FAQ.html#jassert"> Can I enable tracing of DMTCP internals?</a>
+              <li> <a href="FAQ.html#debugPlugins"> I suspect a bug concerning an interaction with an internal plugin of DMTCP.  How can I debug this?</a>
+              <li> <a href="FAQ.html#internalOverhead"> What is the run-time overhead of DMTCP?</a>
+              <li> <a href="FAQ.html#osFeatures"> What O/S features are supported by DMTCP? </a>
 <!--
               <li> <a href="#errorMsgs">DMTCP Error Messages</a>
               <ol>
@@ -101,46 +101,46 @@
               </ol>
 -->
             </ol>
-            <li> <a href="#dmtcpProject">About the DMTCP Project</a>
+            <li> <a href="FAQ.html#dmtcpProject">About the DMTCP Project</a>
              <ol>
-              <li> <a href="#supportContact"> Who should I write to for support? </a>
-              <li> <a href="#history"> When was work on DMTCP begun, and who works on it now? </a>
-              <li> <a href="#citeDMTCP"> How should I cite DMTCP in a publication? </a>
+              <li> <a href="FAQ.html#supportContact"> Who should I write to for support? </a>
+              <li> <a href="FAQ.html#history"> When was work on DMTCP begun, and who works on it now? </a>
+              <li> <a href="FAQ.html#citeDMTCP"> How should I cite DMTCP in a publication? </a>
              </ol>
             </ul>
-            <li> <a name="sect-targetApps" href="#targetApps"><b>II. Support for Specific Types of Software Applications</b></a>
+            <li> <a name="sect-targetApps" href="FAQ.html#targetApps"><b>II. Support for Specific Types of Software Applications</b></a>
             <ul>
-            <li> <a href="#supportedApps">What Applications does
+            <li> <a href="FAQ.html#supportedApps">What Applications does
 		 DMTCP Support?</a>
             <ol>
-	      <li> <a href="#generalSupport"> Is there a simple, general
+	      <li> <a href="FAQ.html#generalSupport"> Is there a simple, general
 		description of what applications are supported?</a>
-              <li> <a href="#distributed"> Does DMTCP support multi-threaded and distributed programs? </a>
-              <li> <a href="#javaSupport"> Does DMTCP support Java?</a>
-              <li> <a href="#matlabSupport"> Does DMTCP support
+              <li> <a href="FAQ.html#distributed"> Does DMTCP support multi-threaded and distributed programs? </a>
+              <li> <a href="FAQ.html#javaSupport"> Does DMTCP support Java?</a>
+              <li> <a href="FAQ.html#matlabSupport"> Does DMTCP support
 	    	checkpointing of Matlab?</a>
 
-            <li> <a href="#RCkpt"> Does DMTCP support
+            <li> <a href="FAQ.html#RCkpt"> Does DMTCP support
 	    checkpointing of R programs (for statistical computing)?</a>
-              <li> <a href="#mpiSupport"> Does DMTCP support MPI?</a>
-              <li> <a href="#openmpSupport"> Does DMTCP support
+              <li> <a href="FAQ.html#mpiSupport"> Does DMTCP support MPI?</a>
+              <li> <a href="FAQ.html#openmpSupport"> Does DMTCP support
 	    	multi-threaded languages such as OpenMP and Cilk?</a>
-              <li> <a href="#batchQueue"> Does DMTCP support integration with batch queues (resource managers)? </a>
-              <li> <a href="#batchQueue"> Does DMTCP support integration with Condor? </a>
-              <li> <a href="#screenSupport"> Does DMTCP support GNU screen?</a>
-              <li> <a href="#gdb"> Can DMTCP checkpoint a GDB session?</a>
-              <li> <a href="#xwindowsSupport"> Does DMTCP support X-Windows graphics (GUI) programs? </a>
+              <li> <a href="FAQ.html#batchQueue"> Does DMTCP support integration with batch queues (resource managers)? </a>
+              <li> <a href="FAQ.html#batchQueue"> Does DMTCP support integration with Condor? </a>
+              <li> <a href="FAQ.html#screenSupport"> Does DMTCP support GNU screen?</a>
+              <li> <a href="FAQ.html#gdb"> Can DMTCP checkpoint a GDB session?</a>
+              <li> <a href="FAQ.html#xwindowsSupport"> Does DMTCP support X-Windows graphics (GUI) programs? </a>
             </ol>
-            <li> <a href="#matlab">Checkpointing Matlab</a>
+            <li> <a href="FAQ.html#matlab">Checkpointing Matlab</a>
             <ol>
-              <li> <a href="#matlabCkpt"> Does DMTCP support checkpointing of Matlab programs?</a>
+              <li> <a href="FAQ.html#matlabCkpt"> Does DMTCP support checkpointing of Matlab programs?</a>
             </ol>
 
-            <li> <a href="#mpi">Checkpointing MPI</a>
+            <li> <a href="FAQ.html#mpi">Checkpointing MPI</a>
             <ol>
-              <li> <a href="#mpiCkpt"> Does DMTCP support checkpointing of MPI programs? </a>
-              <li> <a href="#mpiInfiniBand"> Does DMTCP support MPI for InfiniBand, Myrinet, or iWARP?</a>
-              <li> <a href="#batchQueuePorts"> What types of batch queues (resource managers) does DMTCP support? </a>
+              <li> <a href="FAQ.html#mpiCkpt"> Does DMTCP support checkpointing of MPI programs? </a>
+              <li> <a href="FAQ.html#mpiInfiniBand"> Does DMTCP support MPI for InfiniBand, Myrinet, or iWARP?</a>
+              <li> <a href="FAQ.html#batchQueuePorts"> What types of batch queues (resource managers) does DMTCP support? </a>
             </ol>
 
             </ul>
@@ -204,8 +204,8 @@
             No.  DMTCP requires no root permissions.  Hence, other
             software packages can easily include DMTCP as part of their
             distribution (subject to
-            <a href="#license">DMTCP's LGPL license</a>).
-	    (See also <a href="#root"><em>setuid and other
+            <a href="FAQ.html#license">DMTCP's LGPL license</a>).
+	    (See also <a href="FAQ.html#root"><em>setuid and other
 	    special privileges</em></a>.)
 
            </ol>
@@ -273,7 +273,7 @@
 
             <li> <div class="faq"> <a name="dmtcpaware"> How can my software invoke a checkpoint or restart directly under control of my program? </a> </div>
 	    The most full-featured mechanism is through
-	    <a href="#plugins">DMTCP plugins</a>.
+	    <a href="FAQ.html#plugins">DMTCP plugins</a>.
             See especially
             <a href="http://github.com/dmtcp/dmtcp/tree/master/test/plugin/applic-initiated-ckpt">
               application-initiated checkpointing</a>
@@ -322,7 +322,7 @@
 
             <li> <div class="faq"> <a name="root"> What if my target application runs as root, uses the setuid bit, uses capabilities, or uses other special privileges? </a> </div>
 	     DMTCP works internally by preloading its own library into
-	    the target application (see <a href="#internalWorking">
+	    the target application (see <a href="FAQ.html#internalWorking">
 	     How does DMTCP Work?</a>).  Linux will not honor the setuid
 	    bit if a foreign library is being preloaded (for obvious reasons).
 	    So, either the application must be run in a mode not requiring
@@ -415,7 +415,7 @@
             <p>
             <em>NOTE:</em> If you want to trace the internals of DMTCP
             (in addition to using GDB as above), see
-            <a href="#jassert"><em>tracing DMTCP internals</em></a>.<br>
+            <a href="FAQ.html#jassert"><em>tracing DMTCP internals</em></a>.<br>
             <p>
             <em>DEBUGGING DURING CHECKPOINT:</em> 
             Begin your DMTCP session under GDB (<tt>gdb&nbsp;--args&nbsp;dmtcp_launch&nbsp;...</tt>),
@@ -478,7 +478,7 @@
             bug goes away.  (This is similar to the standard advice often
             given for web browsers.)  In some exceptional cases, there can
             also be a bug in the interaction with internal plugins of DMTCP.
-            See <a href="#debugPlugins">"debugging internal DMTCP plugins"</a>
+            See <a href="FAQ.html#debugPlugins">"debugging internal DMTCP plugins"</a>
             for more information concerning this issue.
             <P> In debugging during restart using 'gdb attach', we have
             reports in early 2020 saying that under Ubuntu, we are not
@@ -672,7 +672,7 @@
             (Note that the checkpoint signal is for internal DMTCP
             use only.  It should not be used by non-DMTCP programs.)<br>
             &nbsp;&nbsp;&nbsp;&nbsp;Note that it is shown how to see
-            a summary of the <a href="#readdmtcp">contents of a
+            a summary of the <a href="FAQ.html#readdmtcp">contents of a
             DMTCP checkpoint image</a> in a previous question.
 
             <li> <div class="faq"> <a name="documentation"> Is there documentation on the internals of DMTCP? </a> </div>
@@ -711,7 +711,7 @@
             <tt>mtcp/Makefile</tt> to uncomment:<br>
             <tt>CFLAGS += -O0 -g -DDEBUG -DTIMING -Wall</tt><br>
             <em>NOTE:</em> If you also want to debug under GDB, see
-            <a href="#debugging"><em>debugging under GDB</em></a>.
+            <a href="FAQ.html#debugging"><em>debugging under GDB</em></a>.
 
             <li> <div class="faq"> <a name="debugPlugins"> I suspect a bug concerning an interaction with an internal plugin of DMTCP.  How can I debug this? </a> </div>
             Normally this should not happen.  However, a complex new user
@@ -819,7 +819,7 @@
             different hosts, edit the 'ssh' lines
 	    in <tt>dmtcp_restart_script.sh</tt>&nbsp;.
 	    See below
-	    for <a href="#mpi">further discussion on MPI</a>.  See <a
+	    for <a href="FAQ.html#mpi">further discussion on MPI</a>.  See <a
 	    href="http://github.com/dmtcp/dmtcp/tree/master/QUICK-START.md">QUICK-START.md</a>
 	    for additional details.
 
@@ -831,7 +831,7 @@
 
             <li> <div class="faq"> <a name="matlabSupport"> Does DMTCP support
 	    checkpointing of Matlab? </a></div>
-	    Yes.  Please <a href="#matlab">see below</a>.
+	    Yes.  Please <a href="FAQ.html#matlab">see below</a>.
 
             <li> <div class="faq"> <a name="RCkpt"> Does DMTCP support
 	    checkpointing of <a href="http://www.r-project.org/">R programs<a/>
@@ -840,7 +840,7 @@
 	    having a more intensive user of&nbsp;R provide feedback to us.
 
             <li> <div class="faq"> <a name="mpiSupport"> Does DMTCP support MPI? </a> </div>
-            Yes.  See the <a href="#mpi">section below on MPI</a>.
+            Yes.  See the <a href="FAQ.html#mpi">section below on MPI</a>.
 
             <li> <div class="faq"> <a name="openmpSupport"> Does DMTCP support
 	    multi-threaded languages such as OpenMP and Cilk? </a> </div>
@@ -850,7 +850,7 @@
             <li> <div class="faq"> <a name="batchQueue">  Does DMTCP support integration with batch queues (resource managers)? </a> </div>
 	    As of DMTCP version&nbsp;2.4, DMTCP supports SLURM and Torque.
 	    See below
-	    for <a href="#batchQueuePorts">additional details</a>.
+	    for <a href="FAQ.html#batchQueuePorts">additional details</a>.
 
             <li> <div class="faq"> <a name="condor">  Does DMTCP support integration with Condor? </a> </div>
             Yes.  See the web page on

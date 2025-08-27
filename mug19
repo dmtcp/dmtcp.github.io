@@ -1,0 +1,15 @@
+
+          <li><p>
+            <a href="http://mug.mvapich.cse.ohio-state.edu/static/media/mug/presentations/19/cooperman-mug-19.pdf">
+            Checkpointing the Un-checkpointable: MANA and the
+            Split-Process Approach</a>,<br>
+            Gene Cooperman,<br>
+            <em>MVAPICH User Group (MUG'19)</em>,<br>
+            Columbus, Ohio, Aug.&nbsp;20,&nbsp;2018;
+            <a href="http://mug.mvapich.cse.ohio-state.edu/program/">
+                MUG'19 program</a>,
+            <a href="http://mug.mvapich.cse.ohio-state.edu/static/media/mug/presentations/19/cooperman-mug-19.pdf">slides</a>;<br>
+            <a href="https://www.youtube.com/watch?v=kwD71IPmQy0">video</a>
+            (from <a href="https://insidehpc.com/2019/09/checkpointing-the-un-checkpointable-mana-and-the-split-process-approach/">https://insidehpc.com/2019/09/checkpointing-the-un-checkpointable-mana-and-the-split-process-approach/</a>);<br>
+            <a href="papers/mug19.bib">Bibtex</a>.
+
