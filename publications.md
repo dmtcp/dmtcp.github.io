@@ -1,9 +1,9 @@
 ---
 title: Publications
+layout: home
 nav_order: 8
 ---
 
-::: cell
 ## Citing DMTCP (please cite this publication):
 
 - [DMTCP: Transparent Checkpointing for Cluster Computations and the
@@ -1611,12 +1611,3 @@ B.  [Publications and Conference Presentations *using* DMTCP in their
      *Proc. of IEEE Int. Symp. on Parallel & Distributed Processing,
      Workshops and PhD Forum (IPDPSW)*, pp. 1\--10,\
      Apr., 2010, [Bibtex](papers/ipdpsw11.bib.html).
-
-------------------------------------------------------------------------
-
-Click [here for comments.](contactUs.html){.sidebar}
-
-[![SourceForge.net
-Logo](http://sourceforge.net/sflogo.php?group_id=96405&type=5){border="0"
-height="62" width="210"}](http://sourceforge.net)
-:::

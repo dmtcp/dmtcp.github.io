@@ -1,9 +1,9 @@
 ---
 title: Parallel Computing
-nav_order: 4
+layout: home
+nav_order: 5
 ---
 
-:::: cell
 ## Parallel Computing:
 
 There are three particular areas where DMTCP can support your parallel
@@ -45,12 +45,3 @@ Us\"](contactUs.html).)
   many configurations in release 2.2.1, we are still testing in other
   configurations. Please write to us (see \"Contact Us\" on left) if you
   observe any bugs.
-
-------------------------------------------------------------------------
-
-Click [here for comments.](contactUs.html){.sidebar}
-
-[![Sour ceForge.net
-Logo](http://sourceforge.net/sfl%0Aogo.php?group_id=96405&type=5){border="0"
-height="62" width="210"}](http://sourceforge.net)
-:::

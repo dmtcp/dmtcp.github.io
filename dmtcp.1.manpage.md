@@ -1,15 +1,8 @@
 ---
-title: Publications
-nav_order: 6
+title: Manpage
+layout: home
+nav_order: 9
 ---
-
-# dmtcp_launch \-- start a process under DMTCP control {#dmtcp_launch----start-a-process-under-dmtcp-control align="center"}
-
-#### Kapil Arya, Gene Cooperman, Rohan Garg, et al. {#kapil-arya-gene-cooperman-rohan-garg-et-al. align="center"}
-
-#### September, 2017 {#september-2017 align="center"}
-
-#### Version 2.5.1 {#version-2.5.1 align="center"}
 
 **dmtcp_launch** \-- start a process under DMTCP control.
 

@@ -1,9 +1,9 @@
 ---
 title: Supported Applications
-nav_order: 3
+layout: home
+nav_order: 4
 ---
 
-:::: cell
 ## DMTCP Supported Apps:
 
 In general, we try to support all mainstream applications and most
@@ -79,12 +79,3 @@ release. Please contact us if you have a need for this.
 - Not Supported: Statically Compiled Applications (using libc.a instead
   of libc.so). Could be supported through use of trampolines. Please
   contact us if you have an important application.
-
-------------------------------------------------------------------------
-
-Click [here for comments.](contactUs.html){.sidebar}
-
-[![SourceForge.net
-Logo](http://sourceforge.net/sflogo.php?group_id=96405&type=5){border="0"
-height="62" width="210"}](http://sourceforge.net)
-:::

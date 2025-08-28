@@ -1,9 +1,9 @@
 ---
 title: Condor Integration
-nav_order: 5
+layout: home
+#nav_order: 10
 ---
 
-:::: cell
 ## Condor Integration:
 
 **IMPORTANT: We have a report that the script below is not compatible
@@ -49,12 +49,3 @@ page:
 
 - [HTCondorWiki: Ticket
   #3094](https://htcondor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3094)
-
-------------------------------------------------------------------------
-
-Click [here for comments.](contactUs.html){.sidebar}
-
-[![SourceForge.net
-Logo](http://sourceforge.net/sflogo.php?group_id=96405&type=5){border="0"
-height="62" width="210"}](http://sourceforge.net)
-:::

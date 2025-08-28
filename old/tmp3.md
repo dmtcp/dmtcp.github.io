@@ -1,4 +1,3 @@
-::: cell
 ## Citing DMTCP (please cite this publication):
 
 - [DMTCP: Transparent Checkpointing for Cluster Computations and the
@@ -909,4 +908,3 @@ Click [here for comments.](contactUs.html){.sidebar}
 [![SourceForge.net
 Logo](http://sourceforge.net/sflogo.php?group_id=96405&type=5){border="0"
 height="62" width="210"}](http://sourceforge.net)
-:::

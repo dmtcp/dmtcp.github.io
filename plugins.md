@@ -1,9 +1,9 @@
 ---
 title: Plugins
+layout: home
 nav_order: 7
 ---
 
-:::: cell
 ## DMTCP Plugin Interface:
 
 DMTCP plugins provide a flexible model with which to write an add-on
@@ -40,7 +40,6 @@ within a Python session. You can import the Python module found as
 [*contrib/python/dmtcp.py*](https://github.com/dmtcp/dmtcp/blob/master/contrib/python/dmtcp.py).
 Other Python utilities are also in
 [*contrib/python/*](https://github.com/dmtcp/dmtcp/tree/master/contrib/python).
-:::
 
 ------------------------------------------------------------------------
 
