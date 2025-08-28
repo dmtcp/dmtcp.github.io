@@ -1,7 +1,7 @@
 ---
 title: Parallel Computing
 layout: home
-nav_order: 5
+nav_order: 6
 ---
 
 ## Parallel Computing:
