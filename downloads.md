@@ -1,6 +1,7 @@
 ---
 title: Downloads
 layout: home
+nav_order: 3
 ---
 
 ## Getting DMTCP:
