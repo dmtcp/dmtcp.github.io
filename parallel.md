@@ -32,16 +32,5 @@ Us\"](contactUs.html).)
 
 ## Specific Application Targets:
 
-- **MPI:** We regularly test on Open MPI and MVAPICH2, but don\'t have
-  the resources to frequently test on all implementations or
-  configurations of MPI. If DMTCP is not working for your favorite
-  setup, please do send us a message in dmtcp-forum (see [\"Contact
-  Us\"](contactUs.html) for that and other channels). See below, if you
-  run MPI over InfiniBand. Also, see the [FAQ questions on
-  MPI](http://dmtcp.sourceforge.net/FAQ.html#mpi).
-- **InfiniBand:** Please use the `--infiniband` flag of `dmtcp_launch`
-  for InfiniBand support. This will invoke the InfiniBand plugin for
-  DMTCP. While MPI/InfiniBand support has been shown to be robust in
-  many configurations in release 2.2.1, we are still testing in other
-  configurations. Please write to us (see \"Contact Us\" on left) if you
-  observe any bugs.
+- **MPI:** Please check the [MANA](https://github.com/mpickpt/mana) project.
+- **CUDA:** Please check the [CRAC](https://github.com/xuyao0127/CRAC-early-development) project.
