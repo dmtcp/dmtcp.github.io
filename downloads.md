@@ -31,5 +31,3 @@ See <http://github.com/dmtcp/dmtcp/releases> for the latest stable version.
   Ubuntu](http://neuro.debian.net/pkgs/dmtcp.html) (courtesy of the
   [NeuroDebian](http://neuro.debian.net/) software platform for
   Neuroscience)
-
-------------------------------------------------------------------------
