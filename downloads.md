@@ -8,22 +8,18 @@ nav_order: 3
 
 ------------------------------------------------------------------------
 
-See http://github.com/dmtcp/dmtcp/releases for the latest stable version.
+See <http://github.com/dmtcp/dmtcp/releases> for the latest stable version.
 
 ------------------------------------------------------------------------
 
 - To obtain the most recent developer version (possibly unstable) from
   the github repository,
-  - run the following command for the 2.6.x series:\
-    `git clone --branch=2.6 https://github.com/dmtcp/dmtcp.git`\
+  - run the following command for the latest version:\
+    `git clone https://github.com/dmtcp/dmtcp.git`\
      
-  - or else download the \"master\" branch (planned for release in late
-    2019 or early 2020 as version 3.0) as a zip file of the latest git
+  - or else download the \"main\" branch as a zip file of the latest git
     revision from:\
-    <https://github.com/dmtcp/dmtcp/archive/master.zip>\
-    *(The \"master\" (newer 3.0) branch has new features and a slightly
-    incompatible API, and also may be unstable. It is not yet ready for
-    prime time.)*
+    <https://github.com/dmtcp/dmtcp/archive/refs/heads/main.zip>\
 
 ------------------------------------------------------------------------
 
