@@ -6,15 +6,106 @@ nav_order: 5
 
 ## News
 
-### \[2019-08-14\]: Upcoming releases:
+### \[2025-06-25\]: DMTCP 4.0.0 released!
+This is a major release which introduces breaking checkpoint-image format. As such, the checkpoint images are not compatible with older releases. Other fixes include:
+- bug-fixes related to corner cases related to initialization.
+- bug-fixes to support custom malloc libraries.
+- bug-fix related to a regression involving interval checkpointing.
+- fixed a regression involving --restartdir.
+- support for close_range system call.
+- Logging improvements.
 
-           1. A totally revised DMTCP module for support of MPI is
-planned (based on MANA; MPI-Agnostic, Network-Agnostic; see [DMTCP
-Publications](http://dmtcp.sourceforge.net/publications.html)).\
-           2. Longer-term, a DMTCP version 3.0 is being prepared with
-new and better features (e.g., user-programmable barriers within a
-plugin). If you would like to try it now, see
-[Downloads](http://dmtcp.sourceforge.net/downloads.html).
+## Changelog:
+- Added DmtcpCkptHeader struct by @karya0 in https://github.com/dmtcp/dmtcp/pull/1144
+- Fixed readdmtcp.sh and minor cleanup for restore buf handling. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1188
+- Check if plugins need to skip nscd regions by @xuyao0127 in https://github.com/dmtcp/dmtcp/pull/1194
+- Use static buffer for motherofall. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1193
+- Handle applications with user-defined mmap wrappers. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1195
+- Fixed a bug in Util::mmap_fixed_noreplace by @xuyao0127 in https://github.com/dmtcp/dmtcp/pull/1197
+- Coordinator: Fixed interval checkpointing. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1198
+- dmtcp_coordinator --status-file: started/exited by @gc00 in https://github.com/dmtcp/dmtcp/pull/1199
+- Fixed IPC_PRIVATE handling for SysV Shm. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1192
+- Fix VirtPidTbl initialization to not rely on getpid. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1200
+- Added close_range test to syscall-tester. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1202
+- Several initialization bugfixes by @karya0 in https://github.com/dmtcp/dmtcp/pull/1203
+- Logging improvements by @karya0 in https://github.com/dmtcp/dmtcp/pull/1201
+- A few bug fixes related to exec and initialization. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1204
+- Coord: Fixed epoll_wait corner case. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1205
+- Use linux_dirent64 type with sys_getdents64 by @xuyao0127 in https://github.com/dmtcp/dmtcp/pull/1207
+- FIxed --restartdir flag by @xuyao0127 in https://github.com/dmtcp/dmtcp/pull/1208
+- Bumped version to 4.0.0 and added NEWS. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1209
+
+
+**Full Changelog**: https://github.com/dmtcp/dmtcp/compare/3.2.0...4.0.0
+
+### \[2025-02-26\]: DMTCP 3.2.0 released!
+This minor release includes:
+- support for `[vvar_vclock]` memory regions present on modern kernels.
+- bug fix for pthread_cancel handling.
+- bug fix for dlopen(NULL, ...) calls.
+- bug fix for thread handling on RISCV.
+
+**Full Changelog**: https://github.com/dmtcp/dmtcp/compare/v3.1.2...3.2.0
+
+### \[2024-10-14\]: DMTCP 3.1.2 released!
+A regression in 3.1.1 caused "dmtcp\_launch -i XX ..." to fail.
+A commit was created to fix this.
+
+### \[2024-10-08\]: DMTCP 3.1.1 released!
+- jalib/jalloc.cpp: bool\_atomic\_dwcas() -- Align the storage buffers for DMTCP internal allocations to 128 bits (16 bytes)
+-  This affected primarily ARM64.  128-bit data types must be 16-byte aligned, or the CPU throws a SIGBUS error
+- Small number of minor other change, primarily refactoring for maintenance
+
+### \[2024-09-30\]: DMTCP 3.1.0 released!
+- Many bug fixes for robustness, performance
+- Supports:  x86\_64, aarch64 (ARM64), RISC-V
+- Supports 32-bit arm and x86 (but not recently tested; bug reports welcome)
+- New flags: --stale-timeout (default: 8 hours) and --timeout (default: none)
+- python3 executable is now the standard for DMTCP:
+- Obsolete DMTCP plugins removed
+- Enhanced use of atomics for internal lock-free data structures
+-   (a regresssion fixed for better performance for OpenMP)
+- DMTCP tested to support new platforms:
+-   MANA ckpt for MPI (release 1.0.0); CUDA ckpt (experimental;
+   McMini (Model Checker: MINImal for easy modification)
+     (release 1.0.0; experimental branch for deep debugging))
+- Enhanced util/gdb-dmtcp-utils.py tools for GDB debugging
+- Enhanced tools for debugging user code in GDB after restart
+- See NEWS file for further details
+
+### \[2023-07-09\]: DMTCP 3.0 released!
+For some time, it has been recommended to use the latest github master branch for new projects using DMTCP.  This release formalizes that status.  At this time, the InfiniBand plugin is deprecated and likely doesn't work.  Further, the DMTCP flag '--no-coordinator' is not currently supported.  It may be brought back to life if important use cases are seen.  AARCH64 support may or may not work.  Please write to developers if needed.  DMTCP now requires C++14.
+
+However, for transparent checkpointing of MPI, please see: https://github.com/mpickpt/mana That project is undergoing intensive testing.  Please write to the developers for the latest status.
+
+There is also a highly experimental branch to support transparent checkpointing of CUDA: https://github.com/DMTCP-CRAC/CRAC-early-development.  Please write to the developers for plans to replace that experimental version.
+
+Major DMTCP enhancements:
+
+- The plugin facility for end users has now been made more flexible.  In particular, a plugin can now declare a PRESUSPEND phase.  See DMTCP [test/plugin/presuspend/]() for an example plugin using presuspend.  See the mpi-proxy-split plugin of the MANA project for a real-world example.
+
+- DMTCP now includes the ability to create an MTCP restart plugin, for use in split processes (see above). The lower-half application can use the MTCP restart plugin to restore the upper half from its checkpoint image.
+
+- The DMTCP key-value database (KVDB) was extended, for use by user plugins.
+
+- A new GDB utility, DMTCP/util/gdb-dmtcp-utils, is provided.  Source this file into GDB when debugging DMTCP or other software.  'gdb-dmtcp-utils' does not depend on DMTCP, and can be used more generally.
+
+Other enhancements and bug fixes:
+- Much of the DMTCP coordinator was rewritten to be more flexible, and support the new split process model.
+- DMTCP ordered maps were made more efficient.
+- Support for Linux Hugepages was added.
+- DMTCP supports Microsoft Windows WSL
+- New events, RUNNING and THREAD\_RESUME, were added.
+- Added DMTCP\_COORD\_WRITE\_CKPT environment variable
+- Improved DMTCP logging for use when debugging DMTCP
+- DMTCP now simulate vfork using fork.
+- Added ability to truncate append-only/RW files on restart.
+- Add './configure --disable-dlsym-wrapper' for special cases
+- MAP\_FIXED\_NOREPLACE used for safer execution during restart
+- Preserving user-requested rlimit across checkpoint-restart
+- Fixed SysV msg queue logic
+- Fixed freopen logic
+- Many smaller bug fixes
 
 ### \[2019-08-14\]: DMTCP 2.6.0 released!
 
@@ -102,11 +193,11 @@ The small fixes and ehancements of this \"point release\" include:
 This release mostly provides added robustness. Two notable items of
 added functionality are:
 
-1.  DMTCP_RESTART_PAUSE and DMTCP_RESTART_PAUSE0 environment variables
-    for easier debugging upon initial restart
-2.  The \--debug-logs flag was added to dmtcp_launch/dmtcp_restart. One
-    can now turn on logging individually for separate plugins, instead
-    of only turning it on globally.
+-  DMTCP_RESTART_PAUSE and DMTCP_RESTART_PAUSE0 environment variables
+   for easier debugging upon initial restart
+-  The \--debug-logs flag was added to dmtcp_launch/dmtcp_restart. One
+   can now turn on logging individually for separate plugins, instead
+   of only turning it on globally.
 
 An incompatibility of DMTCP with Open MPI 1.10 when using orterun
 (mpirun) was discovered. This may also affect some other versions of
