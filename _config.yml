@@ -1,7 +1,8 @@
 title: DMTCP
 description: DMTCP is a transparent checkpointing system for distributed, parallel, and grid applications.
-remote_theme: just-the-docs/just-the-docs
+theme: just-the-docs
 url: https://dmtcp.github.io
+favicon_ico: "/favicon.ico"
 
 aux_links:
   Overview (PDF): https://dmtcp.github.io/dmtcp-mug-17.pdf
@@ -45,3 +46,7 @@ callouts:
 
 ga_tracking: UA-7505564-1
 ga_tracking_anonymize_ip: true
+
+sass:
+  quiet_deps: true # https://github.com/just-the-docs/just-the-docs/issues/1541
+  silence_deprecations: ['import'] # https://github.com/just-the-docs/just-the-docs/issues/1607

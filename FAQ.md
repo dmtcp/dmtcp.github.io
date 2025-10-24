@@ -1,6 +1,6 @@
 ---
 title: Frequently Asked Questions
-nav_order: 2
+nav_order: 6
 layout: home
 ---
 

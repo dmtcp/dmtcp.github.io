@@ -1,7 +1,7 @@
 ---
 title: Plugins
 layout: home
-nav_order: 8
+nav_order: 9
 ---
 
 ## DMTCP Plugin Interface:

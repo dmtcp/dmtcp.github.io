@@ -1,7 +1,7 @@
 ---
 title: Publications
 layout: home
-nav_order: 9
+nav_order: 10
 ---
 
 ## Citing DMTCP (please cite this publication):

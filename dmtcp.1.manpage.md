@@ -1,8 +1,3 @@
----
-title: Manpage
-layout: home
-nav_order: 9
----
 
 **dmtcp_launch** \-- start a process under DMTCP control.
 

@@ -1,7 +1,7 @@
 ---
 title: News
 layout: home
-nav_order: 5
+nav_order: 2
 ---
 
 ## News
@@ -12,7 +12,7 @@ This is a major release which introduces breaking checkpoint-image format. As su
 - bug-fixes to support custom malloc libraries.
 - bug-fix related to a regression involving interval checkpointing.
 - fixed a regression involving --restartdir.
-- support for close_range system call.
+- support for close\_range system call.
 - Logging improvements.
 
 ## Changelog:
@@ -21,17 +21,17 @@ This is a major release which introduces breaking checkpoint-image format. As su
 - Check if plugins need to skip nscd regions by @xuyao0127 in https://github.com/dmtcp/dmtcp/pull/1194
 - Use static buffer for motherofall. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1193
 - Handle applications with user-defined mmap wrappers. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1195
-- Fixed a bug in Util::mmap_fixed_noreplace by @xuyao0127 in https://github.com/dmtcp/dmtcp/pull/1197
+- Fixed a bug in Util::mmap\_fixed\_noreplace by @xuyao0127 in https://github.com/dmtcp/dmtcp/pull/1197
 - Coordinator: Fixed interval checkpointing. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1198
-- dmtcp_coordinator --status-file: started/exited by @gc00 in https://github.com/dmtcp/dmtcp/pull/1199
-- Fixed IPC_PRIVATE handling for SysV Shm. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1192
+- dmtcp\_coordinator --status-file: started/exited by @gc00 in https://github.com/dmtcp/dmtcp/pull/1199
+- Fixed IPC\_PRIVATE handling for SysV Shm. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1192
 - Fix VirtPidTbl initialization to not rely on getpid. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1200
-- Added close_range test to syscall-tester. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1202
+- Added close\_range test to syscall-tester. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1202
 - Several initialization bugfixes by @karya0 in https://github.com/dmtcp/dmtcp/pull/1203
 - Logging improvements by @karya0 in https://github.com/dmtcp/dmtcp/pull/1201
 - A few bug fixes related to exec and initialization. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1204
-- Coord: Fixed epoll_wait corner case. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1205
-- Use linux_dirent64 type with sys_getdents64 by @xuyao0127 in https://github.com/dmtcp/dmtcp/pull/1207
+- Coord: Fixed epoll\_wait corner case. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1205
+- Use linux\_dirent64 type with sys\_getdents64 by @xuyao0127 in https://github.com/dmtcp/dmtcp/pull/1207
 - FIxed --restartdir flag by @xuyao0127 in https://github.com/dmtcp/dmtcp/pull/1208
 - Bumped version to 4.0.0 and added NEWS. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1209
 
@@ -40,8 +40,8 @@ This is a major release which introduces breaking checkpoint-image format. As su
 
 ### \[2025-02-26\]: DMTCP 3.2.0 released!
 This minor release includes:
-- support for `[vvar_vclock]` memory regions present on modern kernels.
-- bug fix for pthread_cancel handling.
+- support for `[vvar\_vclock]` memory regions present on modern kernels.
+- bug fix for pthread\_cancel handling.
 - bug fix for dlopen(NULL, ...) calls.
 - bug fix for thread handling on RISCV.
 
