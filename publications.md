@@ -18,15 +18,16 @@ nav_order: 10
 ------------------------------------------------------------------------
 
 A.  [DMTCP Publications (enhancements to the DMTCP
-    distribution)](#enhancements)
+    distribution)](#enhancements)\
 B.  [Publications and Conference Presentations *using* DMTCP in their
     work](#others)
 
 ------------------------------------------------------------------------
 
-## A. DMTCP Publications<a name="enhancement"></a> (an annotated history of enhancements to the DMTCP distribution; reverse chronological order):
+## A. DMTCP Publications<a name="enhancement"></a>
+(an annotated history of enhancements to the DMTCP distribution; reverse chronological order):
 
-- [Enabling Practical Transparent Checkpointing for {MPI}: A Topological
+- [Enabling Practical Transparent Checkpointing for MPI: A Topological
   Sort
   Approach](http://www.ccs.neu.edu/home/gene/papers/cluster24.pdf),\
   (and earlier technical report of same name at
@@ -156,7 +157,8 @@ B.  [Publications and Conference Presentations *using* DMTCP in their
 
 ------------------------------------------------------------------------
 
-## B. Publications and Conference Presentations mostly by other teams, and *using* DMTCP in their work<a name="others"></a> (not simply citing DMTCP) *(in reverse chronological order)*:
+## B. Publications and Conference Presentations mostly by other teams, and *using* DMTCP in their work<a name="others"></a>
+(not simply citing DMTCP) *(in reverse chronological order)*:
 
 1.  [Live Migration of Multi-Container Kubernetes Pods in Multi-Cluster
     Serverless Edge
