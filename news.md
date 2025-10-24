@@ -15,7 +15,7 @@ This is a major release which introduces breaking checkpoint-image format. As su
 - support for close\_range system call.
 - Logging improvements.
 
-## Changelog:
+#### Changelog:
 - Added DmtcpCkptHeader struct by @karya0 in https://github.com/dmtcp/dmtcp/pull/1144
 - Fixed readdmtcp.sh and minor cleanup for restore buf handling. by @karya0 in https://github.com/dmtcp/dmtcp/pull/1188
 - Check if plugins need to skip nscd regions by @xuyao0127 in https://github.com/dmtcp/dmtcp/pull/1194
