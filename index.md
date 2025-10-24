@@ -43,7 +43,8 @@ DMTCP is currently maintained by [Kapil
 Arya](http://www.ccs.neu.edu/home/kapil/), [Gene
 Cooperman](http://www.ccs.neu.edu/home/gene/), [Rohan
 Garg](http://www.ccs.neu.edu/home/rohgarg/), [Jiajun
-Cao](http://www.ccs.neu.edu/home/jiajun/), and Artem Polyakov. The list
+Cao](http://www.ccs.neu.edu/home/jiajun/), Artem Polyakov, and
+[Yao Xu](https://www.ccs.neu.edu/home/yaoxu/). The list
 of active developers continues to evolve.
 
 ## Acknowledgment
