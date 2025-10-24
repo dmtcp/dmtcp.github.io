@@ -242,41 +242,6 @@ Options through environment variables:
    or `dmtcp_coordinator`. An alternative to Ctrl+C is to use the kill
    command in `dmtcp_command` or `dmtcp_coordinator`.
 
-## Checkpointing Open MPI
-
-Verify that `mpirun` works.
-Verify `dmtcp_launch`, `dmtcp_restart`, etc. commands are in your path:
-```
-ssh <REMOTE-HOST> which dmtcp_launch
-```
-If they are not in your path, adjust your shell initialization file
-   to extend your path.
-Verify `ssh <REMOTE-HOST>` works without password otherwise
-do the following:
-```
-ssh-keygen -t dsa       [accept default values]
-ssh-keygen -t rsa       [accept default values]
-cat ~/.ssh/id*.pub >> ~/.ssh/authorized_keys
-```
-
-```
-make clean
-make
-make check
-
-dmtcp_launch mpirun ./hello_mpi
-dmtcp_command --checkpoint
-
-./dmtcp_restart_script.sh
-```
-
-DMTCP uses SIGUSR2 as default and so do older versions of Open MPI.
-If you have an older version (e.g < 1.3), try choosing a different
-value of SIGNUM for DMTCP as follows:
-```
-dmtcp_launch --ckpt-signal <SIGNUM> mpirun ./hello_mpi
-```
-
 ## Using DMTCP with X-Window:
 
 Note that this method does not work with X extensions like OpenGL.
