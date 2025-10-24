@@ -17,3 +17,6 @@ vendor/
 # Other misc folders
 old/
 bib/
+
+# MacOS generated files
+.DS_Store/
