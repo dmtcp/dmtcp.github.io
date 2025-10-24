@@ -41,10 +41,3 @@ within a Python session. You can import the Python module found as
 Other Python utilities are also in
 [*contrib/python/*](https://github.com/dmtcp/dmtcp/tree/master/contrib/python).
 
-------------------------------------------------------------------------
-
-Click [here for comments.](contactUs.html){.sidebar}
-
-[![SourceForge.net
-Logo](http://sourceforge.net/sflogo.php?group_id=96405&type=5){border="0"
-height="62" width="210"}](http://sourceforge.net)
