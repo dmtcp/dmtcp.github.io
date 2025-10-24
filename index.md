@@ -30,30 +30,3 @@ for more details.
 
 DMTCP supports MPI and CUDA through plugins. See [MANA (for MPI)](https://github.com/mpickpt/mana)
 and [CRAC (for CUDA)](https://github.com/xuyao0127/CRAC-early-development) for more details.
-
-## Announcement!
-
-We are currently looking for well qualified applicants who are
-interested in joining a Ph.D. program in order to do research on
-checkpointing with applications to HPC, supercomputing, cloud computing,
-security, and other areas. Interested applicants should write to Gene
-Cooperman (gene@ccs.neu.edu) at Northeastern University.
-
-## Authors
-
-DMTCP is currently maintained by [Kapil
-Arya](http://www.ccs.neu.edu/home/kapil/), [Gene
-Cooperman](http://www.ccs.neu.edu/home/gene/), [Rohan
-Garg](http://www.ccs.neu.edu/home/rohgarg/), [Jiajun
-Cao](http://www.ccs.neu.edu/home/jiajun/), Artem Polyakov, and
-[Yao Xu](https://www.ccs.neu.edu/home/yaoxu/). The list
-of active developers continues to evolve.
-
-## Acknowledgment
-
-The DMTCP project is partially supported by grants from Intel
-Corporation, and from the National Science Foundation under grants
-OCI-0960978, ACI-1440788, and OAC-1740218. Any opinions, findings, and
-conclusions or recommendations expressed in this material are those of
-the author(s) and do not necessarily reflect the views of Intel
-Corporation or of the National Science Foundation.
